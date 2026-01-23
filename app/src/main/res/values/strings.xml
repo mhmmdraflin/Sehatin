@@ -9,4 +9,18 @@
     <string name="invalid_username">Not a valid username</string>
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
+
+<!--Halaman Register-->
+    <string name="register_title">Daftar</string>
+    <string name="Name">Nama</string>
+    <string name="Email">Email</string>
+    <string name="Password">Password</string>
+    <string name="Confirm_Password">Konfirmasi Password</string>
+    <string name="Welcome">Selamat Datang Sobat Shatin!</string>
+    <string name="Kebijakan_Privasi">Saya setuju dengan Kebijakan Privasi.</string>
+    <string name="sudah_punya_akun">sudah punya akun?</string>
+    <string name="Masuk">Masuk</string>
+
+<!--Halaman Login-->
+
 </resources>

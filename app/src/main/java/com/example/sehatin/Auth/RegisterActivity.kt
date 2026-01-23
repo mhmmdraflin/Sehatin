@@ -1,4 +1,4 @@
-package com.example.sehatin.Register
+package com.example.sehatin.Auth
 
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge

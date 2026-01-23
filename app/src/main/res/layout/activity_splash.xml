@@ -5,6 +5,12 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Auth.LoginActivity">
+    tools:context=".Splash.SplashActivity">
+
+    <ImageView
+        android:id="@+id/splash_image"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/splashscreen_sehatin" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

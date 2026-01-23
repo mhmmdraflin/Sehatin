@@ -12,10 +12,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Sehatin">
         <activity
-            android:name=".Register.RegisterActivity"
+            android:name=".Splash.SplashActivity"
             android:exported="false" />
         <activity
-            android:name=".Login.LoginActivity"
+            android:name=".Splash.SplashScreen"
+            android:exported="false" />
+        <activity
+            android:name=".Auth.RegisterActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Auth.LoginActivity"
             android:exported="false" />
         <activity
             android:name=".ui.login.LoginActivity"
