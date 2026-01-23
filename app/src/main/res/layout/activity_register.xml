@@ -29,10 +29,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/register_title"
-            android:textsize="center"
             android:textAlignment="center"
+            android:textColor="@color/biru_tua"
+            android:textSize="center"
             android:textStyle="bold"
-            android:textColor="@color/biru_tua"/>
+            tools:layout_editor_absoluteX="16dp"
+            tools:layout_editor_absoluteY="336dp" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

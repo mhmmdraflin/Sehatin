@@ -22,5 +22,10 @@
     <string name="Masuk">Masuk</string>
 
 <!--Halaman Login-->
+<!--Navbar-->
+    <string name="beranda">Beranda</string>
+    <string name="pencapaian">Pencapaian</string>
+    <string name="tantangan">Tantangan</string>
+    <string name="profile">Profil</string>
 
 </resources>

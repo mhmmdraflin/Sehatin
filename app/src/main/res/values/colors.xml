@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="black">#FF000000</color>
-<!--background-->
     <color name="white">#FFFFFFFF</color>
+    <color name="colorPrimary">#6200EE</color>
 
-<!--aset warna sehatin-->
-    <color name="biru_tua"#33A1E0</color>
-    <color name="biru_agak_tua"#1C6EA4</color>
-    <color name="biru_muda"#154D71</color>
+<!--Aset warna Sehatin-->
+    <color name="warnaUtama">#33A1E0</color>
+    <color name="birutua">#1C6EA4</color>
+    <color name="birumuda">#154D71</color>
 </resources>

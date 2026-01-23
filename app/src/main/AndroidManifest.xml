@@ -13,10 +13,12 @@
         android:theme="@style/Theme.Sehatin">
         <activity
             android:name=".Splash.SplashActivity"
-            android:exported="false" />
-        <activity
-            android:name=".Splash.SplashScreen"
-            android:exported="false" />
+            android:exported="true"
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+    </activity>
         <activity
             android:name=".Auth.RegisterActivity"
             android:exported="false" />
@@ -24,17 +26,8 @@
             android:name=".Auth.LoginActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.login.LoginActivity"
-            android:exported="false"
-            android:label="@string/title_activity_login" />
-        <activity
             android:name=".Main.MainActivity"
             android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
     </application>
 
