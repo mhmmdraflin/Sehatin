@@ -18,7 +18,7 @@
             android:id="@+id/register_logo"
             android:layout_width="wrap_content"
             android:layout_height="300dp"
-            android:layout_marginTop="28dp"
+            android:layout_marginTop="0dp"
             android:src="@drawable/logo_sehatin"
             android:contentDescription="Logo Sehatin"
             app:layout_constraintEnd_toEndOf="parent"
@@ -29,15 +29,167 @@
             android:id="@+id/register_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="1dp"
             android:text="@string/register_title"
-            android:textAlignment="center"
+            android:textAlignment="viewStart"
             android:textColor="@color/birutua"
-            android:textSize="24sp"
+            android:textSize="28dp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.101"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/register_logo" />
+
+        <TextView
+            android:id="@+id/Selamat_Datang"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="25sp"
+            android:layout_marginTop="1dp"
+            android:text="@string/Welcome"
+            android:textAlignment="viewStart"
+            android:textColor="@color/birutua"
+            android:textSize="22dp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.101"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/register_title" />
+
+        <EditText
+            android:id="@+id/kolom_nama"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="30dp"
+            android:autofillHints="nama"
+            android:background="@drawable/bg_input_field"
+            android:drawableStart="@drawable/user"
+            android:drawablePadding="20dp"
+            android:hint="@string/Name"
+            android:inputType="textPersonName"
+            android:paddingStart="15dp"
+            android:paddingEnd="15dp"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/Selamat_Datang"/>
+
+        <EditText
+            android:id="@+id/kolom_Email"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="30dp"
+            android:autofillHints="nama"
+            android:background="@drawable/bg_input_field"
+            android:drawableStart="@drawable/user"
+            android:drawablePadding="20dp"
+            android:hint="@string/Email"
+            android:inputType="textPersonName"
+            android:paddingStart="15dp"
+            android:paddingEnd="15dp"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/kolom_nama"/>
+
+        <EditText
+            android:id="@+id/kolom_Password"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="30dp"
+            android:autofillHints="nama"
+            android:background="@drawable/bg_input_field"
+            android:drawableStart="@drawable/user"
+            android:drawablePadding="20dp"
+            android:hint="@string/Password"
+            android:inputType="textPersonName"
+            android:paddingStart="15dp"
+            android:paddingEnd="15dp"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/kolom_Email"/>
+
+        <EditText
+            android:id="@+id/kolom_Konfirmasi"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="30dp"
+            android:autofillHints="nama"
+            android:background="@drawable/bg_input_field"
+            android:drawableStart="@drawable/user"
+            android:drawablePadding="20dp"
+            android:hint="@string/Confirm_Password"
+            android:inputType="textPersonName"
+            android:paddingStart="15dp"
+            android:paddingEnd="15dp"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/kolom_Password"/>
+
+        <CheckBox
+            android:id="@+id/checkbox_privacy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="0dp"
+            android:text="@string/Privacy_Policy"
+            android:buttonTint="@color/abuabu"
+            android:textColor="@color/black"
+            android:textSize="11sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/kolom_Konfirmasi" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/register_button"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:background="@drawable/bg_btn_register"
+            android:text="@string/Register"
+            android:textColor="@color/white"
+            android:textSize="25dp"
+            android:textAllCaps="false"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/checkbox_privacy" />
+
+        <LinearLayout
+            android:id="@+id/login_field"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/register_button">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="2dp"
+                android:textStyle="bold"
+                android:text="@string/sudah_punya_akun" />
+
+            <TextView
+                android:id="@+id/login_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="2dp"
+                android:text="@string/Masuk"
+                android:textColor="@color/birumuda"
+                android:textStyle="bold" />
+
+        </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

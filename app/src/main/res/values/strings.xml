@@ -17,11 +17,12 @@
     <string name="Password">Password</string>
     <string name="Confirm_Password">Konfirmasi Password</string>
     <string name="Welcome">Selamat Datang Sobat Shatin!</string>
-    <string name="Kebijakan_Privasi">Saya setuju dengan Kebijakan Privasi.</string>
+    <string name="Privacy_Policy">Saya setuju dengan Kebijakan Privasi.</string>
     <string name="sudah_punya_akun">sudah punya akun?</string>
-    <string name="Masuk">Masuk</string>
+    <string name="Register">Daftar</string>
 
 <!--Halaman Login-->
+    <string name="Masuk">Masuk</string>
 <!--Navbar-->
     <string name="beranda">Beranda</string>
     <string name="pencapaian">Pencapaian</string>
