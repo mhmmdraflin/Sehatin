@@ -4,9 +4,8 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.example.sehatin.Auth.LoginActivity
 import com.example.sehatin.R
-import com.example.sehatin.Main.MainActivity
-// import com.example.sehatin.databinding.ActivitySplashBinding // Hapus komen ini jika pakai ViewBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
@@ -23,7 +22,7 @@ class SplashActivity : AppCompatActivity() {
         CoroutineScope(Dispatchers.Main).launch {
             delay(4000)
             // Pindah ke MainActivity setelah 4 detik
-            val splashIntent = Intent(this@SplashActivity, MainActivity::class.java)
+            val splashIntent = Intent(this@SplashActivity, LoginActivity::class.java)
             startActivity(splashIntent)
             finish()
         }

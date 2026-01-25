@@ -19,8 +19,8 @@
             android:layout_width="wrap_content"
             android:layout_height="300dp"
             android:layout_marginTop="0dp"
+            android:contentDescription="@string/logo_sehatin"
             android:src="@drawable/logo_sehatin"
-            android:contentDescription="Logo Sehatin"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -33,7 +33,7 @@
             android:text="@string/register_title"
             android:textAlignment="viewStart"
             android:textColor="@color/birutua"
-            android:textSize="28dp"
+            android:textSize="28sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.101"
@@ -44,17 +44,18 @@
             android:id="@+id/Selamat_Datang"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingStart="25sp"
             android:layout_marginTop="1dp"
+            android:paddingStart="25sp"
             android:text="@string/Welcome"
             android:textAlignment="viewStart"
             android:textColor="@color/birutua"
-            android:textSize="22dp"
+            android:textSize="22sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.101"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/register_title" />
+            app:layout_constraintTop_toBottomOf="@+id/register_title"
+            tools:ignore="RtlSymmetry" />
 
         <EditText
             android:id="@+id/kolom_nama"
@@ -74,7 +75,7 @@
             android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/Selamat_Datang"/>
+            app:layout_constraintTop_toBottomOf="@+id/Selamat_Datang" />
 
         <EditText
             android:id="@+id/kolom_Email"
@@ -85,7 +86,7 @@
             android:layout_marginEnd="30dp"
             android:autofillHints="nama"
             android:background="@drawable/bg_input_field"
-            android:drawableStart="@drawable/user"
+            android:drawableStart="@drawable/mail"
             android:drawablePadding="20dp"
             android:hint="@string/Email"
             android:inputType="textPersonName"
@@ -94,7 +95,8 @@
             android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/kolom_nama"/>
+            app:layout_constraintTop_toBottomOf="@+id/kolom_nama"
+            tools:ignore="TextFields" />
 
         <EditText
             android:id="@+id/kolom_Password"
@@ -105,7 +107,7 @@
             android:layout_marginEnd="30dp"
             android:autofillHints="nama"
             android:background="@drawable/bg_input_field"
-            android:drawableStart="@drawable/user"
+            android:drawableStart="@drawable/password"
             android:drawablePadding="20dp"
             android:hint="@string/Password"
             android:inputType="textPersonName"
@@ -114,7 +116,8 @@
             android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/kolom_Email"/>
+            app:layout_constraintTop_toBottomOf="@+id/kolom_Email"
+            tools:ignore="TextFields" />
 
         <EditText
             android:id="@+id/kolom_Konfirmasi"
@@ -125,7 +128,7 @@
             android:layout_marginEnd="30dp"
             android:autofillHints="nama"
             android:background="@drawable/bg_input_field"
-            android:drawableStart="@drawable/user"
+            android:drawableStart="@drawable/konfirmasi_password"
             android:drawablePadding="20dp"
             android:hint="@string/Confirm_Password"
             android:inputType="textPersonName"
@@ -134,20 +137,22 @@
             android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/kolom_Password"/>
+            app:layout_constraintTop_toBottomOf="@+id/kolom_Password" />
 
         <CheckBox
             android:id="@+id/checkbox_privacy"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="30dp"
-            android:layout_marginTop="0dp"
+            android:button="@drawable/checkbox_selector"
+            android:buttonTint="@null"
             android:text="@string/Privacy_Policy"
-            android:buttonTint="@color/abuabu"
             android:textColor="@color/black"
             android:textSize="11sp"
+            app:buttonTint="@null"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/kolom_Konfirmasi" />
+            app:layout_constraintTop_toBottomOf="@+id/kolom_Konfirmasi"
+            app:useMaterialThemeColors="false" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/register_button"
@@ -157,9 +162,9 @@
             android:layout_marginEnd="30dp"
             android:background="@drawable/bg_btn_register"
             android:text="@string/Register"
-            android:textColor="@color/white"
-            android:textSize="25dp"
             android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="25sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/checkbox_privacy" />
@@ -176,9 +181,9 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="2dp"
-                android:textStyle="bold"
-                android:text="@string/sudah_punya_akun" />
+                android:padding="10dp"
+                android:text="@string/sudah_punya_akun"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/login_btn"

@@ -4,9 +4,10 @@
     <color name="white">#FFFFFFFF</color>
     <color name="colorPrimary">#6200EE</color>
 
-<!--Aset warna Sehatin-->
+    <!--Aset warna Sehatin-->
     <color name="warnaUtama">#33A1E0</color>
     <color name="birutua">#1C6EA4</color>
     <color name="birumuda">#154D71</color>
     <color name="abuabu">#C4C4C4</color>
+
 </resources>
