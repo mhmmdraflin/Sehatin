@@ -149,10 +149,12 @@
             android:text="@string/Privacy_Policy"
             android:textColor="@color/black"
             android:textSize="11sp"
+            android:paddingStart="12dp"
             app:buttonTint="@null"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/kolom_Konfirmasi"
-            app:useMaterialThemeColors="false" />
+            app:useMaterialThemeColors="false"
+            tools:ignore="RtlSymmetry" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/register_button"
@@ -168,33 +170,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/checkbox_privacy" />
-
-        <LinearLayout
-            android:id="@+id/login_field"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/register_button">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="10dp"
-                android:text="@string/sudah_punya_akun"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/login_btn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="2dp"
-                android:text="@string/Masuk"
-                android:textColor="@color/birumuda"
-                android:textStyle="bold" />
-
-        </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

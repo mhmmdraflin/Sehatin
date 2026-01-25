@@ -1,4 +1,4 @@
-package com.example.sehatin.Splash
+package com.example.sehatin.ui.Splash
 
 import android.annotation.SuppressLint
 import android.content.Intent

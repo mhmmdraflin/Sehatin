@@ -24,10 +24,18 @@
 
     <!--Halaman Login-->
     <string name="Masuk">Masuk</string>
+    <string name="Ingat_Saya">Ingat Saya</string>
+    <string name="Lupa_Kata_Sandi">Lupa Kata Sandi?</string>
+    <string name="Masuk_Dengan">Masuk Dengan"</string>
+    <string name="Google">Masuk Dengan Google</string>
+    <string name="belum_punya_akun">belum punya akun?</string>
+    <string name="Daftar">Daftar Di Sini</string>
     <!--Navbar-->
     <string name="beranda">Beranda</string>
     <string name="pencapaian">Pencapaian</string>
     <string name="tantangan">Tantangan</string>
     <string name="profile">Profil</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

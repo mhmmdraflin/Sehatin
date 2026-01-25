@@ -13,7 +13,7 @@
         android:theme="@style/Theme.Sehatin">
 
         <activity
-            android:name=".Splash.SplashActivity"
+            android:name=".ui.Splash.SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
