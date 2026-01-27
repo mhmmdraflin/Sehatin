@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import com.example.sehatin.Auth.LoginActivity
 import com.example.sehatin.R
 import com.example.sehatin.ui.Intro.IntroActivity
 import kotlinx.coroutines.CoroutineScope

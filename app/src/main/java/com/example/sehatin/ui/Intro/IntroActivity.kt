@@ -16,7 +16,6 @@ import androidx.viewpager2.widget.ViewPager2
 import com.example.sehatin.Auth.LoginActivity
 import com.example.sehatin.R
 import com.google.android.material.tabs.TabLayout
-import kotlinx.coroutines.Runnable
 
 class IntroActivity : AppCompatActivity() {
 
