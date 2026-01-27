@@ -10,28 +10,27 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Sehatin">
-
+        <activity
+            android:name=".ui.Intro.IntroActivity"
+            android:exported="false" />
         <activity
             android:name=".ui.Splash.SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".Auth.RegisterActivity"
             android:exported="false" />
-
         <activity
             android:name=".Auth.LoginActivity"
             android:exported="false" />
-
         <activity
             android:name=".Main.MainActivity"
             android:exported="true" />
-
     </application>
 
 </manifest>

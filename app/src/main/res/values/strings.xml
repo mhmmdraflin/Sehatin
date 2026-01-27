@@ -13,11 +13,12 @@
     <!--Halaman Register-->
     <string name="register_title">Daftar</string>
     <string name="logo_sehatin">Logo Sehatin</string>
+    <string name="sehatin">SEHATIN</string>
     <string name="Name">Nama</string>
     <string name="Email">Email</string>
     <string name="Password">Password</string>
     <string name="Confirm_Password">Konfirmasi Password</string>
-    <string name="Welcome">Selamat Datang Sobat Shatin!</string>
+    <string name="Welcome">Selamat Datang Sobat Sehatin!</string>
     <string name="Privacy_Policy">Saya setuju dengan Kebijakan Privasi.</string>
     <string name="sudah_punya_akun">sudah punya akun?</string>
     <string name="Register">Daftar</string>
@@ -30,11 +31,29 @@
     <string name="Google">Masuk Dengan Google</string>
     <string name="belum_punya_akun">belum punya akun?</string>
     <string name="Daftar">Daftar Di Sini</string>
+    <string name="Selamat_Datang">Selamat Datang Sobat Sehatin!</string>
+
     <!--Navbar-->
     <string name="beranda">Beranda</string>
     <string name="pencapaian">Pencapaian</string>
     <string name="tantangan">Tantangan</string>
     <string name="profile">Profil</string>
+
+    <!--intro-->
+    <string name="Judul_Preview">Judul Preview</string>
+    <string name="Deskripsi_Preview">Deskripsi preview disini.</string>
+    <string name="intro1">Kunci Menuju Berat Badan Ideal Anda</string>
+    <string name="intro1_desc">Hitung BMI dan dapatkan panduan nutrisi sehatmu hanya dalam aplikasi Sehatin</string>
+    <string name="intro2">Dari Jogging Biasa Jadi Luar Biasa!</string>
+    <string name="intro2_desc">Lacak performa larimu, ambil tantangan, dan rasakan keseruan mencapai target.</string>
+    <string name="intro3">Yuk, Disiplin Demi Tubuh Prima!</string>
+    <string name="intro3_desc">Pengingat makan sehat dan cek BMI rutin jadi teman setiamu di Sehatin.</string>
+    <string name="Selanjutnya">Selanjutnya</string>
+    <string name="Lewati">Lewati</string>
+    <string name="Mulai_Sekarang">Mulai Sekarang</string>
+    <string name="berat_badan">Kunci Menuju Berat Badan Ideal Anda</string>
+    <string name="Hitung_BMI"> Hitung BMI dan dapatkan panduan nutrisi sehatmu hanya dalam aplikasi Sehatin</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
