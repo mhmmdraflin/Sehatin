@@ -11,6 +11,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Sehatin">
         <activity
+            android:name=".UserData.UserDataActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.Intro.IntroActivity"
             android:exported="false" />
         <activity

@@ -54,6 +54,28 @@
     <string name="berat_badan">Kunci Menuju Berat Badan Ideal Anda</string>
     <string name="Hitung_BMI"> Hitung BMI dan dapatkan panduan nutrisi sehatmu hanya dalam aplikasi Sehatin</string>
 
+    <!--Sehatin-->
+    <string name="Sehatin_Data">Sehatin Data</string>
+    <string name="Berapa_Umurmu">Berapa Umurmu?</string>
+    <string name="Berapa_Tinggimu">Berapa Tinggimu? (cm)</string>
+    <string name="Berapa_Beratmu">Berapa Beratmu? (kg)</string>
+    <string name="Selamat_datang_Sobat_Sehatin">Selamat Datang\nSobat Sehatin!</string>
+    <string name="Masukan_Data_Terlebih_dahulu_ya">Masukan Data Hanya Dengan Angka Saja Ya!</string>
+    <string name="Berat_Badan">Berapa Beratmu? (kg)</string>
+    <string name="Tinggi_Badan">Berapa Tinggimu? (cm)</string>
+    <string name="Umur">Berapa Umurmu?</string>
+    <string name="Simpan">Simpan</string>
+    <string name="Kirim">Kirim</string>
+    <string name="Masukkan_Umur">Masukkan Umur</string>
+    <string name="Masukkan_Tinggi">Masukkan Tinggi</string>
+    <string name="Masukkan_Berat">Masukkan Berat</string>
+
+
+
+
+
+
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
