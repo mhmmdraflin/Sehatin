@@ -14,9 +14,7 @@ import androidx.appcompat.widget.AppCompatButton
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import com.example.sehatin.Auth.LoginActivity
-import com.example.sehatin.Auth.RegisterActivity
 import com.example.sehatin.R
-import com.example.sehatin.UserData.UserDataActivity
 import com.google.android.material.tabs.TabLayout
 
 class IntroActivity : AppCompatActivity() {

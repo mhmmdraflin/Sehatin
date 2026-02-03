@@ -66,7 +66,7 @@ class UserPreference(context: Context) {
         pref.edit { putBoolean(KEY_IS_LOGIN, isLogin) }
     }
 
-    fun isLogin(): Boolean = pref.getBoolean(KEY_IS_LOGIN, false)
+//    fun isLogin(): Boolean = pref.getBoolean(KEY_IS_LOGIN, false)
 
     fun setUserBody(userBody: com.example.sehatin.Data.Local.UserBody) {
         pref.edit {
