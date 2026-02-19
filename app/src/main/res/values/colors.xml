@@ -10,4 +10,16 @@
     <color name="birumuda">#154D71</color>
     <color name="abuabu">#C4C4C4</color>
 
+    <color name="biru_muda_card">#4FC3F7</color>
+    <color name="biru_tua_teks">#0D47A1</color>
+    <color name="abu_abu_teks">#757575</color>
+    <color name="putih">#FFFFFF</color>
+
+    <color name="blue_header">#4FC3F7</color>
+    <color name="blue_card">#29B6F6</color>
+    <color name="blue_dark_stroke">#0277BD</color>
+    <color name="blue_light_fill">#81D4FA</color>
+    <color name="grey_text">#757575</color>
+    <color name="grey_icon">#BDBDBD</color>
+
 </resources>

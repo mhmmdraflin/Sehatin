@@ -12,4 +12,7 @@ class LoginRepository (private val pref: UserPreference) {
     fun setLoginSuccess() {
         pref.setLogin(true)
     }
+    fun isDataComplete(): Boolean {
+        return pref.isUserDataFilled()
+    }
 }

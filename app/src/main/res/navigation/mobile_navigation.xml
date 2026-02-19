@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_dashboard">
+
+    <fragment
+        android:id="@+id/navigation_dashboard"
+        android:name="com.example.sehatin.ui.Dashboard.DashboardFragment"
+        android:label="@string/beranda"
+        tools:layout="@layout/fragment_dashboard" />
+
+    <fragment
+        android:id="@+id/navigation_pencapaian"
+        android:name="com.example.sehatin.ui.Pencapaian.PencapaianFragment"
+        android:label="@string/pencapaian"
+        tools:layout="@layout/fragment_pencapaian" />
+
+    <fragment
+        android:id="@+id/navigation_tantangan"
+        android:name="com.example.sehatin.ui.Tantangan.TantanganFragment"
+        android:label="@string/tantangan"
+        tools:layout="@layout/fragment_tantangan" />
+
+    <fragment
+        android:id="@+id/navigation_profile"
+        android:name="com.example.sehatin.ui.Profil.ProfilFragment"
+        android:label="@string/profile"
+        tools:layout="@layout/fragment_profil" />
+
+
+</navigation>

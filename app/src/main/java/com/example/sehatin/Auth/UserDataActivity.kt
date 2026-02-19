@@ -37,12 +37,13 @@ class UserDataActivity : AppCompatActivity() {
             val umur = etUmur.text.toString()
             val tinggi = etTinggi.text.toString()
             val berat = etBerat.text.toString()
+            val gender = "L" // Default value for now, consider adding gender selection in UI later
 
             if (umur.isEmpty() || tinggi.isEmpty() || berat.isEmpty()) {
                 Toast.makeText(this, "Mohon lengkapi data ya!", Toast.LENGTH_SHORT).show()
             } else {
                 // 1. Simpan Data Fisik
-                viewModel.saveData(umur, tinggi, berat)
+                viewModel.saveData(umur, tinggi, berat, gender)
 
                 // 2. [BARU] CEK DATA DI LOGCAT
                 // Kita panggil fungsi getAllDataDebug() dari UserPreference

@@ -61,20 +61,32 @@
     <string name="Berapa_Beratmu">Berapa Beratmu? (kg)</string>
     <string name="Selamat_datang_Sobat_Sehatin">Selamat Datang\nSobat Sehatin!</string>
     <string name="Masukan_Data_Terlebih_dahulu_ya">Masukan Data Hanya Dengan Angka Saja Ya!</string>
-    <string name="Berat_Badan">Berapa Beratmu? (kg)</string>
-    <string name="Tinggi_Badan">Berapa Tinggimu? (cm)</string>
-    <string name="Umur">Berapa Umurmu?</string>
+    <string name="Berapa_Berat_Badan">Berapa Beratmu? (kg)</string>
+    <string name="Berapa_Tinggi_Badan">Berapa Tinggimu? (cm)</string>
+    <string name="Berapa_Umur">Berapa Umurmu?</string>
     <string name="Simpan">Simpan</string>
     <string name="Kirim">Kirim</string>
     <string name="Masukkan_Umur">Masukkan Umur</string>
     <string name="Masukkan_Tinggi">Masukkan Tinggi</string>
     <string name="Masukkan_Berat">Masukkan Berat</string>
 
-
-
-
-
-
+    <!--dashboard-->
+    <string name="selamat_datang">Selamat Datang</string>
+    <string name="Username">Username</string>
+    <string name="point">Point</string>
+    <string name="kondisi">Kalorimu Saat Ini</string>
+    <string name="KKAL">1.000 KKAL</string>
+    <string name="Umur">Umur</string>
+    <string name="dashboard_body_condition">0 KKAL</string>
+    <string name="Jenis_Kelamin">Jenis Kelamin</string>
+    <string name="Laki_Laki">Laki-Laki</string>
+    <string name="Perempuan">Perempuan</string>
+    <string name="dashboard_Berat_Badan">Berat</string>
+    <string name="Tinggi_Badan">Tinggi</string>
+    <string name="Tahun18">18 Tahun</string>
+    <string name="Tahun">170 Cm</string>
+    <string name="Berat">40 Kg</string>
+    <string name="Kategori">Kategori</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
