@@ -1,7 +1,6 @@
 [versions]
 agp = "9.0.0"
 kotlin = "2.3.0"
-navigation = "2.7.7"
 coreKtx = "1.17.0"
 circleimageview = "3.1.0"
 junit = "4.13.2"

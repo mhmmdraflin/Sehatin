@@ -27,6 +27,7 @@
                 android:id="@+id/icon_lencana_header"
                 android:layout_width="75dp"
                 android:layout_height="75dp"
+                android:contentDescription="@string/icon_lencana_header"
                 android:scaleType="fitCenter"
                 android:adjustViewBounds="true"
                 android:src="@drawable/people" />
@@ -36,7 +37,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="1dp"
                 android:fontFamily="@font/lexenddeca"
-                android:text="Lencana Sehatin"
+                android:text="@string/Lencana_Sehatin"
                 android:textColor="#4FA5E2"
                 android:textSize="24sp"
                 android:textStyle="bold" />
@@ -72,6 +73,7 @@
                         android:layout_width="30dp"
                         android:layout_height="30dp"
                         android:layout_gravity="center"
+                        android:contentDescription="@string/icon_lencana_sehatin"
                         android:src="@drawable/logo_sehatin" />
                 </com.google.android.material.card.MaterialCardView>
 
@@ -81,7 +83,7 @@
                     android:layout_marginStart="16dp"
                     android:layout_weight="1"
                     android:fontFamily="@font/lexenddeca"
-                    android:text="Berhasil Melakukan Push Up 15 kali"
+                    android:text="@string/deskripsi_lencana_pushup"
                     android:textColor="#FFFFFF"
                     android:textSize="13sp"
                     android:textStyle="bold" />
@@ -118,6 +120,7 @@
                         android:layout_width="30dp"
                         android:layout_height="30dp"
                         android:layout_gravity="center"
+                        android:contentDescription="@string/logo_sehatin"
                         android:src="@drawable/logo_sehatin" />
                 </com.google.android.material.card.MaterialCardView>
 
@@ -127,7 +130,7 @@
                     android:layout_marginStart="16dp"
                     android:layout_weight="1"
                     android:fontFamily="@font/lexenddeca"
-                    android:text="Berhasil Melakukan Push Up 15 kali"
+                    android:text="@string/deskripsi_lencana_pushup"
                     android:textColor="#FFFFFF"
                     android:textSize="13sp"
                     android:textStyle="bold" />
@@ -164,6 +167,7 @@
                         android:layout_width="30dp"
                         android:layout_height="30dp"
                         android:layout_gravity="center"
+                        android:contentDescription="@string/logo_sehatin"
                         android:src="@drawable/logo_sehatin" />
                 </com.google.android.material.card.MaterialCardView>
 
@@ -173,7 +177,7 @@
                     android:layout_marginStart="16dp"
                     android:layout_weight="1"
                     android:fontFamily="@font/lexenddeca"
-                    android:text="Berhasil Melakukan Push Up 15 kali"
+                    android:text="@string/deskripsi_lencana_pushup"
                     android:textColor="#FFFFFF"
                     android:textSize="13sp"
                     android:textStyle="bold" />

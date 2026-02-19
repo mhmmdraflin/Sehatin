@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
@@ -13,13 +12,13 @@
         android:id="@+id/bg_icon_character"
         android:layout_width="match_parent"
         android:layout_height="600dp"
-        android:contentDescription="bg dashboard character"
+        android:contentDescription="@string/background_dashboard_content"
         android:scaleType="centerCrop"
         android:src="@drawable/bg_dashboard_character"
-        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@+id/sehatin_deck_dash"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/character_illustration"
@@ -27,12 +26,14 @@
         android:layout_height="0dp"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="12dp"
+        android:contentDescription="@string/character_illustration"
         android:scaleType="fitCenter"
         android:src="@drawable/character_ideal"
-        app:layout_constraintTop_toBottomOf="@+id/profile_board_dash"
         app:layout_constraintBottom_toTopOf="@+id/sehatin_deck_dash"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/profile_board_dash" />
+
     <LinearLayout
         android:id="@+id/profile_board_dash"
         android:layout_width="match_parent"
@@ -60,6 +61,7 @@
             android:layout_weight="1"
             android:orientation="vertical"
             tools:ignore="UselessLeaf">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -69,6 +71,7 @@
                 android:textColor="@color/black"
                 android:textSize="14sp"
                 android:textStyle="bold" />
+
             <TextView
                 android:id="@+id/dashboard_username"
                 android:layout_width="wrap_content"
@@ -79,6 +82,7 @@
                 android:textColor="@color/white"
                 android:textSize="14sp"
                 android:textStyle="normal" />
+
             <TextView
                 android:id="@+id/dashboard_point"
                 android:layout_width="wrap_content"
@@ -98,7 +102,7 @@
             android:layout_gravity="center_vertical"
             android:layout_marginEnd="15dp"
             android:backgroundTint="@color/warnaUtama"
-            android:contentDescription="Notification"
+            android:contentDescription="@string/Notification"
             android:src="@drawable/ic_notifications" />
     </LinearLayout>
 
@@ -120,26 +124,30 @@
             android:layout_weight="1"
             android:gravity="center"
             android:orientation="vertical">
+
             <ImageButton
                 android:id="@+id/btn_bmi"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:background="@drawable/bg_edittext_rounded"
                 android:backgroundTint="@color/warnaUtama"
+                android:contentDescription="@string/btn_bmi"
                 android:elevation="4dp"
                 android:padding="12dp"
                 android:scaleType="fitCenter"
                 android:src="@drawable/logo_bmi" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"
                 android:fontFamily="@font/lexenddeca"
-                android:text="Body Mass\nIndex"
+                android:text="@string/Body_Mass_Index"
                 android:textAlignment="center"
                 android:textColor="@color/black"
                 android:textSize="10sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                tools:ignore="SmallSp" />
         </LinearLayout>
 
         <LinearLayout
@@ -148,26 +156,30 @@
             android:layout_weight="1"
             android:gravity="center"
             android:orientation="vertical">
+
             <ImageButton
                 android:id="@+id/btn_pengingat_makan"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:background="@drawable/bg_edittext_rounded"
                 android:backgroundTint="@color/warnaUtama"
+                android:contentDescription="@string/btn_pengingat_makan"
                 android:elevation="4dp"
                 android:padding="12dp"
                 android:scaleType="fitCenter"
                 android:src="@drawable/logo_pengingat_jammakan" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"
                 android:fontFamily="@font/lexenddeca"
-                android:text="Pengingat\nJam Makan"
+                android:text="@string/Pengingat_jam_makan"
                 android:textAlignment="center"
                 android:textColor="@color/black"
                 android:textSize="10sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                tools:ignore="SmallSp" />
         </LinearLayout>
 
         <LinearLayout
@@ -176,26 +188,30 @@
             android:layout_weight="1"
             android:gravity="center"
             android:orientation="vertical">
+
             <ImageButton
                 android:id="@+id/btn_info_makanan"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:background="@drawable/bg_edittext_rounded"
                 android:backgroundTint="@color/warnaUtama"
+                android:contentDescription="@string/btn_pengingat_makan"
                 android:elevation="4dp"
                 android:padding="12dp"
                 android:scaleType="fitCenter"
                 android:src="@drawable/logo_informasi_makanan" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"
                 android:fontFamily="@font/lexenddeca"
-                android:text="Informasi\nMakanan"
+                android:text="@string/Informasi_Makanan"
                 android:textAlignment="center"
                 android:textColor="@color/black"
                 android:textSize="10sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                tools:ignore="SmallSp" />
         </LinearLayout>
 
         <LinearLayout
@@ -204,6 +220,7 @@
             android:layout_weight="1"
             android:gravity="center"
             android:orientation="vertical">
+
             <ImageButton
                 android:id="@+id/btn_olahraga"
                 android:layout_width="60dp"
@@ -214,16 +231,18 @@
                 android:padding="12dp"
                 android:scaleType="fitCenter"
                 android:src="@drawable/logo_olahraga" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"
                 android:fontFamily="@font/lexenddeca"
-                android:text="Olahraga"
+                android:text="@string/Olahraga"
                 android:textAlignment="center"
                 android:textColor="@color/black"
                 android:textSize="10sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                tools:ignore="SmallSp" />
         </LinearLayout>
     </LinearLayout>
 
@@ -298,20 +317,22 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:orientation="vertical">
+
                 <TextView
                     android:id="@+id/tv_umur_val"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/lexenddeca"
-                    android:text="18 Tahun"
+                    android:text="@string/Tahun18"
                     android:textColor="@color/white"
                     android:textSize="16sp"
                     android:textStyle="bold" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/lexenddeca"
-                    android:text="Umur"
+                    android:text="@string/Umur"
                     android:textColor="@color/white"
                     android:textSize="12sp" />
             </LinearLayout>
@@ -327,6 +348,7 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:orientation="vertical">
+
                 <TextView
                     android:id="@+id/tv_tinggi_val"
                     android:layout_width="wrap_content"
@@ -336,11 +358,12 @@
                     android:textColor="@color/white"
                     android:textSize="16sp"
                     android:textStyle="bold" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/lexenddeca"
-                    android:text="Tinggi"
+                    android:text="@string/Tinggi_Badan"
                     android:textColor="@color/white"
                     android:textSize="12sp" />
             </LinearLayout>
@@ -356,21 +379,23 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:orientation="vertical">
+
                 <TextView
                     android:id="@+id/tv_berat_val"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/lexenddeca"
-                    android:text="40Kg"
+                    android:text="@string/kg40"
                     android:textColor="@color/white"
                     android:textSize="16sp"
                     android:textStyle="bold" />
+
                 <TextView
                     android:id="@+id/et_berat"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/lexenddeca"
-                    android:text="Berat"
+                    android:text="@string/berat"
                     android:textColor="@color/white"
                     android:textSize="12sp" />
             </LinearLayout>

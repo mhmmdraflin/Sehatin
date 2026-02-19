@@ -84,9 +84,53 @@
     <string name="dashboard_Berat_Badan">Berat</string>
     <string name="Tinggi_Badan">Tinggi</string>
     <string name="Tahun18">18 Tahun</string>
-    <string name="Tahun">170 Cm</string>
-    <string name="Berat">40 Kg</string>
+    <string name="cm170">170 Cm</string>
+    <string name="kg40">40 Kg</string>
+    <string name="berat">Berat</string>
+    <string name="Body_Mass_Index"> Body Mass\nIndex</string>
+    <string name="Pengingat_jam_makan">Pengingat\nJam Makan</string>
+    <string name="Informasi_Makanan">Informasi\nMakanan</string>
     <string name="Kategori">Kategori</string>
+    <string name="Olahraga">Olahraga</string>
+
+
+    <!--Fragment Tantangan-->
+    <string name="Tantangan_Sehatin">Tantangan Sehatin</string>
+    <string name="Periksa">Periksa</string>
+    <string name="Segera_Hadir">Segera hadir</string>
+    <string name="Tantangan_Olahraga">Tantangan Olahraga</string>
+    <string name="Tantangan_Makanan">Tantangan Makanan</string>
+    <string name="Jadwal_Tantangan">Jadwal Tantangan</string>
+    <string name="deskripsi_tantangan_olahraga">Tantangan Olahraga Push Up, Sit Up dan olahraga workout lainnya</string>
+    <string name="deskripsi_tantangan_makanan">Tantangan Makanan Sehat dan Minum dalam sehari</string>
+
+    <!--Fragment Lencana-->
+    <string name="Lencana_Sehatin">Lencana Sehatin</string>
+    <string name="Jadwal_Lencana">Jadwal Lencana</string>
+    <string name="deskripsi_lencana_pushup">Berhasil Melakukan Push Up 15 kali</string>
+    <string name="deskripsi_tantangan_olahraga">Tantangan Olahraga Push Up, Sit Up dan olahraga workout lainnya</string>
+    <string name="deskripsi_tantangan_olahraga">Tantangan Olahraga Push Up, Sit Up dan olahraga workout lainnya</string>
+
+
+
+
+
+
+
+
+    <!--deskripsi konten-->
+    <string name="background_dashboard_content">bg dashboard character</string>
+    <string name="character_illustration">character illustration</string>
+    <string name="Notification">Notification</string>
+    <string name="btn_bmi">btn bmi</string>
+    <string name="btn_pengingat_makan">btn pengingat makan</string>
+    <string name="btn_info_makanan">btn info makanan</string>
+    <string name="bg_tantangan">bg tantangan</string>
+    <string name="icon_lencana_header">icon tantangan header</string>
+    <string name="icon_lencana_sehatin">icon tantangan header</string>
+    <string name="icon_tantangan_header">icon tantangan header</string>
+    <string name="icon_tantangan_header">icon tantangan header</string>
+
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
