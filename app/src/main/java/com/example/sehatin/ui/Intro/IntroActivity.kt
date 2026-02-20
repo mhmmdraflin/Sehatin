@@ -34,12 +34,12 @@ class IntroActivity : AppCompatActivity() {
                 getString(R.string.intro1_desc)
             ),
             IntroItem(
-                R.drawable.intro_page2,
+                R.drawable.intro2,
                 getString(R.string.intro2),
                 getString(R.string.intro2_desc)
             ),
             IntroItem(
-                R.drawable.intro_page3,
+                R.drawable.intro3,
                 getString(R.string.intro3),
                 getString(R.string.intro3_desc)
             )

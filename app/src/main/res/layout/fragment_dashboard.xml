@@ -125,17 +125,25 @@
             android:gravity="center"
             android:orientation="vertical">
 
-            <ImageButton
-                android:id="@+id/btn_bmi"
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/btn_bmi_card"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
-                android:background="@drawable/bg_edittext_rounded"
-                android:backgroundTint="@color/warnaUtama"
-                android:contentDescription="@string/btn_bmi"
-                android:elevation="4dp"
-                android:padding="12dp"
-                android:scaleType="fitCenter"
-                android:src="@drawable/logo_bmi" />
+                app:cardBackgroundColor="@color/warnaUtama"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="4dp"
+                app:strokeColor="#000000"
+                app:strokeWidth="1dp">
+
+                <ImageView
+                    android:id="@+id/btn_bmi"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:contentDescription="@string/btn_bmi"
+                    android:padding="12dp"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/logo_bmi" />
+            </com.google.android.material.card.MaterialCardView>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -157,17 +165,25 @@
             android:gravity="center"
             android:orientation="vertical">
 
-            <ImageButton
-                android:id="@+id/btn_pengingat_makan"
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/btn_pengingat_makan_card"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
-                android:background="@drawable/bg_edittext_rounded"
-                android:backgroundTint="@color/warnaUtama"
-                android:contentDescription="@string/btn_pengingat_makan"
-                android:elevation="4dp"
-                android:padding="12dp"
-                android:scaleType="fitCenter"
-                android:src="@drawable/logo_pengingat_jammakan" />
+                app:cardBackgroundColor="@color/warnaUtama"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="4dp"
+                app:strokeColor="#000000"
+                app:strokeWidth="1dp">
+
+                <ImageView
+                    android:id="@+id/btn_pengingat_makan"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:contentDescription="@string/btn_pengingat_makan"
+                    android:padding="12dp"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/logo_pengingat_jamakan" />
+            </com.google.android.material.card.MaterialCardView>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -189,17 +205,25 @@
             android:gravity="center"
             android:orientation="vertical">
 
-            <ImageButton
-                android:id="@+id/btn_info_makanan"
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/btn_info_makanan_card"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
-                android:background="@drawable/bg_edittext_rounded"
-                android:backgroundTint="@color/warnaUtama"
-                android:contentDescription="@string/btn_pengingat_makan"
-                android:elevation="4dp"
-                android:padding="12dp"
-                android:scaleType="fitCenter"
-                android:src="@drawable/logo_informasi_makanan" />
+                app:cardBackgroundColor="@color/warnaUtama"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="4dp"
+                app:strokeColor="#000000"
+                app:strokeWidth="1dp">
+
+                <ImageView
+                    android:id="@+id/btn_info_makanan"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:contentDescription="@string/btn_pengingat_makan"
+                    android:padding="12dp"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/logo_informasi_makanan" />
+            </com.google.android.material.card.MaterialCardView>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -221,16 +245,25 @@
             android:gravity="center"
             android:orientation="vertical">
 
-            <ImageButton
-                android:id="@+id/btn_olahraga"
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/btn_olahraga_card"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
-                android:background="@drawable/bg_edittext_rounded"
-                android:backgroundTint="@color/warnaUtama"
-                android:elevation="4dp"
-                android:padding="12dp"
-                android:scaleType="fitCenter"
-                android:src="@drawable/logo_olahraga" />
+                app:cardBackgroundColor="@color/warnaUtama"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="4dp"
+                app:strokeColor="#000000"
+                app:strokeWidth="1dp">
+
+                <ImageView
+                    android:id="@+id/btn_olahraga"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:contentDescription="@string/Olahraga"
+                    android:padding="12dp"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/logo_olahraga" />
+            </com.google.android.material.card.MaterialCardView>
 
             <TextView
                 android:layout_width="wrap_content"

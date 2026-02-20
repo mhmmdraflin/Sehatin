@@ -21,7 +21,7 @@ class UserPreference(context: Context) {
         private const val KEY_IS_LOGIN = "is_login"
 
         // Data Fisik
-        private const val  KEY_GENDER = "user_gender"
+        private const val KEY_GENDER = "user_gender"
         private const val KEY_UMUR = "user_umur"
         private const val KEY_TINGGI = "user_tinggi"
         private const val KEY_BERAT = "user_berat"
@@ -35,6 +35,7 @@ class UserPreference(context: Context) {
             putString(KEY_PASSWORD, pass)
         }
     }
+
     // Ambil Data Akun
     fun getName(): String? = pref.getString(KEY_NAME, "Sobat Sehatin") // Default jika kosong
     fun getEmail(): String? = pref.getString(KEY_EMAIL, null)

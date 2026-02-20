@@ -108,15 +108,14 @@
     <string name="Lencana_Sehatin">Lencana Sehatin</string>
     <string name="Jadwal_Lencana">Jadwal Lencana</string>
     <string name="deskripsi_lencana_pushup">Berhasil Melakukan Push Up 15 kali</string>
-    <string name="deskripsi_tantangan_olahraga">Tantangan Olahraga Push Up, Sit Up dan olahraga workout lainnya</string>
-    <string name="deskripsi_tantangan_olahraga">Tantangan Olahraga Push Up, Sit Up dan olahraga workout lainnya</string>
 
-
-
-
-
-
-
+    <!--Fragment Profil-->
+    <string name="Email_profil">johndoe@gmail.com</string>
+    <string name="Nama_profil">John Doe</string>
+    <string name="Tukarpoin_Profil">Tukar Poin</string>
+    <string name="PrivasiKebijakan_Profil">Privasi Dan Kebijakan</string>
+    <string name="Logout_Profil">Logout</string>
+    <string name="Edit_Profil">Edit</string>
 
     <!--deskripsi konten-->
     <string name="background_dashboard_content">bg dashboard character</string>
@@ -128,8 +127,13 @@
     <string name="bg_tantangan">bg tantangan</string>
     <string name="icon_lencana_header">icon tantangan header</string>
     <string name="icon_lencana_sehatin">icon tantangan header</string>
-    <string name="icon_tantangan_header">icon tantangan header</string>
-    <string name="icon_tantangan_header">icon tantangan header</string>
+    <string name="iv_badge_verified">iv badge verified</string>
+    <string name="desk_ic_person">desk ic person</string>
+    <string name="desk_ic_document">desk ic document</string>
+    <string name="desk_ic_logout">desk ic logout">btn info makanan</string>
+    <string name="btn_info_makanan">btn info makanan</string>
+    <string name="btn_info_makanan">btn info makanan</string>
+    <string name="btn_info_makanan">btn info makanan</string>
 
 
     <!-- TODO: Remove or change this placeholder text -->

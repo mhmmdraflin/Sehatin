@@ -11,6 +11,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Sehatin">
         <activity
+            android:name=".ui.SideFeature.BodyMassIndexActivity"
+            android:exported="false" />
+        <activity
             android:name=".UserData.UserDataActivity"
             android:exported="false" />
         <activity
