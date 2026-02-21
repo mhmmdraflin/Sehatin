@@ -61,11 +61,11 @@
             app:cardBackgroundColor="#5289B5"
             app:cardCornerRadius="16dp"
             app:cardElevation="0dp"
-            app:strokeColor="#000000"
-            app:strokeWidth="4dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/header_container">
+            app:layout_constraintTop_toBottomOf="@+id/header_container"
+            app:strokeColor="#000000"
+            app:strokeWidth="4dp">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -155,6 +155,7 @@
                         android:layout_weight="1"
                         android:gravity="center"
                         android:orientation="vertical">
+
                         <TextView
                             android:id="@+id/tv_hasil_umur"
                             android:layout_width="wrap_content"
@@ -164,6 +165,7 @@
                             android:textColor="#FFFFFF"
                             android:textSize="16sp"
                             android:textStyle="bold" />
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -184,6 +186,7 @@
                         android:layout_weight="1"
                         android:gravity="center"
                         android:orientation="vertical">
+
                         <TextView
                             android:id="@+id/tv_hasil_tinggi"
                             android:layout_width="wrap_content"
@@ -193,6 +196,7 @@
                             android:textColor="#FFFFFF"
                             android:textSize="16sp"
                             android:textStyle="bold" />
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -213,6 +217,7 @@
                         android:layout_weight="1"
                         android:gravity="center"
                         android:orientation="vertical">
+
                         <TextView
                             android:id="@+id/tv_hasil_berat"
                             android:layout_width="wrap_content"
@@ -222,6 +227,7 @@
                             android:textColor="#FFFFFF"
                             android:textSize="16sp"
                             android:textStyle="bold" />
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -242,11 +248,11 @@
             app:cardBackgroundColor="#313131"
             app:cardCornerRadius="16dp"
             app:cardElevation="0dp"
-            app:strokeColor="#000000"
-            app:strokeWidth="4dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/card_hasil_bmi">
+            app:layout_constraintTop_toBottomOf="@+id/card_hasil_bmi"
+            app:strokeColor="#000000"
+            app:strokeWidth="4dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -280,10 +286,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:fontFamily="@font/lexenddeca"
+                    android:lineSpacingExtra="6dp"
                     android:text="@string/Deskripsi_Hasil_BMI"
                     android:textColor="#E0E0E0"
-                    android:textSize="12sp"
-                    android:lineSpacingExtra="6dp" />
+                    android:textSize="12sp" />
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 

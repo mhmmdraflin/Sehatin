@@ -11,6 +11,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Sehatin">
         <activity
+            android:name=".ui.SideFeature.JamMakan.Pengingat_Jam_MakanActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.SideFeature.HasilBodyMassIndexActivity"
             android:exported="false" />
         <activity

@@ -148,6 +148,24 @@
     <string name="Jangkauan_Hasil_BMI">(BMI Kurang Dari 18.5)</string>
     <string name="Deskripsi_Hasil_BMI">BMI 16.5 menunjukkan berat badan kurang, perlu ditingkatkan dengan makan bergizi, latihan kekuatan, dan istirahat cukup agar tubuh lebih sehat.</string>
 
+    <!--Activity Pengingat Jam Makan-->
+    <string name="Pengingat_Jam_Makan">Pengingat Jam Makan</string>
+
+    <!--item pengingat jam makan-->
+    <string name="Kategori_Makan_PJM"> Makan Siang</string>
+    <string name="Waktu_Makan_PJM">12.00 AM</string>
+    <string name="Hari_Makan_PJM">Senin</string>
+
+    <!--Dialog Form Jam Makan-->
+    <string name="dialog_title">Tambah Pengingat</string>
+    <string name="Judul_Pengingat_Makan">Judul Pengingat (Kategori)</string>
+    <string name="Et_Dialog_Form_Makan">Contoh: Makan Siang</string>
+    <string name="Judul_Dialog_Form_Makan_pilih_waktu">Jam Makan</string>
+    <string name="waktu_Dialog_Form_Makan_pilih_waktu">12:00</string>
+    <string name="Tanggal_Pengingat_dialog_form_makan">Tanggal Pengingat</string>
+    <string name="Pilih_Tanggal_Pengingat_dialog_form_pengingat_makan">Senin, 15 Agu 2026</string>
+    <string name="btn_simpan_pengingat_makan">Simpan Pengingat</string>
+
 
     <!--deskripsi konten-->
     <string name="background_dashboard_content">bg dashboard character</string>
@@ -166,8 +184,9 @@
     <string name="iv_silhouette">iv silhouette</string>
     <string name="btn_min_berat_kiri">btn min berat kiri</string>
     <string name="btn_plus_berat_kanan">btn plus berat kanan</string>
-
-
+    <string name="Tambah_Jam_Makan">Tambah Jam Makan</string>
+    <string name="btn_Back_PengingatJam_Makan">btn Back Pengingat Jam Makan</string>
+    <string name="btn_delete_alarm">btn delete alarm</string>
 
 
 
