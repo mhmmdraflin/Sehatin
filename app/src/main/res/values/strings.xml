@@ -117,6 +117,38 @@
     <string name="Logout_Profil">Logout</string>
     <string name="Edit_Profil">Edit</string>
 
+    <!--Side Feature-->
+
+    <!--Activity BMI-->
+    <string name="BMI">BMI</string>
+    <string name="BMI_Kalkulator">Kalkulator</string>
+    <string name="Nama_BMI">Nama</string>
+    <string name="Umur_BMI">Umur</string>
+    <string name="Berat_BMI">Berat Badan</string>
+    <string name="Tinggi_BMI">Tinggi Badan</string>
+    <string name="Jenis_Kelamin_BMI">Jenis Kelamin</string>
+    <string name="Gender_BMI_Laki_Laki">Laki-Laki</string>
+    <string name="Gender_BMI_Perempuan">Perempuan</string>
+    <string name="Menghitung_BMI">Menghitung</string>
+
+
+    <!--Hasil BMI-->
+    <string name="Hasil_BMI">Hasil BMI</string>
+    <string name="Nama_Hasil_BMI">John Doe</string>
+    <string name="Gender_Hasil_BMI">Laki - Laki</string>
+    <string name="Skor_Hasil_BMI">16.5</string>
+    <string name="Skor_Hasil_BMI_text">Skor BMI</string>
+    <string name="hasil_umur_BMI">18 Tahun</string>
+    <string name="hasil_umur_BMI_text">Umur</string>
+    <string name="Hasil_Tinggi_BMI">170 cm</string>
+    <string name="Hasil_Tinggi_BMI_text">Tinggi</string>
+    <string name="Hasil_Berat_BMI">40 Kg</string>
+    <string name="Hasil_Berat_BMI_text">Berat</string>
+    <string name="Judul_hasil_BMI">Berat Badan Kurang</string>
+    <string name="Jangkauan_Hasil_BMI">(BMI Kurang Dari 18.5)</string>
+    <string name="Deskripsi_Hasil_BMI">BMI 16.5 menunjukkan berat badan kurang, perlu ditingkatkan dengan makan bergizi, latihan kekuatan, dan istirahat cukup agar tubuh lebih sehat.</string>
+
+
     <!--deskripsi konten-->
     <string name="background_dashboard_content">bg dashboard character</string>
     <string name="character_illustration">character illustration</string>
@@ -131,6 +163,13 @@
     <string name="desk_ic_person">desk ic person</string>
     <string name="desk_ic_document">desk ic document</string>
     <string name="desk_ic_logout">desk ic logout">btn info makanan</string>
+    <string name="iv_silhouette">iv silhouette</string>
+    <string name="btn_min_berat_kiri">btn min berat kiri</string>
+    <string name="btn_plus_berat_kanan">btn plus berat kanan</string>
+
+
+
+
 
 
     <!-- TODO: Remove or change this placeholder text -->

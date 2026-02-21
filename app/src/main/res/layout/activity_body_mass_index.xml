@@ -29,6 +29,7 @@
             <ImageView
                 android:layout_width="80dp"
                 android:layout_height="90dp"
+                android:contentDescription="@string/logo_sehatin"
                 android:scaleType="fitCenter"
                 android:src="@drawable/people_sehatin" />
 
@@ -37,7 +38,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="12dp"
                 android:fontFamily="@font/lexenddeca"
-                android:text="BMI"
+                android:text="@string/BMI"
                 android:textColor="#276196"
                 android:textSize="28sp"
                 android:textStyle="bold" />
@@ -47,7 +48,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="6dp"
                 android:fontFamily="@font/lexenddeca"
-                android:text="Kalkulator"
+                android:text="@string/BMI_Kalkulator"
                 android:textColor="#276196"
                 android:textSize="28sp" />
         </LinearLayout>
@@ -58,7 +59,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
             android:fontFamily="@font/lexenddeca"
-            android:text="Nama"
+            android:text="@string/Nama_BMI"
             android:textColor="#757575"
             android:textSize="12sp"
             android:textStyle="bold"
@@ -70,6 +71,7 @@
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:layout_marginTop="8dp"
+            android:autofillHints="nama"
             android:background="@drawable/bg_edittext_rounded"
             android:backgroundTint="#F2F2F2"
             android:fontFamily="@font/lexenddeca"
@@ -77,7 +79,8 @@
             android:paddingHorizontal="16dp"
             android:textColor="@color/black"
             android:textSize="14sp"
-            app:layout_constraintTop_toBottomOf="@+id/lbl_nama" />
+            app:layout_constraintTop_toBottomOf="@+id/lbl_nama"
+            tools:ignore="LabelFor" />
 
         <TextView
             android:id="@+id/lbl_umur"
@@ -85,7 +88,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:fontFamily="@font/lexenddeca"
-            android:text="Umur"
+            android:text="@string/Umur_BMI"
             android:textColor="#757575"
             android:textSize="12sp"
             android:textStyle="bold"
@@ -97,6 +100,7 @@
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:layout_marginTop="8dp"
+            android:autofillHints="umur"
             android:background="@drawable/bg_edittext_rounded"
             android:backgroundTint="#F2F2F2"
             android:fontFamily="@font/lexenddeca"
@@ -104,7 +108,8 @@
             android:paddingHorizontal="16dp"
             android:textColor="@color/black"
             android:textSize="14sp"
-            app:layout_constraintTop_toBottomOf="@+id/lbl_umur" />
+            app:layout_constraintTop_toBottomOf="@+id/lbl_umur"
+            tools:ignore="LabelFor" />
 
         <TextView
             android:id="@+id/lbl_berat"
@@ -112,7 +117,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:fontFamily="@font/lexenddeca"
-            android:text="Berat Badan"
+            android:text="@string/Berat_BMI"
             android:textColor="#757575"
             android:textSize="12sp"
             android:textStyle="bold"
@@ -131,10 +136,11 @@
             app:layout_constraintTop_toBottomOf="@+id/lbl_berat">
 
             <ImageButton
-                android:id="@+id/btn_min_berat"
+                android:id="@+id/btn_min_berat_kiri"
                 android:layout_width="48dp"
                 android:layout_height="match_parent"
                 android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="@string/btn_min_berat_kiri"
                 android:padding="16dp"
                 android:scaleType="fitCenter"
                 android:src="@drawable/ic_kiri" />
@@ -145,7 +151,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:fontFamily="@font/lexenddeca"
-                android:text="40 KG"
+                android:text="@string/kg40"
                 android:textAlignment="center"
                 android:textColor="#757575"
                 android:textSize="14sp"
@@ -156,6 +162,7 @@
                 android:layout_width="48dp"
                 android:layout_height="match_parent"
                 android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="@string/btn_plus_berat_kanan"
                 android:padding="16dp"
                 android:scaleType="fitCenter"
                 android:src="@drawable/ic_kanan" />
@@ -167,7 +174,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:fontFamily="@font/lexenddeca"
-            android:text="Tinggi Badan"
+            android:text="@string/Tinggi_BMI"
             android:textColor="#757575"
             android:textSize="12sp"
             android:textStyle="bold"
@@ -190,6 +197,7 @@
                 android:layout_width="48dp"
                 android:layout_height="match_parent"
                 android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="@string/btn_min_berat_kiri"
                 android:padding="16dp"
                 android:scaleType="fitCenter"
                 android:src="@drawable/ic_kiri" />
@@ -200,7 +208,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:fontFamily="@font/lexenddeca"
-                android:text="170 CM"
+                android:text="@string/cm170"
                 android:textAlignment="center"
                 android:textColor="#757575"
                 android:textSize="14sp"
@@ -211,6 +219,7 @@
                 android:layout_width="48dp"
                 android:layout_height="match_parent"
                 android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="@string/btn_plus_berat_kanan"
                 android:padding="16dp"
                 android:scaleType="fitCenter"
                 android:src="@drawable/ic_kanan" />
@@ -222,7 +231,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:fontFamily="@font/lexenddeca"
-            android:text="Jenis Kelamin"
+            android:text="@string/Jenis_Kelamin_BMI"
             android:textColor="#757575"
             android:textSize="12sp"
             android:textStyle="bold"
@@ -253,6 +262,7 @@
                     android:layout_width="70dp"
                     android:layout_height="70dp"
                     android:layout_gravity="center"
+                    android:contentDescription="@string/Laki_Laki"
                     android:src="@drawable/ic_lakilaki" />
             </com.google.android.material.card.MaterialCardView>
 
@@ -271,6 +281,7 @@
                     android:layout_width="70dp"
                     android:layout_height="70dp"
                     android:layout_gravity="center"
+                    android:contentDescription="@string/Perempuan"
                     android:src="@drawable/ic_perempuan" />
             </com.google.android.material.card.MaterialCardView>
         </LinearLayout>
@@ -282,7 +293,7 @@
             android:layout_marginTop="24dp"
             android:backgroundTint="#3A73A9"
             android:fontFamily="@font/lexenddeca"
-            android:text="Menghitung"
+            android:text="@string/Menghitung_BMI"
             android:textAllCaps="false"
             android:textColor="#FFFFFF"
             android:textSize="16sp"
@@ -295,6 +306,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
             android:adjustViewBounds="true"
+            android:contentDescription="@string/logo_sehatin"
             android:scaleType="fitCenter"
             android:src="@drawable/logo_sehatin"
             app:layout_constraintEnd_toEndOf="parent"
