@@ -166,6 +166,11 @@
     <string name="Pilih_Tanggal_Pengingat_dialog_form_pengingat_makan">Senin, 15 Agu 2026</string>
     <string name="btn_simpan_pengingat_makan">Simpan Pengingat</string>
 
+    <!--Activity Pengingat Jam Makan-->
+    <string name="Selamat_Datang_Informasi_Makanan"> Selamat Datang\nSobat Sehatin!</string>
+    <string name="Informasi_Makanan_Sehat">Informasi Makanan Sehat</string>
+    <string name="Deskripsi_Informasi_Makanan_Sehat"> Berikut adalah Infomasi Mengenai Makanan dan Minuman Sehat Sobat Sehatin!</string>
+
 
     <!--deskripsi konten-->
     <string name="background_dashboard_content">bg dashboard character</string>
@@ -187,8 +192,8 @@
     <string name="Tambah_Jam_Makan">Tambah Jam Makan</string>
     <string name="btn_Back_PengingatJam_Makan">btn Back Pengingat Jam Makan</string>
     <string name="btn_delete_alarm">btn delete alarm</string>
-
-
+    <string name="logo_informasi_makanan">logo informasi makanan</string>
+    <string name="btn_info_1">btn delete alarm</string>
 
 
     <!-- TODO: Remove or change this placeholder text -->

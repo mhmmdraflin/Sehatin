@@ -23,7 +23,7 @@
             android:id="@+id/logo_image"
             android:layout_width="120dp"
             android:layout_height="120dp"
-            android:src="@drawable/people"
+            android:src="@drawable/people_sehatin"
             android:contentDescription="@string/logo_sehatin" />
 
         <TextView
