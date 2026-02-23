@@ -3,8 +3,6 @@ package com.example.sehatin.ui.SideFeature
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.example.sehatin.R
 
 class DetailInformasiMakananActivity : AppCompatActivity() {
