@@ -171,6 +171,12 @@
     <string name="Informasi_Makanan_Sehat">Informasi Makanan Sehat</string>
     <string name="Deskripsi_Informasi_Makanan_Sehat"> Berikut adalah Infomasi Mengenai Makanan dan Minuman Sehat Sobat Sehatin!</string>
 
+    <!--Detail Informasi Makanan-->
+    <string name="Nama_Makanan_Informasi_Makanan_Salad">Salad</string>
+    <string name="judul_Deskripsi_Makanan">Deskripsi Makanan</string>
+    <string name="Kalori_Detail_Informasi_Makanan">198 Cal - 300 g</string>
+    <string name="Deskripsi_Salad">Salad adalah hidangan sehat yang terdiri dari campuran bahan-bahan segar, utamanya sayuran dan buah-buahan.\n\nBiasanya disajikan dingin dengan saus (dressing) untuk memperkaya rasa. Salad bisa menjadi hidangan pendamping atau makanan utama yang mengenyangkan jika ditambahkan sumber protein seperti ayam atau telur.\n\nIntinya, salad merupakan cara mudah dan lezat untuk mendapatkan asupan serat, vitamin, dan mineral.</string>
+
 
     <!--deskripsi konten-->
     <string name="background_dashboard_content">bg dashboard character</string>
@@ -194,6 +200,9 @@
     <string name="btn_delete_alarm">btn delete alarm</string>
     <string name="logo_informasi_makanan">logo informasi makanan</string>
     <string name="btn_info_1">btn delete alarm</string>
+    <string name="ic_wortel">logo wortel</string>
+    <string name="ic_daun">logo daun</string>
+    <string name="gambar_salad">gambar salad</string>
 
 
     <!-- TODO: Remove or change this placeholder text -->
