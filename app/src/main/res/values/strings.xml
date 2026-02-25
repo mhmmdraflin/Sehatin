@@ -183,6 +183,8 @@
     <string name="olahraga_belumselesai">Belum Selesai</string>
     <string name="olahraga_selesai">Selesai</string>
     <string name="nama_olahraga">Push Up</string>
+    <string name="olahraga_deskripsi">Pilih tantangan hari ini, selesaikan, dan dapatkan EXP untuk naik level!</string>
+
 
     <!--fitur pause olahraga-->
     <string name="pause_judul">Sesi Dijeda</string>
