@@ -34,6 +34,69 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/profile_board_dash" />
 
+    <FrameLayout
+        android:id="@+id/badge_level_container"
+        android:layout_width="84dp"
+        android:layout_height="84dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/profile_board_dash">
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:cardBackgroundColor="@color/putih"
+            app:cardCornerRadius="42dp"
+            app:cardElevation="6dp"
+            app:strokeColor="@color/black"
+            app:strokeWidth="3dp">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <com.google.android.material.progressindicator.CircularProgressIndicator
+                    android:id="@+id/pb_exp_level"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:max="100"
+                    android:progress="65"
+                    app:indicatorColor="#4FA5E2"
+                    app:indicatorSize="76dp"
+                    app:trackColor="#D9D9D9"
+                    app:trackThickness="8dp" />
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="56dp"
+                    android:layout_height="56dp"
+                    android:layout_gravity="center"
+                    app:cardBackgroundColor="#4FA5E2"
+                    app:cardCornerRadius="28dp"
+                    app:cardElevation="0dp"
+                    app:strokeColor="@color/black"
+                    app:strokeWidth="2dp">
+
+                    <TextView
+                        android:id="@+id/tv_level_angka"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/lexenddeca"
+                        android:shadowColor="@color/black"
+                        android:shadowDx="1.5"
+                        android:shadowDy="1.5"
+                        android:shadowRadius="1.5"
+                        android:text="13"
+                        android:textColor="#FFFFFF"
+                        android:textSize="26sp"
+                        android:textStyle="bold" />
+                </com.google.android.material.card.MaterialCardView>
+            </FrameLayout>
+        </com.google.android.material.card.MaterialCardView>
+    </FrameLayout>
+
     <LinearLayout
         android:id="@+id/profile_board_dash"
         android:layout_width="match_parent"
@@ -59,8 +122,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_weight="1"
-            android:orientation="vertical"
-            tools:ignore="UselessLeaf">
+            android:orientation="vertical">
 
             <TextView
                 android:layout_width="wrap_content"

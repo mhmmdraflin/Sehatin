@@ -184,6 +184,29 @@
     <string name="olahraga_selesai">Selesai</string>
     <string name="nama_olahraga">Push Up</string>
 
+    <!--fitur pause olahraga-->
+    <string name="pause_judul">Sesi Dijeda</string>
+    <string name="pause_deskripsi">Ambil napas sejenak, lalu kembali beraksi!</string>
+    <string name="pause_lanjutkan">Lanjutkan</string>
+    <string name="pause_MulaiUlang">Mulai Ulang</string>
+    <string name="pause_keluar">Keluar</string>
+
+    <!--activity hasil olahraga-->
+    <string name="hasil_olahraga_angka">15</string>
+    <string name="hasil_olahraga_text">Kali</string>
+    <string name="hasil_olahraga_selamat">Selamat Atas\nKeberhasilannya!</string>
+    <string name="hasil_olahraga_exp">+10 Exp</string>
+    <string name="hasil_olahraga_waktu">01:00</string>
+    <string name="hasil_olahraga_waktu_text">Waktu</string>
+    <string name="hasil_olahraga_kalori">340</string>
+    <string name="hasil_olahraga_kalori_text">Kalori</string>
+    <string name="hasil_olahraga_kembali">Selesai &amp; Kembali</string>
+    <string name="hasil_olahraga_kembali_text">Kembali</string>
+
+    <!--activity sesi olahraga-->
+    <string name="SesiOlahraga_Detik">Detik</string>
+
+
     <!--deskripsi konten-->
     <string name="background_dashboard_content">bg dashboard character</string>
     <string name="character_illustration">character illustration</string>
@@ -211,6 +234,9 @@
     <string name="gambar_salad">gambar salad</string>
     <string name="bg_olahraga">gambar salad</string>
     <string name="ic_olahraga">ic_olahraga</string>
+    <string name="ic_trofi">ic_trofi</string>
+    <string name="ic_pause_olahraga">ic_pause_olahraga</string>
+
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

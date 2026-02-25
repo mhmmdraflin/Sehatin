@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    tools:context=".ui.SideFeature.Olahraga.SesiOlahragaActivity">
+
+    <FrameLayout
+        android:id="@+id/container_ilustrasi"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/card_timer"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_weight="1.2">
+
+        <ImageView
+            android:id="@+id/iv_bg_ruangan"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:contentDescription="@string/bg_olahraga"
+            android:scaleType="centerCrop"
+            android:src="@drawable/bg_olahraga" />
+
+        <ImageView
+            android:id="@+id/iv_karakter_olahraga"
+            android:layout_width="match_parent"
+            android:layout_height="220dp"
+            android:layout_gravity="bottom|center_horizontal"
+            android:layout_marginBottom="0dp"
+            android:contentDescription="@string/ic_olahraga"
+            android:scaleType="fitCenter"
+            tools:src="@drawable/ic_pushup" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/btn_pause_card"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_gravity="top|end"
+            android:layout_margin="16dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?attr/selectableItemBackground"
+            app:cardBackgroundColor="#FFFFFF"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="4dp"
+            app:strokeColor="#000000"
+            app:strokeWidth="2dp">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_gravity="center"
+                android:contentDescription="@string/ic_pause_olahraga"
+                android:src="@android:drawable/ic_media_pause"
+                app:tint="#000000" />
+        </com.google.android.material.card.MaterialCardView>
+    </FrameLayout>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/card_timer"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="24dp"
+        app:cardBackgroundColor="@color/warnaUtama"
+        app:cardCornerRadius="24dp"
+        app:cardElevation="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/container_ilustrasi"
+        app:layout_constraintVertical_weight="1"
+        app:strokeColor="#000000"
+        app:strokeWidth="4dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="24dp">
+
+            <TextView
+                android:id="@+id/tv_status_sesi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/lexenddeca"
+                android:textColor="@color/black"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                tools:text="Siap Beraksi" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="160dp"
+                android:layout_height="160dp"
+                android:layout_marginTop="24dp"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="80dp"
+                app:cardElevation="0dp"
+                app:strokeColor="#000000"
+                app:strokeWidth="4dp">
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="130dp"
+                    android:layout_height="130dp"
+                    android:layout_gravity="center"
+                    app:cardBackgroundColor="@color/white"
+                    app:cardCornerRadius="65dp"
+                    app:cardElevation="0dp"
+                    app:strokeColor="@color/black"
+                    app:strokeWidth="2dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tv_timer_angka"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/lexenddeca"
+                            android:includeFontPadding="false"
+                            android:textColor="@color/BiruGelap_Navy"
+                            android:textSize="64sp"
+                            android:textStyle="bold"
+                            tools:text="30" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/lexenddeca"
+                            android:text="@string/SesiOlahraga_Detik"
+                            android:textColor="@color/abuabu2"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+            </com.google.android.material.card.MaterialCardView>
+
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
