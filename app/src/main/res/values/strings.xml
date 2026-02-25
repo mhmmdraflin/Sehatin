@@ -177,6 +177,12 @@
     <string name="Kalori_Detail_Informasi_Makanan">198 Cal - 300 g</string>
     <string name="Deskripsi_Salad">Salad adalah hidangan sehat yang terdiri dari campuran bahan-bahan segar, utamanya sayuran dan buah-buahan.\n\nBiasanya disajikan dingin dengan saus (dressing) untuk memperkaya rasa. Salad bisa menjadi hidangan pendamping atau makanan utama yang mengenyangkan jika ditambahkan sumber protein seperti ayam atau telur.\n\nIntinya, salad merupakan cara mudah dan lezat untuk mendapatkan asupan serat, vitamin, dan mineral.</string>
 
+    <!--activity_olahraga-->
+    <string name="judul_Olahraga">Olahraga</string>
+    <string name="olahraga_Selamatdatang">Selamat Datang\nSobat Sehatin!</string>
+    <string name="olahraga_belumselesai">Belum Selesai</string>
+    <string name="olahraga_selesai">Selesai</string>
+    <string name="nama_olahraga">Push Up</string>
 
     <!--deskripsi konten-->
     <string name="background_dashboard_content">bg dashboard character</string>
@@ -203,7 +209,8 @@
     <string name="ic_wortel">logo wortel</string>
     <string name="ic_daun">logo daun</string>
     <string name="gambar_salad">gambar salad</string>
-
+    <string name="bg_olahraga">gambar salad</string>
+    <string name="ic_olahraga">ic_olahraga</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
