@@ -4,6 +4,12 @@
     <color name="white">#FFFFFFFF</color>
     <color name="colorPrimary">#6200EE</color>
 
+    <!--shadow color-->
+    <color name="shadow">#40000000</color>
+    <color name="shadow_merahputih">#FFEBEE</color>
+    <color name="shadow_abuabu">#1A000000</color>
+
+
     <!--Aset warna Sehatin-->
     <color name="warnaUtama">#33A1E0</color>
     <color name="birutua">#1C6EA4</color>
@@ -11,13 +17,32 @@
     <color name="BiruGelap_Navy">#3A73A9</color>
     <color name="abuabu">#C4C4C4</color>
     <color name="abuabu2">#757575</color>
+    <color name="abuabu3">#9E9E9E</color>
     <color name="putih2">#F2F2F2</color>
+    <color name="putih4">#F5F5F5</color>
+    <color name="birumuda_card">#4FC3F7</color>
+    <color name="birumuda_teks">#0D47A1</color>
+    <color name="birumuda_icon">#0D47A1</color>
+    <color name="birumuda_border">#0D47A1</color>
+    <color name="birumuda_stroke">#0D47A1</color>
+    <color name="birumuda_button">#0D47A1</color>
+    <color name="birumuda_background">#0D47A1</color>
+    <color name="birumuda_background_button">#0D47A1</color>
+    <color name="birumuda_background_card">#0D47A1</color>
+    <color name="birumuda_background_header">#0D47A1</color>
+    <color name="merah">#D32F2F</color>
+    <color name="putih5">#BDBDBD</color>
+
 
     <color name="biru_muda_card">#4FC3F7</color>
     <color name="biru_tua_teks">#0D47A1</color>
-    <color name="abu_abu_teks">#757575</color>
+    <color name="abu_abu">#757575</color>
+    <color name="abu_abu2">#424242</color>
     <color name="putih">#FFFFFF</color>
     <color name="putih3">#E0E0E0</color>
+    <color name="kuning">#FFD700</color>
+    <color name="putih_keabuan">#E0E0E0</color>
+    <color name="putih_keabuan2">#F5F5F5</color>
 
     <color name="blue_header">#4FC3F7</color>
     <color name="blue_card">#29B6F6</color>

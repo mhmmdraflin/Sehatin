@@ -32,6 +32,24 @@
     <string name="belum_punya_akun">belum punya akun?</string>
     <string name="Daftar">Daftar Di Sini</string>
     <string name="Selamat_Datang">Selamat Datang Sobat Sehatin!</string>
+    <string name="Email_Login">Email</string>
+    <string name="Password_Login">Password</string>
+    <string name="Masuk_Sebagai_Guest">Masuk Sebagai Guest</string>
+    <string name="Atau_Coba_Dahulu">Atau Coba Dahulu</string>
+
+    <!--user data-->
+    <string name="Selamat_datang_Sobat_Sehatin">Selamat Datang\nSobat Sehatin!</string>
+    <string name="Masukan_Data_Terlebih_dahulu_ya">Masukan Data Hanya Dengan Angka Saja Ya!</string>
+    <string name="Berapa_Umurmu">Berapa Umurmu?</string>
+    <string name="Berapa_Tinggimu">Berapa Tinggimu? (cm)</string>
+    <string name="Berapa_Beratmu">Berapa Beratmu? (kg)</string>
+    <string name="Simpan">Simpan</string>
+    <string name="Masukkan_Umur">Masukkan Umur</string>
+    <string name="Masukkan_Tinggi">Masukkan Tinggi</string>
+    <string name="Masukkan_Berat">Masukkan Berat</string>
+    <string name="Tahun">Tahun</string>
+    <string name="cm">cm</string>
+    <string name="kg">kg</string>
 
     <!--Navbar-->
     <string name="beranda">Beranda</string>
@@ -56,19 +74,15 @@
 
     <!--Sehatin-->
     <string name="Sehatin_Data">Sehatin Data</string>
-    <string name="Berapa_Umurmu">Berapa Umurmu?</string>
-    <string name="Berapa_Tinggimu">Berapa Tinggimu? (cm)</string>
-    <string name="Berapa_Beratmu">Berapa Beratmu? (kg)</string>
-    <string name="Selamat_datang_Sobat_Sehatin">Selamat Datang\nSobat Sehatin!</string>
-    <string name="Masukan_Data_Terlebih_dahulu_ya">Masukan Data Hanya Dengan Angka Saja Ya!</string>
     <string name="Berapa_Berat_Badan">Berapa Beratmu? (kg)</string>
     <string name="Berapa_Tinggi_Badan">Berapa Tinggimu? (cm)</string>
     <string name="Berapa_Umur">Berapa Umurmu?</string>
-    <string name="Simpan">Simpan</string>
     <string name="Kirim">Kirim</string>
-    <string name="Masukkan_Umur">Masukkan Umur</string>
-    <string name="Masukkan_Tinggi">Masukkan Tinggi</string>
-    <string name="Masukkan_Berat">Masukkan Berat</string>
+
+    <!--splash screen-->
+    <string name="splash_sub"> Level Up Your Health!</string>
+    <string name="splash_title">Sehatin</string>
+
 
     <!--dashboard-->
     <string name="selamat_datang">Selamat Datang</string>
@@ -103,11 +117,11 @@
     <string name="Jadwal_Tantangan">Jadwal Tantangan</string>
     <string name="deskripsi_tantangan_olahraga">Tantangan Olahraga Push Up, Sit Up dan olahraga workout lainnya</string>
     <string name="deskripsi_tantangan_makanan">Tantangan Makanan Sehat dan Minum dalam sehari</string>
+    <string name="Tantangan_subText">Selesaikan misi harianmu!</string>
+
 
     <!--Fragment Lencana-->
-    <string name="Lencana_Sehatin">Lencana Sehatin</string>
     <string name="Jadwal_Lencana">Jadwal Lencana</string>
-    <string name="deskripsi_lencana_pushup">Berhasil Melakukan Push Up 15 kali</string>
 
     <!--Fragment Profil-->
     <string name="Email_profil">johndoe@gmail.com</string>
@@ -116,6 +130,14 @@
     <string name="PrivasiKebijakan_Profil">Privasi Dan Kebijakan</string>
     <string name="Logout_Profil">Logout</string>
     <string name="Edit_Profil">Edit</string>
+    <string name="Pengaturan_Profil">Pengaturan</string>
+    <string name="Tentang_Sehatin">Tentang Sehatin</string>
+    <string name="Profil_Level">Lv. 13</string>
+    <string name="Profil_Poin">1,250 Poin</string>
+    <string name="Profil_EXP">65/100 EXP</string>
+    <string name="Profil_Inventaris">Inventaris Skin &amp; Latar</string>
+
+
 
     <!--Side Feature-->
 
@@ -208,12 +230,39 @@
     <!--activity sesi olahraga-->
     <string name="SesiOlahraga_Detik">Detik</string>
 
+    <!--fragment pencapaian-->
+    <string name="Lencana_Sehatin">Lencana Sehatin</string>
+    <string name="deskripsi_lencana_pushup">Berhasil Melakukan Push Up 15 kali</string>
+    <string name="Pencapaian_Pejuang_Push_Up">Pejuang Push Up</string>
+    <string name="Pencapaian_subText">Kumpulkan semua penghargaanmu!</string>
+    <string name="btn_lihat_detail">Lihat Detail</string>
+    <string name="Pencapaian_Penyelesaian_PejuangPushUp">0/1</string>
+    <string name="Pencapaian_RajaKardio">Raja Kardio</string>
+    <string name="deskripsi_pencapaian_raja_kardio">Lakukan kardio 5 hari berturut-turut.</string>
+    <string name="Pencapaian_Disiplin_Makan">Disiplin Makan</string>
+    <string name="Pencapaian_Penyelesaian_rajakardio">3/5</string>
+    <string name="deskripsi_pencapaian_Disiplin_Makan">Jangan lewatkan jam makan selama 1 minggu.</string>
+    <string name="Pencapaian_Penyelesaian_DisiplinMakan">0/7</string>
+    <string name="btn_lihat_detail_pencapaian">Lihat Detail</string>
+    <string name="Pencapaian_Master_Plank">Master Plank</string>
+    <string name="deskripsi_pencapaian_plank">Lakukan plank selama 10 menit.</string>
+    <string name="Pencapaian_Penyelesaian_plank">0/1</string>
+    <string name="Pencapaian_Target_Hidrasi">Target Hidrasi</string>
+    <string name="deskripsi_pencapaian_target_hidrasi">Lakukan hidrasi selama 2 jam.</string>
+    <string name="Pencapaian_Penyelesaian_target_hidrasi">0/1</string>
+    <string name="Pencapaian_Selesai">Selesai</string>
+
 
     <!--deskripsi konten-->
     <string name="background_dashboard_content">bg dashboard character</string>
     <string name="character_illustration">character illustration</string>
     <string name="Notification">Notification</string>
     <string name="btn_bmi">btn bmi</string>
+    <string name="hasil_bmi_kembali">Kembali ke Dashboardn</string>
+    <string name="logo_kembali">logo kembali</string>
+    <string name="logo_lihat_detail">logo lihat detail</string>
+    <string name="hasil_bmi_judultext">Hasil BMI</string>
+    <string name="hasil_bmi_subtext">Evaluasi Kesehatanmu</string>
     <string name="btn_pengingat_makan">btn pengingat makan</string>
     <string name="btn_info_makanan">btn info makanan</string>
     <string name="bg_tantangan">bg tantangan</string>
@@ -228,6 +277,7 @@
     <string name="btn_plus_berat_kanan">btn plus berat kanan</string>
     <string name="Tambah_Jam_Makan">Tambah Jam Makan</string>
     <string name="btn_Back_PengingatJam_Makan">btn Back Pengingat Jam Makan</string>
+    <string name="pjm_subText">Jaga asupan energimu tepat waktu!</string>
     <string name="btn_delete_alarm">btn delete alarm</string>
     <string name="logo_informasi_makanan">logo informasi makanan</string>
     <string name="btn_info_1">btn delete alarm</string>
@@ -238,6 +288,9 @@
     <string name="ic_olahraga">ic_olahraga</string>
     <string name="ic_trofi">ic_trofi</string>
     <string name="ic_pause_olahraga">ic_pause_olahraga</string>
+    <string name="ic_people">ic people</string>
+    <string name="ic_inventaris">Ikon Inventaris</string>
+
 
 
     <!-- TODO: Remove or change this placeholder text -->

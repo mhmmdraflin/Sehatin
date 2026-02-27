@@ -1,136 +1,198 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/custom_dash_up"
-    android:padding="24dp">
-    <TextView
-        android:id="@+id/tv_dialog_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/lexenddeca"
-        android:text="@string/dialog_title"
-        android:textColor="@color/putih"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    android:layout_margin="16dp"
+    app:cardBackgroundColor="@color/putih"
+    app:cardCornerRadius="24dp"
+    app:cardElevation="8dp"
+    app:strokeColor="@color/black"
+    app:strokeWidth="3dp">
 
-    <ImageButton
-        android:id="@+id/btn_delete_alarm"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:background="?attr/selectableItemBackgroundBorderless"
-        android:contentDescription="@string/btn_delete_alarm"
-        android:src="@android:drawable/ic_menu_delete"
-        app:tint="#D32F2F"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:visibility="visible" />
-
-    <TextView
-        android:id="@+id/lbl_judul_makan"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:fontFamily="@font/lexenddeca"
-        android:text="@string/Judul_Pengingat_Makan"
-        android:textColor="@color/abuabu2"
-        android:textSize="12sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_dialog_title" />
-
-    <EditText
-        android:id="@+id/et_judul_makan"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:layout_marginTop="8dp"
-        android:autofillHints="Judul Makan"
-        android:background="@drawable/bg_edittext_rounded"
-        android:backgroundTint="@color/putih2"
-        android:fontFamily="@font/lexenddeca"
-        android:hint="@string/Et_Dialog_Form_Makan"
-        android:inputType="text"
-        android:paddingHorizontal="16dp"
-        android:textColor="@color/black"
-        android:textSize="14sp"
-        app:layout_constraintTop_toBottomOf="@+id/lbl_judul_makan" />
-
-    <TextView
-        android:id="@+id/lbl_waktu_makan"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:fontFamily="@font/lexenddeca"
-        android:text="@string/Judul_Dialog_Form_Makan_pilih_waktu"
-        android:textColor="@color/abuabu2"
-        android:textSize="12sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_judul_makan" />
+        android:padding="24dp">
 
-    <TextView
-        android:id="@+id/tv_pilih_waktu"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:layout_marginTop="8dp"
-        android:background="@drawable/bg_edittext_rounded"
-        android:backgroundTint="@color/putih2"
-        android:fontFamily="@font/lexenddeca"
-        android:gravity="center_vertical"
-        android:paddingHorizontal="16dp"
-        android:text="@string/waktu_Dialog_Form_Makan_pilih_waktu"
-        android:textColor="@color/black"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:drawableEndCompat="@android:drawable/ic_menu_recent_history"
-        app:layout_constraintTop_toBottomOf="@+id/lbl_waktu_makan" />
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card_delete_alarm"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            app:cardBackgroundColor="@color/shadow_merahputih"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:strokeColor="@color/black"
+            app:strokeWidth="2dp">
 
-    <TextView
-        android:id="@+id/lbl_tanggal_makan"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:fontFamily="@font/lexenddeca"
-        android:text="@string/Tanggal_Pengingat_dialog_form_makan"
-        android:textColor="@color/abuabu2"
-        android:textSize="12sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_pilih_waktu" />
+            <ImageButton
+                android:id="@+id/btn_delete_alarm"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="?attr/selectableItemBackground"
+                android:contentDescription="@string/btn_delete_alarm"
+                android:src="@android:drawable/ic_menu_delete"
+                app:tint="@color/merah" />
+        </com.google.android.material.card.MaterialCardView>
 
-    <TextView
-        android:id="@+id/tv_pilih_tanggal"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:layout_marginTop="8dp"
-        android:background="@drawable/bg_edittext_rounded"
-        android:backgroundTint="@color/putih2"
-        android:fontFamily="@font/lexenddeca"
-        android:gravity="center_vertical"
-        android:paddingHorizontal="16dp"
-        android:text="@string/Pilih_Tanggal_Pengingat_dialog_form_pengingat_makan"
-        android:textColor="@color/black"
-        android:textSize="14sp"
-        app:drawableEndCompat="@android:drawable/ic_menu_today"
-        app:layout_constraintTop_toBottomOf="@+id/lbl_tanggal_makan" />
+        <TextView
+            android:id="@+id/tv_dialog_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:fontFamily="@font/lexenddeca"
+            android:text="@string/dialog_title"
+            android:textColor="@color/warnaUtama"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/card_delete_alarm"
+            app:layout_constraintEnd_toStartOf="@+id/card_delete_alarm"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/card_delete_alarm" />
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btn_simpan_alarm"
-        android:layout_width="match_parent"
-        android:layout_height="56dp"
-        android:layout_marginTop="32dp"
-        android:backgroundTint="@color/BiruGelap_Navy"
-        android:fontFamily="@font/lexenddeca"
-        android:text="@string/btn_simpan_pengingat_makan"
-        android:textAllCaps="false"
-        android:textColor="@color/white"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:cornerRadius="12dp"
-        app:layout_constraintTop_toBottomOf="@+id/tv_pilih_tanggal" />
+        <TextView
+            android:id="@+id/lbl_judul_makan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:fontFamily="@font/lexenddeca"
+            android:text="@string/Judul_Pengingat_Makan"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_dialog_title" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card_judul_makan"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:layout_marginTop="8dp"
+            app:cardBackgroundColor="@color/putih4"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="0dp"
+            app:layout_constraintTop_toBottomOf="@+id/lbl_judul_makan"
+            app:strokeColor="@color/black"
+            app:strokeWidth="2dp">
+
+            <EditText
+                android:id="@+id/et_judul_makan"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:autofillHints="Judul Makan"
+                android:background="@android:color/transparent"
+                android:fontFamily="@font/lexenddeca"
+                android:hint="@string/Et_Dialog_Form_Makan"
+                android:inputType="text"
+                android:paddingHorizontal="16dp"
+                android:textColor="@color/black"
+                android:textSize="14sp" />
+        </com.google.android.material.card.MaterialCardView>
+
+        <TextView
+            android:id="@+id/lbl_waktu_makan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/lexenddeca"
+            android:text="@string/Judul_Dialog_Form_Makan_pilih_waktu"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/card_judul_makan" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card_waktu_makan"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:layout_marginTop="8dp"
+            app:cardBackgroundColor="@color/putih4"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="0dp"
+            app:layout_constraintTop_toBottomOf="@+id/lbl_waktu_makan"
+            app:strokeColor="@color/black"
+            app:strokeWidth="2dp">
+
+            <TextView
+                android:id="@+id/tv_pilih_waktu"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="?attr/selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true"
+                android:fontFamily="@font/lexenddeca"
+                android:gravity="center_vertical"
+                android:paddingHorizontal="16dp"
+                android:text="@string/waktu_Dialog_Form_Makan_pilih_waktu"
+                android:textColor="@color/warnaUtama"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:drawableEndCompat="@android:drawable/ic_menu_recent_history"
+                app:drawableTint="@color/black" />
+        </com.google.android.material.card.MaterialCardView>
+
+        <TextView
+            android:id="@+id/lbl_tanggal_makan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/lexenddeca"
+            android:text="@string/Tanggal_Pengingat_dialog_form_makan"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/card_waktu_makan" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card_tanggal_makan"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:layout_marginTop="8dp"
+            app:cardBackgroundColor="@color/putih2"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="0dp"
+            app:layout_constraintTop_toBottomOf="@+id/lbl_tanggal_makan"
+            app:strokeColor="@color/black"
+            app:strokeWidth="2dp">
+
+            <TextView
+                android:id="@+id/tv_pilih_tanggal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="?attr/selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true"
+                android:fontFamily="@font/lexenddeca"
+                android:gravity="center_vertical"
+                android:paddingHorizontal="16dp"
+                android:text="@string/Pilih_Tanggal_Pengingat_dialog_form_pengingat_makan"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                app:drawableEndCompat="@android:drawable/ic_menu_today"
+                app:drawableTint="@color/black" />
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_simpan_alarm"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginTop="32dp"
+            android:backgroundTint="@color/warnaUtama"
+            android:fontFamily="@font/lexenddeca"
+            android:text="@string/btn_simpan_pengingat_makan"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:cornerRadius="16dp"
+            app:layout_constraintTop_toBottomOf="@+id/card_tanggal_makan"
+            app:strokeColor="@color/black"
+            app:strokeWidth="2dp" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</com.google.android.material.card.MaterialCardView>

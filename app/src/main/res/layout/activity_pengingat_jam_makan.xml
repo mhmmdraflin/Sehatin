@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF"
+    android:background="@color/putih"
     tools:context=".ui.SideFeature.JamMakan.Pengingat_Jam_MakanActivity">
 
     <LinearLayout
@@ -27,29 +27,45 @@
             android:clickable="true"
             android:focusable="true"
             android:foreground="?attr/selectableItemBackground"
-            app:cardBackgroundColor="#7AB6E4"
-            app:cardCornerRadius="12dp"
+            app:cardBackgroundColor="@color/putih"
+            app:cardCornerRadius="14dp"
             app:cardElevation="4dp"
-            app:strokeColor="#4A628A"
-            app:strokeWidth="2dp">
+            app:strokeColor="@color/black"
+            app:strokeWidth="3dp">
 
             <ImageView
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:layout_gravity="center"
-                android:contentDescription="@string/btn_Back_PengingatJam_Makan"
-                android:src="@drawable/ic_arrow_left_white" />
+                android:contentDescription="@string/hasil_bmi_kembali"
+                android:src="@android:drawable/ic_media_previous"
+                app:tint="@color/black" />
         </com.google.android.material.card.MaterialCardView>
 
-        <TextView
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:fontFamily="@font/lexenddeca"
-            android:text="@string/Pengingat_Jam_Makan"
-            android:textColor="@color/warnaUtama"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/lexenddeca"
+                android:text="@string/Pengingat_Jam_Makan"
+                android:textColor="@color/warnaUtama"
+                android:textSize="22sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:fontFamily="@font/lexenddeca"
+                android:text="@string/pjm_subText"
+                android:textColor="@color/abuabu2"
+                android:textSize="12sp" />
+        </LinearLayout>
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
@@ -58,6 +74,7 @@
         android:layout_height="0dp"
         android:layout_marginTop="24dp"
         android:clipToPadding="false"
+        android:overScrollMode="never"
         android:paddingHorizontal="24dp"
         android:paddingBottom="100dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
@@ -67,17 +84,30 @@
         app:layout_constraintTop_toBottomOf="@+id/header_container"
         tools:listitem="@layout/item_jam_makan" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
+    <com.google.android.material.card.MaterialCardView
         android:id="@+id/fab_add_alarm"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
         android:layout_marginEnd="24dp"
         android:layout_marginBottom="32dp"
-        android:backgroundTint="@color/warnaUtama"
-        android:contentDescription="@string/Tambah_Jam_Makan"
-        android:src="@drawable/ic_add"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?attr/selectableItemBackground"
+        app:cardBackgroundColor="@color/warnaUtama"
+        app:cardCornerRadius="22dp"
+        app:cardElevation="6dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:tint="#FFFFFF" />
+        app:strokeColor="@color/black"
+        app:strokeWidth="3dp">
+
+        <ImageView
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_gravity="center"
+            android:contentDescription="@string/Tambah_Jam_Makan"
+            android:src="@drawable/ic_add"
+            app:tint="@color/putih" />
+    </com.google.android.material.card.MaterialCardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF"
+    android:background="@color/putih"
     android:fillViewport="true"
     tools:context=".ui.SideFeature.BodyMassIndexActivity">
 
@@ -16,41 +16,73 @@
         android:paddingTop="32dp"
         android:paddingBottom="32dp">
 
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/btn_back"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?attr/selectableItemBackground"
+            app:cardBackgroundColor="@color/putih"
+            app:cardCornerRadius="14dp"
+            app:cardElevation="4dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:strokeColor="@color/black"
+            app:strokeWidth="2dp">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_gravity="center"
+                android:contentDescription="@string/hasil_olahraga_kembali"
+                android:src="@android:drawable/ic_media_previous"
+                app:tint="@color/black" />
+        </com.google.android.material.card.MaterialCardView>
+
         <LinearLayout
             android:id="@+id/header_container"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
             android:orientation="horizontal"
+            android:layout_marginStart="16dp"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_back"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintStart_toEndOf="@+id/btn_back"
+            app:layout_constraintTop_toTopOf="@+id/btn_back">
 
             <ImageView
-                android:layout_width="80dp"
-                android:layout_height="90dp"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
                 android:contentDescription="@string/logo_sehatin"
                 android:scaleType="fitCenter"
                 android:src="@drawable/people_sehatin" />
 
-            <TextView
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="12dp"
-                android:fontFamily="@font/lexenddeca"
-                android:text="@string/BMI"
-                android:textColor="#276196"
-                android:textSize="28sp"
-                android:textStyle="bold" />
+                android:orientation="vertical">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="6dp"
-                android:fontFamily="@font/lexenddeca"
-                android:text="@string/BMI_Kalkulator"
-                android:textColor="#276196"
-                android:textSize="28sp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/lexenddeca"
+                    android:text="@string/BMI"
+                    android:textColor="@color/warnaUtama"
+                    android:textSize="22sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/lexenddeca"
+                    android:text="@string/BMI_Kalkulator"
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    android:textStyle="bold"/>
+            </LinearLayout>
         </LinearLayout>
 
         <TextView
@@ -60,27 +92,37 @@
             android:layout_marginTop="32dp"
             android:fontFamily="@font/lexenddeca"
             android:text="@string/Nama_BMI"
-            android:textColor="#757575"
-            android:textSize="12sp"
+            android:textColor="@color/black"
+            android:textSize="14sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/header_container" />
 
-        <EditText
-            android:id="@+id/et_nama"
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card_nama"
             android:layout_width="match_parent"
-            android:layout_height="48dp"
+            android:layout_height="52dp"
             android:layout_marginTop="8dp"
-            android:autofillHints="nama"
-            android:background="@drawable/bg_edittext_rounded"
-            android:backgroundTint="#F2F2F2"
-            android:fontFamily="@font/lexenddeca"
-            android:inputType="textPersonName"
-            android:paddingHorizontal="16dp"
-            android:textColor="@color/black"
-            android:textSize="14sp"
-            app:layout_constraintTop_toBottomOf="@+id/lbl_nama"
-            tools:ignore="LabelFor" />
+            app:cardBackgroundColor="@color/putih4"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="0dp"
+            app:strokeColor="@color/black"
+            app:strokeWidth="2dp"
+            app:layout_constraintTop_toBottomOf="@+id/lbl_nama">
+
+            <EditText
+                android:id="@+id/et_nama"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:autofillHints="nama"
+                android:background="@android:color/transparent"
+                android:fontFamily="@font/lexenddeca"
+                android:inputType="textPersonName"
+                android:paddingHorizontal="16dp"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                tools:ignore="LabelFor" />
+        </com.google.android.material.card.MaterialCardView>
 
         <TextView
             android:id="@+id/lbl_umur"
@@ -89,27 +131,37 @@
             android:layout_marginTop="16dp"
             android:fontFamily="@font/lexenddeca"
             android:text="@string/Umur_BMI"
-            android:textColor="#757575"
-            android:textSize="12sp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/et_nama" />
-
-        <EditText
-            android:id="@+id/et_umur"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:layout_marginTop="8dp"
-            android:autofillHints="umur"
-            android:background="@drawable/bg_edittext_rounded"
-            android:backgroundTint="#F2F2F2"
-            android:fontFamily="@font/lexenddeca"
-            android:inputType="number"
-            android:paddingHorizontal="16dp"
             android:textColor="@color/black"
             android:textSize="14sp"
-            app:layout_constraintTop_toBottomOf="@+id/lbl_umur"
-            tools:ignore="LabelFor" />
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/card_nama" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card_umur"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:layout_marginTop="8dp"
+            app:cardBackgroundColor="@color/putih4"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="0dp"
+            app:strokeColor="@color/black"
+            app:strokeWidth="2dp"
+            app:layout_constraintTop_toBottomOf="@+id/lbl_umur">
+
+            <EditText
+                android:id="@+id/et_umur"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:autofillHints="umur"
+                android:background="@android:color/transparent"
+                android:fontFamily="@font/lexenddeca"
+                android:inputType="number"
+                android:paddingHorizontal="16dp"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                tools:ignore="LabelFor" />
+        </com.google.android.material.card.MaterialCardView>
 
         <TextView
             android:id="@+id/lbl_berat"
@@ -118,55 +170,64 @@
             android:layout_marginTop="16dp"
             android:fontFamily="@font/lexenddeca"
             android:text="@string/Berat_BMI"
-            android:textColor="#757575"
-            android:textSize="12sp"
+            android:textColor="@color/black"
+            android:textSize="14sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/et_umur" />
+            app:layout_constraintTop_toBottomOf="@+id/card_umur" />
 
-        <LinearLayout
-            android:id="@+id/container_berat"
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card_berat"
             android:layout_width="match_parent"
-            android:layout_height="48dp"
+            android:layout_height="52dp"
             android:layout_marginTop="8dp"
-            android:background="@drawable/bg_edittext_rounded"
-            android:backgroundTint="#F2F2F2"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
+            app:cardBackgroundColor="@color/putih4"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="0dp"
+            app:strokeColor="@color/black"
+            app:strokeWidth="2dp"
             app:layout_constraintTop_toBottomOf="@+id/lbl_berat">
 
-            <ImageButton
-                android:id="@+id/btn_min_berat_kiri"
-                android:layout_width="48dp"
+            <LinearLayout
+                android:id="@+id/container_berat"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="?attr/selectableItemBackgroundBorderless"
-                android:contentDescription="@string/btn_min_berat_kiri"
-                android:padding="16dp"
-                android:scaleType="fitCenter"
-                android:src="@drawable/ic_kiri" />
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/tv_val_berat"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:fontFamily="@font/lexenddeca"
-                android:text="@string/kg40"
-                android:textAlignment="center"
-                android:textColor="#757575"
-                android:textSize="14sp"
-                android:textStyle="bold" />
+                <ImageButton
+                    android:id="@+id/btn_min_berat_kiri"
+                    android:layout_width="52dp"
+                    android:layout_height="match_parent"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:contentDescription="@string/btn_min_berat_kiri"
+                    android:padding="16dp"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/ic_kiri" />
 
-            <ImageButton
-                android:id="@+id/btn_plus_berat"
-                android:layout_width="48dp"
-                android:layout_height="match_parent"
-                android:background="?attr/selectableItemBackgroundBorderless"
-                android:contentDescription="@string/btn_plus_berat_kanan"
-                android:padding="16dp"
-                android:scaleType="fitCenter"
-                android:src="@drawable/ic_kanan" />
-        </LinearLayout>
+                <TextView
+                    android:id="@+id/tv_val_berat"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/lexenddeca"
+                    android:text="@string/kg40"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <ImageButton
+                    android:id="@+id/btn_plus_berat"
+                    android:layout_width="52dp"
+                    android:layout_height="match_parent"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:contentDescription="@string/btn_plus_berat_kanan"
+                    android:padding="16dp"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/ic_kanan" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
 
         <TextView
             android:id="@+id/lbl_tinggi"
@@ -175,55 +236,64 @@
             android:layout_marginTop="16dp"
             android:fontFamily="@font/lexenddeca"
             android:text="@string/Tinggi_BMI"
-            android:textColor="#757575"
-            android:textSize="12sp"
+            android:textColor="@color/black"
+            android:textSize="14sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/container_berat" />
+            app:layout_constraintTop_toBottomOf="@+id/card_berat" />
 
-        <LinearLayout
-            android:id="@+id/container_tinggi"
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card_tinggi"
             android:layout_width="match_parent"
-            android:layout_height="48dp"
+            android:layout_height="52dp"
             android:layout_marginTop="8dp"
-            android:background="@drawable/bg_edittext_rounded"
-            android:backgroundTint="#F2F2F2"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
+            app:cardBackgroundColor="@color/putih4"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="0dp"
+            app:strokeColor="@color/black"
+            app:strokeWidth="2dp"
             app:layout_constraintTop_toBottomOf="@+id/lbl_tinggi">
 
-            <ImageButton
-                android:id="@+id/btn_min_tinggi"
-                android:layout_width="48dp"
+            <LinearLayout
+                android:id="@+id/container_tinggi"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="?attr/selectableItemBackgroundBorderless"
-                android:contentDescription="@string/btn_min_berat_kiri"
-                android:padding="16dp"
-                android:scaleType="fitCenter"
-                android:src="@drawable/ic_kiri" />
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/tv_val_tinggi"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:fontFamily="@font/lexenddeca"
-                android:text="@string/cm170"
-                android:textAlignment="center"
-                android:textColor="#757575"
-                android:textSize="14sp"
-                android:textStyle="bold" />
+                <ImageButton
+                    android:id="@+id/btn_min_tinggi"
+                    android:layout_width="52dp"
+                    android:layout_height="match_parent"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:contentDescription="@string/btn_min_berat_kiri"
+                    android:padding="16dp"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/ic_kiri" />
 
-            <ImageButton
-                android:id="@+id/btn_plus_tinggi"
-                android:layout_width="48dp"
-                android:layout_height="match_parent"
-                android:background="?attr/selectableItemBackgroundBorderless"
-                android:contentDescription="@string/btn_plus_berat_kanan"
-                android:padding="16dp"
-                android:scaleType="fitCenter"
-                android:src="@drawable/ic_kanan" />
-        </LinearLayout>
+                <TextView
+                    android:id="@+id/tv_val_tinggi"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/lexenddeca"
+                    android:text="@string/cm170"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <ImageButton
+                    android:id="@+id/btn_plus_tinggi"
+                    android:layout_width="52dp"
+                    android:layout_height="match_parent"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:contentDescription="@string/btn_plus_berat_kanan"
+                    android:padding="16dp"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/ic_kanan" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
 
         <TextView
             android:id="@+id/lbl_gender"
@@ -232,11 +302,11 @@
             android:layout_marginTop="16dp"
             android:fontFamily="@font/lexenddeca"
             android:text="@string/Jenis_Kelamin_BMI"
-            android:textColor="#757575"
-            android:textSize="12sp"
+            android:textColor="@color/black"
+            android:textSize="14sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/container_tinggi" />
+            app:layout_constraintTop_toBottomOf="@+id/card_tinggi" />
 
         <LinearLayout
             android:id="@+id/container_gender"
@@ -253,14 +323,18 @@
                 android:layout_height="100dp"
                 android:layout_marginEnd="8dp"
                 android:layout_weight="1"
-                app:cardBackgroundColor="#F2F2F2"
-                app:cardCornerRadius="12dp"
-                app:cardElevation="0dp"
-                app:strokeWidth="0dp">
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?attr/selectableItemBackground"
+                app:cardBackgroundColor="@color/putih4"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="2dp"
+                app:strokeColor="@color/black"
+                app:strokeWidth="2dp">
 
                 <ImageView
-                    android:layout_width="70dp"
-                    android:layout_height="70dp"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
                     android:layout_gravity="center"
                     android:contentDescription="@string/Laki_Laki"
                     android:src="@drawable/ic_lakilaki" />
@@ -272,14 +346,18 @@
                 android:layout_height="100dp"
                 android:layout_marginStart="8dp"
                 android:layout_weight="1"
-                app:cardBackgroundColor="#F2F2F2"
-                app:cardCornerRadius="12dp"
-                app:cardElevation="0dp"
-                app:strokeWidth="0dp">
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?attr/selectableItemBackground"
+                app:cardBackgroundColor="@color/putih4"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="2dp"
+                app:strokeColor="@color/black"
+                app:strokeWidth="2dp">
 
                 <ImageView
-                    android:layout_width="70dp"
-                    android:layout_height="70dp"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
                     android:layout_gravity="center"
                     android:contentDescription="@string/Perempuan"
                     android:src="@drawable/ic_perempuan" />
@@ -289,20 +367,22 @@
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_hitung_bmi"
             android:layout_width="match_parent"
-            android:layout_height="56dp"
-            android:layout_marginTop="24dp"
-            android:backgroundTint="#3A73A9"
+            android:layout_height="60dp"
+            android:layout_marginTop="32dp"
+            android:backgroundTint="@color/warnaUtama"
             android:fontFamily="@font/lexenddeca"
             android:text="@string/Menghitung_BMI"
             android:textAllCaps="false"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/putih"
             android:textSize="16sp"
             android:textStyle="bold"
-            app:cornerRadius="8dp"
+            app:cornerRadius="16dp"
+            app:strokeColor="@color/black"
+            app:strokeWidth="2dp"
             app:layout_constraintTop_toBottomOf="@+id/container_gender" />
 
         <ImageView
-            android:layout_width="180dp"
+            android:layout_width="140dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
             android:adjustViewBounds="true"

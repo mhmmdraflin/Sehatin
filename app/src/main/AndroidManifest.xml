@@ -11,7 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Sehatin">
         <activity
-            android:name=".HasilOlahragaActivity"
+            android:name=".ui.SideFeature.Olahraga.HasilOlahragaActivity"
             android:exported="false" />
         <activity
             android:name=".ui.SideFeature.Olahraga.SesiOlahragaActivity"

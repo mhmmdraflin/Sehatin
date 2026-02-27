@@ -5,6 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFFFFF"
     tools:context=".ui.Splash.SplashActivity">
 
     <LinearLayout
@@ -17,6 +18,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.45"
         tools:ignore="UseCompoundDrawables">
 
         <ImageView
@@ -30,13 +32,28 @@
             android:id="@+id/logo_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="-25dp"
+            android:layout_marginStart="-15dp"
             android:text="@string/sehatin"
             android:fontFamily="@font/lexenddeca"
             android:textColor="@color/warnaUtama"
-            android:textSize="50sp"
+            android:textSize="48sp"
             android:textStyle="bold"
-            android:letterSpacing="0.05" />
-
+            android:letterSpacing="0.02" />
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_slogan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="40dp"
+        android:fontFamily="@font/lexenddeca"
+        android:text="@string/splash_sub"
+        android:textColor="@color/abuabu2"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        android:letterSpacing="0.1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

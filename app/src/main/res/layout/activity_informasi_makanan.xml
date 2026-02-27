@@ -12,21 +12,57 @@
         android:id="@+id/main"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingHorizontal="32dp"
-        android:paddingTop="48dp"
+        android:paddingHorizontal="24dp"
+        android:paddingTop="32dp"
         android:paddingBottom="48dp">
 
-        <ImageView
-            android:id="@+id/iv_logo_header"
-            android:layout_width="200dp"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/header_container"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:adjustViewBounds="true"
-            android:contentDescription="@string/logo_sehatin"
-            android:scaleType="fitCenter"
-            android:src="@drawable/logo_sehatin"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/btn_back"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?attr/selectableItemBackground"
+                app:cardBackgroundColor="#FFFFFF"
+                app:cardCornerRadius="14dp"
+                app:cardElevation="4dp"
+                app:strokeColor="#000000"
+                app:strokeWidth="3dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_gravity="center"
+                    android:contentDescription="@string/logo_kembali"
+                    android:src="@android:drawable/ic_media_previous"
+                    app:tint="#000000" />
+            </com.google.android.material.card.MaterialCardView>
+
+            <ImageView
+                android:id="@+id/iv_logo_header"
+                android:layout_width="140dp"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/logo_sehatin"
+                android:scaleType="fitCenter"
+                android:src="@drawable/logo_sehatin"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <TextView
             android:id="@+id/tv_title"
@@ -35,22 +71,22 @@
             android:layout_marginTop="32dp"
             android:fontFamily="@font/lexenddeca"
             android:text="@string/Selamat_Datang_Informasi_Makanan"
-            android:textColor="@color/black"
+            android:textColor="#33A1E0"
             android:textSize="24sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/iv_logo_header" />
+            app:layout_constraintTop_toBottomOf="@+id/header_container" />
 
         <TextView
             android:id="@+id/tv_subtitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
             android:fontFamily="@font/lexenddeca"
-            android:lineSpacingExtra="6dp"
+            android:lineSpacingExtra="4dp"
             android:text="@string/Deskripsi_Informasi_Makanan_Sehat"
-            android:textColor="@color/BiruGelap_Navy"
+            android:textColor="#757575"
             android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -69,173 +105,232 @@
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/btn_info_1"
                 android:layout_width="match_parent"
-                android:layout_height="64dp"
+                android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
                 android:clickable="true"
                 android:focusable="true"
                 android:foreground="?attr/selectableItemBackground"
-                app:cardBackgroundColor="@color/warnaUtama"
-                app:cardCornerRadius="32dp"
+                app:cardBackgroundColor="#FFFFFF"
+                app:cardCornerRadius="16dp"
                 app:cardElevation="0dp"
-                app:strokeWidth="0dp">
+                app:strokeColor="#000000"
+                app:strokeWidth="3dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:gravity="center_vertical"
                     android:orientation="horizontal"
-                    android:paddingHorizontal="24dp"
-                    tools:ignore="UseCompoundDrawables">
+                    android:padding="16dp">
 
-                    <ImageView
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:contentDescription="@string/logo_informasi_makanan"
-                        android:src="@drawable/logo_informasi_makanan" />
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        app:cardBackgroundColor="#33A1E0"
+                        app:cardCornerRadius="24dp"
+                        app:strokeColor="#000000"
+                        app:strokeWidth="2dp">
+
+                        <ImageView
+                            android:layout_width="28dp"
+                            android:layout_height="28dp"
+                            android:layout_gravity="center"
+                            android:contentDescription="@string/logo_informasi_makanan"
+                            android:src="@drawable/logo_informasi_makanan" />
+                    </com.google.android.material.card.MaterialCardView>
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
+                        android:layout_weight="1"
                         android:fontFamily="@font/lexenddeca"
                         android:text="@string/Informasi_Makanan_Sehat"
-                        android:textColor="@color/black"
+                        android:textColor="#000000"
                         android:textSize="14sp"
                         android:textStyle="bold" />
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:contentDescription="@string/logo_lihat_detail"
+                        android:src="@android:drawable/ic_media_play"
+                        app:tint="#BDBDBD" />
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/btn_info_2"
                 android:layout_width="match_parent"
-                android:layout_height="64dp"
+                android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
                 android:clickable="true"
                 android:focusable="true"
                 android:foreground="?attr/selectableItemBackground"
-                app:cardBackgroundColor="@color/warnaUtama"
-                app:cardCornerRadius="32dp"
+                app:cardBackgroundColor="#FFFFFF"
+                app:cardCornerRadius="16dp"
                 app:cardElevation="0dp"
-                app:strokeWidth="0dp">
+                app:strokeColor="#000000"
+                app:strokeWidth="3dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:gravity="center_vertical"
                     android:orientation="horizontal"
-                    android:paddingHorizontal="24dp"
-                    tools:ignore="UseCompoundDrawables">
+                    android:padding="16dp">
 
-                    <ImageView
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:contentDescription="@string/logo_informasi_makanan"
-                        android:src="@drawable/logo_informasi_makanan" />
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        app:cardBackgroundColor="#33A1E0"
+                        app:cardCornerRadius="24dp"
+                        app:strokeColor="#000000"
+                        app:strokeWidth="2dp">
+
+                        <ImageView
+                            android:layout_width="28dp"
+                            android:layout_height="28dp"
+                            android:layout_gravity="center"
+                            android:contentDescription="@string/logo_informasi_makanan"
+                            android:src="@drawable/logo_informasi_makanan" />
+                    </com.google.android.material.card.MaterialCardView>
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
+                        android:layout_weight="1"
                         android:fontFamily="@font/lexenddeca"
                         android:text="@string/Informasi_Makanan_Sehat"
-                        android:textColor="@color/black"
+                        android:textColor="#000000"
                         android:textSize="14sp"
                         android:textStyle="bold" />
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:contentDescription="@string/logo_lihat_detail"
+                        android:src="@android:drawable/ic_media_play"
+                        app:tint="#BDBDBD" />
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/btn_info_3"
                 android:layout_width="match_parent"
-                android:layout_height="64dp"
+                android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
                 android:clickable="true"
                 android:focusable="true"
                 android:foreground="?attr/selectableItemBackground"
-                app:cardBackgroundColor="@color/warnaUtama"
-                app:cardCornerRadius="32dp"
+                app:cardBackgroundColor="#FFFFFF"
+                app:cardCornerRadius="16dp"
                 app:cardElevation="0dp"
-                app:strokeWidth="0dp">
+                app:strokeColor="#000000"
+                app:strokeWidth="3dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:gravity="center_vertical"
                     android:orientation="horizontal"
-                    android:paddingHorizontal="24dp"
-                    tools:ignore="UseCompoundDrawables">
+                    android:padding="16dp">
 
-                    <ImageView
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:contentDescription="@string/logo_informasi_makanan"
-                        android:src="@drawable/logo_informasi_makanan" />
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        app:cardBackgroundColor="#33A1E0"
+                        app:cardCornerRadius="24dp"
+                        app:strokeColor="#000000"
+                        app:strokeWidth="2dp">
+
+                        <ImageView
+                            android:layout_width="28dp"
+                            android:layout_height="28dp"
+                            android:layout_gravity="center"
+                            android:contentDescription="@string/logo_informasi_makanan"
+                            android:src="@drawable/logo_informasi_makanan" />
+                    </com.google.android.material.card.MaterialCardView>
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
+                        android:layout_weight="1"
                         android:fontFamily="@font/lexenddeca"
                         android:text="@string/Informasi_Makanan_Sehat"
-                        android:textColor="@color/black"
+                        android:textColor="#000000"
                         android:textSize="14sp"
                         android:textStyle="bold" />
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:contentDescription="@string/logo_lihat_detail"
+                        android:src="@android:drawable/ic_media_play"
+                        app:tint="#BDBDBD" />
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/btn_info_4"
                 android:layout_width="match_parent"
-                android:layout_height="64dp"
+                android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
                 android:clickable="true"
                 android:focusable="true"
                 android:foreground="?attr/selectableItemBackground"
-                app:cardBackgroundColor="@color/warnaUtama"
-                app:cardCornerRadius="32dp"
+                app:cardBackgroundColor="#FFFFFF"
+                app:cardCornerRadius="16dp"
                 app:cardElevation="0dp"
-                app:strokeWidth="0dp">
+                app:strokeColor="#000000"
+                app:strokeWidth="3dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:gravity="center_vertical"
                     android:orientation="horizontal"
-                    android:paddingHorizontal="24dp"
-                    tools:ignore="UseCompoundDrawables">
+                    android:padding="16dp">
 
-                    <ImageView
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:contentDescription="@string/logo_informasi_makanan"
-                        android:src="@drawable/logo_informasi_makanan" />
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        app:cardBackgroundColor="#33A1E0"
+                        app:cardCornerRadius="24dp"
+                        app:strokeColor="#000000"
+                        app:strokeWidth="2dp">
+
+                        <ImageView
+                            android:layout_width="28dp"
+                            android:layout_height="28dp"
+                            android:layout_gravity="center"
+                            android:contentDescription="@string/logo_informasi_makanan"
+                            android:src="@drawable/logo_informasi_makanan" />
+                    </com.google.android.material.card.MaterialCardView>
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
+                        android:layout_weight="1"
                         android:fontFamily="@font/lexenddeca"
                         android:text="@string/Informasi_Makanan_Sehat"
-                        android:textColor="@color/black"
+                        android:textColor="#000000"
                         android:textSize="14sp"
                         android:textStyle="bold" />
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:contentDescription="@string/logo_lihat_detail"
+                        android:src="@android:drawable/ic_media_play"
+                        app:tint="#BDBDBD" />
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
         </LinearLayout>
-
-        <ImageView
-            android:id="@+id/iv_logo_footer"
-            android:layout_width="140dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="48dp"
-            android:adjustViewBounds="true"
-            android:contentDescription="@string/logo_informasi_makanan"
-            android:scaleType="fitCenter"
-            android:src="@drawable/logo_sehatin"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/menu_container" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

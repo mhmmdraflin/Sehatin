@@ -13,45 +13,64 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:paddingHorizontal="24dp"
-        android:paddingTop="40dp"
+        android:paddingTop="32dp"
         android:paddingBottom="120dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="40dp"
-            android:gravity="center"
+            android:layout_marginBottom="32dp"
+            android:gravity="center_vertical"
             android:orientation="horizontal">
 
             <ImageView
                 android:id="@+id/icon_tantangan_header"
-                android:layout_width="75dp"
-                android:layout_height="75dp"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
                 android:adjustViewBounds="true"
-                android:contentDescription="@string/icon_tantangan_header"
+                android:contentDescription="@string/logo_sehatin"
                 android:scaleType="fitCenter"
-                android:src="@drawable/people" />
+                android:src="@drawable/people_sehatin" />
 
-            <TextView
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:fontFamily="@font/lexenddeca"
-                android:text="@string/Tantangan_Sehatin"
-                android:textColor="#4FA5E2"
-                android:textSize="24sp"
-                android:textStyle="bold" />
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/lexenddeca"
+                    android:text="@string/Tantangan_Sehatin"
+                    android:textColor="#33A1E0"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:fontFamily="@font/lexenddeca"
+                    android:text="@string/Tantangan_subText"
+                    android:textColor="#757575"
+                    android:textSize="14sp" />
+            </LinearLayout>
         </LinearLayout>
 
         <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card_tantangan_1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="4dp"
             android:layout_marginBottom="24dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?attr/selectableItemBackground"
+            app:cardBackgroundColor="#FFFFFF"
             app:cardCornerRadius="16dp"
-            app:cardElevation="6dp"
+            app:cardElevation="0dp"
             app:strokeColor="#000000"
-            app:strokeWidth="2dp">
+            app:strokeWidth="3dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -60,17 +79,21 @@
 
                 <ImageView
                     android:layout_width="match_parent"
-                    android:layout_height="140dp"
+                    android:layout_height="150dp"
                     android:contentDescription="@string/bg_tantangan"
                     android:scaleType="centerCrop"
                     android:src="@drawable/bg_tantangan" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="3dp"
+                    android:background="#000000" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/warnaUtama"
-                    android:paddingHorizontal="16dp"
-                    android:paddingVertical="12dp">
+                    android:padding="16dp">
 
                     <TextView
                         android:id="@+id/judul_tantangan_1"
@@ -80,7 +103,7 @@
                         android:fontFamily="@font/lexenddeca"
                         android:text="@string/Tantangan_Olahraga"
                         android:textColor="#FFFFFF"
-                        android:textSize="16sp"
+                        android:textSize="18sp"
                         android:textStyle="bold"
                         app:layout_constraintEnd_toStartOf="@+id/btn_periksa"
                         app:layout_constraintStart_toStartOf="parent"
@@ -90,73 +113,79 @@
                         android:id="@+id/desc_tantangan_1"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="4dp"
+                        android:layout_marginTop="6dp"
                         android:layout_marginEnd="16dp"
                         android:fontFamily="@font/lexenddeca"
+                        android:lineSpacingExtra="4dp"
                         android:text="@string/deskripsi_tantangan_olahraga"
-                        android:textColor="#FFFFFF"
-                        android:textSize="9sp"
+                        android:textColor="#F5F5F5"
+                        android:textSize="12sp"
                         app:layout_constraintEnd_toStartOf="@+id/btn_periksa"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/judul_tantangan_1"
-                        tools:ignore="SmallSp" />
+                        app:layout_constraintTop_toBottomOf="@+id/judul_tantangan_1" />
 
                     <com.google.android.material.card.MaterialCardView
                         android:id="@+id/btn_periksa"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         app:cardBackgroundColor="#FFFFFF"
-                        app:cardCornerRadius="6dp"
+                        app:cardCornerRadius="16dp"
                         app:cardElevation="0dp"
-                        app:strokeWidth="0dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent">
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:strokeColor="#000000"
+                        app:strokeWidth="2dp">
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:paddingHorizontal="12dp"
-                            android:paddingVertical="6dp"
                             android:fontFamily="@font/lexenddeca"
+                            android:paddingHorizontal="16dp"
+                            android:paddingVertical="8dp"
                             android:text="@string/Periksa"
-                            android:textColor="@color/warnaUtama"
+                            android:textColor="#33A1E0"
                             android:textSize="12sp"
                             android:textStyle="bold" />
                     </com.google.android.material.card.MaterialCardView>
-
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
         <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card_tantangan_2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="4dp"
             android:layout_marginBottom="24dp"
+            app:cardBackgroundColor="#FFFFFF"
             app:cardCornerRadius="16dp"
-            app:cardElevation="6dp"
+            app:cardElevation="0dp"
             app:strokeColor="#000000"
-            app:strokeWidth="2dp">
+            app:strokeWidth="3dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:alpha="0.6">
 
                 <ImageView
                     android:layout_width="match_parent"
-                    android:layout_height="140dp"
+                    android:layout_height="150dp"
                     android:contentDescription="@string/bg_tantangan"
                     android:scaleType="centerCrop"
                     android:src="@drawable/bg_tantangan" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="3dp"
+                    android:background="#000000" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/warnaUtama"
-                    android:paddingHorizontal="16dp"
-                    android:paddingVertical="12dp">
+                    android:padding="16dp">
 
                     <TextView
                         android:id="@+id/judul_tantangan_2"
@@ -166,7 +195,7 @@
                         android:fontFamily="@font/lexenddeca"
                         android:text="@string/Tantangan_Makanan"
                         android:textColor="#FFFFFF"
-                        android:textSize="16sp"
+                        android:textSize="18sp"
                         android:textStyle="bold"
                         app:layout_constraintEnd_toStartOf="@+id/btn_segera_hadir"
                         app:layout_constraintStart_toStartOf="parent"
@@ -176,41 +205,41 @@
                         android:id="@+id/desc_tantangan_2"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="4dp"
+                        android:layout_marginTop="6dp"
                         android:layout_marginEnd="16dp"
                         android:fontFamily="@font/lexenddeca"
+                        android:lineSpacingExtra="4dp"
                         android:text="@string/deskripsi_tantangan_makanan"
-                        android:textColor="#FFFFFF"
-                        android:textSize="9sp"
+                        android:textColor="#F5F5F5"
+                        android:textSize="12sp"
                         app:layout_constraintEnd_toStartOf="@+id/btn_segera_hadir"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/judul_tantangan_2"
-                        tools:ignore="SmallSp" />
+                        app:layout_constraintTop_toBottomOf="@+id/judul_tantangan_2" />
 
                     <com.google.android.material.card.MaterialCardView
                         android:id="@+id/btn_segera_hadir"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        app:cardBackgroundColor="#FFFFFF"
-                        app:cardCornerRadius="6dp"
+                        app:cardBackgroundColor="#E0E0E0"
+                        app:cardCornerRadius="16dp"
                         app:cardElevation="0dp"
-                        app:strokeWidth="0dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent">
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:strokeColor="#000000"
+                        app:strokeWidth="2dp">
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:paddingHorizontal="12dp"
-                            android:paddingVertical="6dp"
                             android:fontFamily="@font/lexenddeca"
+                            android:paddingHorizontal="16dp"
+                            android:paddingVertical="8dp"
                             android:text="@string/Segera_Hadir"
-                            android:textColor="@color/warnaUtama"
+                            android:textColor="#757575"
                             android:textSize="12sp"
                             android:textStyle="bold" />
                     </com.google.android.material.card.MaterialCardView>
-
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
