@@ -14,7 +14,7 @@
         android:layout_height="600dp"
         android:contentDescription="@string/background_dashboard_content"
         android:scaleType="centerCrop"
-        android:src="@drawable/bg_dashboard_character"
+        android:src="@drawable/bg_dashboard_girl"
         app:layout_constraintBottom_toTopOf="@+id/sehatin_deck_dash"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -28,7 +28,7 @@
         android:layout_marginBottom="12dp"
         android:contentDescription="@string/character_illustration"
         android:scaleType="fitCenter"
-        android:src="@drawable/character_ideal"
+        android:src="@drawable/character_girl"
         app:layout_constraintBottom_toTopOf="@+id/sehatin_deck_dash"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -114,7 +114,7 @@
             android:layout_height="70dp"
             android:layout_gravity="center_vertical"
             android:layout_margin="10dp"
-            android:src="@drawable/profile_boy"
+            android:src="@drawable/profile_girl"
             app:civ_border_width="2dp" />
 
         <LinearLayout

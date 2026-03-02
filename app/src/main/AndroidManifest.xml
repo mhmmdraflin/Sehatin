@@ -11,6 +11,25 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Sehatin">
         <activity
+            android:name=".ui.Profil.InventarisActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.Profil.TukarPoinActivity"
+            android:exported="false"
+            android:theme="@style/Theme.Sehatin" />
+        <activity
+            android:name=".ui.Tantangan.PreviewTantanganActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.Tantangan.CongratulationsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.Tantangan.DetailAktivitasActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.Tantangan.DetailTantanganActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.SideFeature.Olahraga.HasilOlahragaActivity"
             android:exported="false" />
         <activity
