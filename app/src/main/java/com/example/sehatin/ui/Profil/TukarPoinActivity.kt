@@ -1,42 +1,66 @@
-package com.example.sehatin.ui.Profil
+package com.example.sehatin.ui.Profil // Sesuaikan dengan nama package Anda jika berbeda
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.navigateUp
-import androidx.navigation.ui.setupActionBarWithNavController
-import com.example.sehatin.R
 import com.example.sehatin.databinding.ActivityTukarPoinBinding
-import com.google.android.material.snackbar.Snackbar
+import java.text.NumberFormat
+import java.util.Locale
 
 class TukarPoinActivity : AppCompatActivity() {
 
-    private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityTukarPoinBinding
+
+    // Simulasi Poin Pengguna saat ini
+    private var poinUser = 1250
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        // Inisialisasi ViewBinding
         binding = ActivityTukarPoinBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        setSupportActionBar(binding.toolbar)
+        // 1. Tampilkan jumlah poin awal di pojok kanan atas
+        updatePoinUI()
 
-        val navController = findNavController(R.id.nav_host_fragment_content_tukar_poin)
-        appBarConfiguration = AppBarConfiguration(navController.graph)
-        setupActionBarWithNavController(navController, appBarConfiguration)
+        // 2. Logika Tombol Kembali (Back)
+        binding.btnBack.setOnClickListener {
+            finish() // Tutup halaman dan kembali ke Profile
+        }
 
-        binding.fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null)
-                .setAnchorView(R.id.fab).show()
+        // 3. Logika Beli Item 1 (Harga 500 Poin)
+        binding.btnBeli1.setOnClickListener {
+            beliItem(harga = 500, namaItem = "Latar Gym Retro")
+        }
+
+        // 4. Logika Beli Item 2 (Harga 300 Poin)
+        binding.btnBeli2.setOnClickListener {
+            beliItem(harga = 300, namaItem = "Latar Taman")
         }
     }
 
-    override fun onSupportNavigateUp(): Boolean {
-        val navController = findNavController(R.id.nav_host_fragment_content_tukar_poin)
-        return navController.navigateUp(appBarConfiguration)
-                || super.onSupportNavigateUp()
+    // Fungsi Utama untuk memproses penukaran Poin
+    private fun beliItem(harga: Int, namaItem: String) {
+        if (poinUser >= harga) {
+            // Jika poin cukup: Kurangi poin
+            poinUser -= harga
+            updatePoinUI()
+
+            // Tampilkan pesan sukses
+            Toast.makeText(this, "Berhasil menukar $namaItem!", Toast.LENGTH_SHORT).show()
+
+            // TODO: Nanti di sini kita tambahkan kode untuk menyimpan item ke Inventaris
+
+        } else {
+            // Jika poin tidak cukup
+            Toast.makeText(this, "Poin kamu tidak cukup untuk menukar item ini.", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    // Fungsi untuk mengubah tampilan angka poin (Memberi koma ribuan)
+    private fun updatePoinUI() {
+        val formatPoin = NumberFormat.getNumberInstance(Locale.US).format(poinUser)
+        binding.tvUserPoin.text = "$formatPoin Poin"
     }
 }

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#F5F5F5"
-    tools:context=".ui.Profile.TukarPoinActivity">
+    tools:context=".ui.Profil.TukarPoinActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/header_container"
