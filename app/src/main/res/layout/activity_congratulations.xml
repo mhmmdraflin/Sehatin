@@ -12,6 +12,7 @@
         android:layout_height="250dp"
         android:layout_marginTop="50dp"
         android:clickable="true"
+        android:contentDescription="@string/ic_chest"
         android:focusable="true"
         android:foreground="?attr/selectableItemBackgroundBorderless"
         android:src="@drawable/ic_chest_1"
@@ -26,7 +27,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="-16dp"
         android:fontFamily="@font/lexenddeca"
-        android:text="Ketuk untuk Membuka!"
+        android:text="@string/congratulations_membuka"
         android:textColor="#FF8F00"
         android:textSize="16sp"
         android:textStyle="bold"
@@ -44,8 +45,8 @@
         android:shadowDx="3"
         android:shadowDy="4"
         android:shadowRadius="1"
-        android:text="MISI SELESAI!"
-        android:textColor="#33A1E0"
+        android:text="@string/congratulations_misi_selesai"
+        android:textColor="@color/warnaUtama"
         android:textSize="36sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -60,7 +61,7 @@
         android:layout_marginTop="8dp"
         android:fontFamily="@font/lexenddeca"
         android:lineSpacingExtra="4dp"
-        android:text="Luar biasa! Kamu berhasil menaklukkan tantangan hari ini dan membuktikan kehebatanmu."
+        android:text="@string/congratulations_deskripsi_misiselesai"
         android:textAlignment="center"
         android:textColor="#757575"
         android:textSize="14sp"
@@ -75,13 +76,13 @@
         android:layout_marginHorizontal="32dp"
         android:layout_marginTop="24dp"
         android:alpha="0"
-        app:cardBackgroundColor="#FFFFFF"
+        app:cardBackgroundColor="@color/putih"
         app:cardCornerRadius="24dp"
         app:cardElevation="0dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_congrats_subtitle"
-        app:strokeColor="#000000"
+        app:strokeColor="@color/black"
         app:strokeWidth="4dp">
 
         <LinearLayout
@@ -95,7 +96,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
                 android:fontFamily="@font/lexenddeca"
-                android:text="Hadiah Kamu"
+                android:text="@string/congratulations_hadiah"
                 android:textAlignment="center"
                 android:textColor="#000000"
                 android:textSize="18sp"
@@ -114,7 +115,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:fontFamily="@font/lexenddeca"
-                    android:text="Experience (EXP)"
+                    android:text="@string/congratulations_exp_text"
                     android:textColor="#757575"
                     android:textSize="16sp"
                     android:textStyle="bold" />
@@ -124,8 +125,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/lexenddeca"
-                    android:text="+50 EXP"
-                    android:textColor="#33A1E0"
+                    android:text="@string/congratulations_exp"
+                    android:textColor="@color/warnaUtama"
                     android:textSize="20sp"
                     android:textStyle="bold" />
             </LinearLayout>
@@ -133,10 +134,10 @@
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:cardBackgroundColor="#FFD700"
+                app:cardBackgroundColor="@color/kuning"
                 app:cardCornerRadius="16dp"
                 app:cardElevation="0dp"
-                app:strokeColor="#000000"
+                app:strokeColor="@color/black"
                 app:strokeWidth="2dp">
 
                 <LinearLayout
@@ -152,8 +153,8 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:fontFamily="@font/lexenddeca"
-                        android:text="Sehatin Poin"
-                        android:textColor="#000000"
+                        android:text="@string/congratulations_SehatinPoin_Text"
+                        android:textColor="@color/black"
                         android:textSize="18sp"
                         android:textStyle="bold" />
 
@@ -162,8 +163,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/lexenddeca"
-                        android:text="+20 Poin"
-                        android:textColor="#000000"
+                        android:text="@string/congratulations_poin"
+                        android:textColor="@color/black"
                         android:textSize="24sp"
                         android:textStyle="bold" />
                 </LinearLayout>

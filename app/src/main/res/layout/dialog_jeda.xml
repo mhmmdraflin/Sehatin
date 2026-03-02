@@ -21,8 +21,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/lexenddeca"
-            android:text="JEDA"
-            android:textColor="#000000"
+            android:text="@string/Jeda_judul"
+            android:textColor="@color/black"
             android:textSize="28sp"
             android:textStyle="bold"
             android:layout_marginBottom="24dp"/>
@@ -34,12 +34,12 @@
             android:layout_marginBottom="16dp"
             android:backgroundTint="#33A1E0"
             android:fontFamily="@font/lexenddeca"
-            android:text="Lanjutkan"
-            android:textColor="#FFFFFF"
+            android:text="@string/Jeda_lanjutkan"
+            android:textColor="@color/putih"
             android:textSize="18sp"
             android:textStyle="bold"
             app:cornerRadius="16dp"
-            app:strokeColor="#000000"
+            app:strokeColor="@color/black"
             app:strokeWidth="3dp" />
 
         <com.google.android.material.button.MaterialButton
@@ -49,12 +49,12 @@
             android:layout_marginBottom="16dp"
             android:backgroundTint="#F5F5F5"
             android:fontFamily="@font/lexenddeca"
-            android:text="Mulai Ulang"
-            android:textColor="#000000"
+            android:text="@string/Jeda_mulai_ulang"
+            android:textColor="@color/black"
             android:textSize="18sp"
             android:textStyle="bold"
             app:cornerRadius="16dp"
-            app:strokeColor="#000000"
+            app:strokeColor="@color/black"
             app:strokeWidth="3dp" />
 
         <com.google.android.material.button.MaterialButton
@@ -63,12 +63,12 @@
             android:layout_height="60dp"
             android:backgroundTint="#FFEBEE"
             android:fontFamily="@font/lexenddeca"
-            android:text="Keluar"
+            android:text="@string/Jeda_keluar"
             android:textColor="#D32F2F"
             android:textSize="18sp"
             android:textStyle="bold"
             app:cornerRadius="16dp"
-            app:strokeColor="#000000"
+            app:strokeColor="@color/black"
             app:strokeWidth="3dp" />
 
     </LinearLayout>

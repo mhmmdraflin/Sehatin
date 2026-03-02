@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="#F4F8FB"
     android:fillViewport="true"
-    tools:context=".ui.Profile.InventarisActivity">
+    tools:context=".ui.Profil.InventarisActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -30,16 +30,17 @@
                 android:clickable="true"
                 android:focusable="true"
                 android:foreground="?attr/selectableItemBackground"
-                app:cardBackgroundColor="#FFFFFF"
+                app:cardBackgroundColor="@color/putih"
                 app:cardCornerRadius="14dp"
                 app:cardElevation="4dp"
-                app:strokeColor="#000000"
+                app:strokeColor="@color/black"
                 app:strokeWidth="3dp">
 
                 <ImageView
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:layout_gravity="center"
+                    android:contentDescription="@string/btn_kembali"
                     android:src="@android:drawable/ic_media_previous"
                     app:tint="#000000" />
             </com.google.android.material.card.MaterialCardView>
@@ -49,8 +50,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:fontFamily="@font/lexenddeca"
-                android:text="Inventaris Sehatin"
-                android:textColor="#000000"
+                android:text="@string/Inventaris_Sehatin"
+                android:textColor="@color/black"
                 android:textSize="22sp"
                 android:textStyle="bold" />
         </LinearLayout>
@@ -60,10 +61,10 @@
             android:layout_width="match_parent"
             android:layout_height="260dp"
             android:layout_marginBottom="24dp"
-            app:cardBackgroundColor="#FFFFFF"
+            app:cardBackgroundColor="@color/putih"
             app:cardCornerRadius="24dp"
             app:cardElevation="8dp"
-            app:strokeColor="#000000"
+            app:strokeColor="@color/black"
             app:strokeWidth="4dp">
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -74,6 +75,7 @@
                     android:id="@+id/iv_preview_bg"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:contentDescription="@string/bg_olahraga"
                     android:scaleType="centerCrop"
                     android:src="@drawable/bg_dashboard_character" />
 
@@ -82,6 +84,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginTop="30dp"
+                    android:contentDescription="@string/character_illustration"
                     android:scaleType="centerInside"
                     android:src="@drawable/character_ideal" />
 
@@ -99,7 +102,7 @@
                     app:cardElevation="4dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:strokeColor="#000000"
+                    app:strokeColor="@color/black"
                     app:strokeWidth="2dp">
 
                     <TextView
@@ -108,8 +111,8 @@
                         android:fontFamily="@font/lexenddeca"
                         android:paddingHorizontal="16dp"
                         android:paddingVertical="8dp"
-                        android:text="Gunakan Kombinasi"
-                        android:textColor="#FFFFFF"
+                        android:text="@string/Inventaris_Edit_Inventaris"
+                        android:textColor="@color/putih"
                         android:textSize="12sp"
                         android:textStyle="bold" />
                 </com.google.android.material.card.MaterialCardView>
@@ -122,8 +125,8 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="12dp"
             android:fontFamily="@font/lexenddeca"
-            android:text="Koleksi Latar Belakang"
-            android:textColor="#000000"
+            android:text="@string/Inventaris_Preview_Latar_Text"
+            android:textColor="@color/black"
             android:textSize="14sp"
             android:textStyle="bold" />
 
@@ -133,7 +136,8 @@
             android:layout_marginBottom="24dp"
             android:clipToPadding="false"
             android:paddingEnd="24dp"
-            android:scrollbars="none">
+            android:scrollbars="none"
+            tools:ignore="RtlSymmetry">
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -148,10 +152,10 @@
                     android:clickable="true"
                     android:focusable="true"
                     android:foreground="?attr/selectableItemBackground"
-                    app:cardBackgroundColor="#FFFFFF"
+                    app:cardBackgroundColor="@color/putih"
                     app:cardCornerRadius="16dp"
                     app:cardElevation="4dp"
-                    app:strokeColor="#33A1E0"
+                    app:strokeColor="@color/warnaUtama"
                     app:strokeWidth="3dp">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
@@ -161,6 +165,7 @@
                         <ImageView
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
+                            android:contentDescription="@string/bg_olahraga"
                             android:scaleType="centerCrop"
                             android:src="@drawable/bg_dashboard_character" />
 
@@ -171,18 +176,20 @@
                             android:layout_marginEnd="6dp"
                             app:cardBackgroundColor="#4CAF50"
                             app:cardCornerRadius="10dp"
-                            app:strokeColor="#FFFFFF"
-                            app:strokeWidth="2dp"
                             app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toTopOf="parent">
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:strokeColor="@color/putih"
+                            app:strokeWidth="2dp">
+
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
-                                android:text="✓"
-                                android:textColor="#FFFFFF"
+                                android:text="@string/Inventaris_Preview_ceklis"
+                                android:textColor="@color/putih"
                                 android:textSize="10sp"
-                                android:textStyle="bold"/>
+                                android:textStyle="bold"
+                                tools:ignore="SmallSp" />
                         </com.google.android.material.card.MaterialCardView>
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </com.google.android.material.card.MaterialCardView>
@@ -204,6 +211,7 @@
                     <ImageView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:contentDescription="@string/bg_tantangan"
                         android:scaleType="centerCrop"
                         android:src="@drawable/bg_tantangan" />
                 </com.google.android.material.card.MaterialCardView>
@@ -227,21 +235,24 @@
                         android:layout_height="match_parent"
                         android:gravity="center"
                         android:orientation="vertical">
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="+"
+                            android:text="@string/Inventaris_Preview_tambah"
                             android:textColor="#4CAF50"
                             android:textSize="28sp"
                             android:textStyle="bold" />
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/lexenddeca"
-                            android:text="Beli Baru"
+                            android:text="@string/Inventaris_Preview_Tambah_Text"
                             android:textColor="#4CAF50"
                             android:textSize="10sp"
-                            android:textStyle="bold" />
+                            android:textStyle="bold"
+                            tools:ignore="SmallSp" />
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>
 
@@ -254,8 +265,8 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="12dp"
             android:fontFamily="@font/lexenddeca"
-            android:text="Koleksi Karakter"
-            android:textColor="#000000"
+            android:text="@string/Inventaris_Preview_KoleksiKarakter_Text"
+            android:textColor="@color/black"
             android:textSize="14sp"
             android:textStyle="bold" />
 
@@ -265,7 +276,8 @@
             android:layout_marginBottom="24dp"
             android:clipToPadding="false"
             android:paddingEnd="24dp"
-            android:scrollbars="none">
+            android:scrollbars="none"
+            tools:ignore="RtlSymmetry">
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -280,10 +292,10 @@
                     android:clickable="true"
                     android:focusable="true"
                     android:foreground="?attr/selectableItemBackground"
-                    app:cardBackgroundColor="#FFFFFF"
+                    app:cardBackgroundColor="@color/putih"
                     app:cardCornerRadius="16dp"
                     app:cardElevation="4dp"
-                    app:strokeColor="#33A1E0"
+                    app:strokeColor="@color/warnaUtama"
                     app:strokeWidth="3dp">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
@@ -293,6 +305,7 @@
                         <ImageView
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
+                            android:contentDescription="@string/character_illustration"
                             android:padding="8dp"
                             android:scaleType="centerInside"
                             android:src="@drawable/character_ideal" />
@@ -304,18 +317,20 @@
                             android:layout_marginEnd="6dp"
                             app:cardBackgroundColor="#4CAF50"
                             app:cardCornerRadius="10dp"
-                            app:strokeColor="#FFFFFF"
-                            app:strokeWidth="2dp"
                             app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toTopOf="parent">
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:strokeColor="@color/putih"
+                            app:strokeWidth="2dp">
+
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
-                                android:text="✓"
-                                android:textColor="#FFFFFF"
+                                android:text="@string/Inventaris_Preview_ceklis"
+                                android:textColor="@color/putih"
                                 android:textSize="10sp"
-                                android:textStyle="bold"/>
+                                android:textStyle="bold"
+                                tools:ignore="SmallSp" />
                         </com.google.android.material.card.MaterialCardView>
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </com.google.android.material.card.MaterialCardView>
@@ -328,15 +343,16 @@
                     android:clickable="true"
                     android:focusable="true"
                     android:foreground="?attr/selectableItemBackground"
-                    app:cardBackgroundColor="#FFFFFF"
+                    app:cardBackgroundColor="@color/putih"
                     app:cardCornerRadius="16dp"
                     app:cardElevation="4dp"
-                    app:strokeColor="#000000"
+                    app:strokeColor="@color/black"
                     app:strokeWidth="2dp">
 
                     <ImageView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:contentDescription="@string/character_illustration"
                         android:padding="8dp"
                         android:scaleType="centerInside"
                         android:src="@drawable/ic_pushup" />
@@ -361,21 +377,24 @@
                         android:layout_height="match_parent"
                         android:gravity="center"
                         android:orientation="vertical">
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="+"
+                            android:text="@string/Inventaris_Preview_tambah"
                             android:textColor="#4CAF50"
                             android:textSize="28sp"
                             android:textStyle="bold" />
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/lexenddeca"
-                            android:text="Beli Baru"
+                            android:text="@string/Inventaris_Preview_Tambah_Text"
                             android:textColor="#4CAF50"
                             android:textSize="10sp"
-                            android:textStyle="bold" />
+                            android:textStyle="bold"
+                            tools:ignore="SmallSp" />
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>
 
