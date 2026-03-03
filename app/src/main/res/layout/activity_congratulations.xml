@@ -182,7 +182,7 @@
         android:alpha="0"
         android:backgroundTint="#33A1E0"
         android:fontFamily="@font/lexenddeca"
-        android:text="Klaim Hadiah!"
+        android:text="@string/btn_klaim_kembali"
         android:textAllCaps="false"
         android:textColor="#FFFFFF"
         android:textSize="20sp"

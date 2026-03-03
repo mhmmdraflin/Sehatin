@@ -11,7 +11,7 @@
         android:id="@+id/iv_ilustrasi_makanan"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:contentDescription="Ilustrasi Makanan"
+        android:contentDescription="@string/bg_tantangan"
         android:scaleType="centerCrop"
         android:src="@drawable/bg_tantangan"
         app:layout_constraintEnd_toEndOf="parent"
