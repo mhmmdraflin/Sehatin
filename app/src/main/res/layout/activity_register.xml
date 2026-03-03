@@ -1,210 +1,266 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/putih"
-    android:fillViewport="true">
+    tools:context=".Auth.RegisterActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/main"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="40dp">
+
+            <ImageView
+                android:id="@+id/register_logo"
+                android:layout_width="180dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/logo_sehatin"
+                android:src="@drawable/logo_sehatin"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/register_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="24dp"
+                android:fontFamily="@font/lexenddeca"
+                android:text="@string/register_title"
+                android:textColor="@color/warnaUtama"
+                android:textSize="28sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/register_logo" />
+
+            <TextView
+                android:id="@+id/Selamat_Datang"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="4dp"
+                android:fontFamily="@font/lexenddeca"
+                android:text="@string/Welcome"
+                android:textColor="@color/abuabu2"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/register_title" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/card_nama"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginHorizontal="24dp"
+                android:layout_marginTop="32dp"
+                app:cardBackgroundColor="@color/putih2"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="0dp"
+                app:strokeColor="@color/black"
+                app:strokeWidth="2dp"
+                app:layout_constraintTop_toBottomOf="@+id/Selamat_Datang">
+
+                <EditText
+                    android:id="@+id/kolom_nama"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:autofillHints="name"
+                    android:background="@android:color/transparent"
+                    android:drawableStart="@drawable/user"
+                    android:drawablePadding="16dp"
+                    android:fontFamily="@font/lexenddeca"
+                    android:hint="@string/Name"
+                    android:inputType="textPersonName"
+                    android:paddingHorizontal="16dp"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/abuabu3"
+                    android:textSize="14sp" />
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/card_email"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginHorizontal="24dp"
+                android:layout_marginTop="16dp"
+                app:cardBackgroundColor="@color/putih4"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="0dp"
+                app:strokeColor="@color/black"
+                app:strokeWidth="2dp"
+                app:layout_constraintTop_toBottomOf="@+id/card_nama">
+
+                <EditText
+                    android:id="@+id/kolom_Email"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:autofillHints="emailAddress"
+                    android:background="@android:color/transparent"
+                    android:drawableStart="@drawable/mail"
+                    android:drawablePadding="16dp"
+                    android:fontFamily="@font/lexenddeca"
+                    android:hint="@string/Email"
+                    android:inputType="textEmailAddress"
+                    android:paddingHorizontal="16dp"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/abuabu3"
+                    android:textSize="14sp" />
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/card_password"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginHorizontal="24dp"
+                android:layout_marginTop="16dp"
+                app:cardBackgroundColor="@color/putih4"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="0dp"
+                app:strokeColor="@color/black"
+                app:strokeWidth="2dp"
+                app:layout_constraintTop_toBottomOf="@+id/card_email">
+
+                <EditText
+                    android:id="@+id/kolom_Password"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:autofillHints="password"
+                    android:background="@android:color/transparent"
+                    android:drawableStart="@drawable/password"
+                    android:drawablePadding="16dp"
+                    android:fontFamily="@font/lexenddeca"
+                    android:hint="@string/Password"
+                    android:inputType="textPassword"
+                    android:paddingHorizontal="16dp"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/abuabu3"
+                    android:textSize="14sp" />
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/card_konfirmasi"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginHorizontal="24dp"
+                android:layout_marginTop="16dp"
+                app:cardBackgroundColor="@color/putih4"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="0dp"
+                app:strokeColor="@color/black"
+                app:strokeWidth="2dp"
+                app:layout_constraintTop_toBottomOf="@+id/card_password">
+
+                <EditText
+                    android:id="@+id/kolom_Konfirmasi"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:autofillHints="password"
+                    android:background="@android:color/transparent"
+                    android:drawableStart="@drawable/konfirmasi_password"
+                    android:drawablePadding="16dp"
+                    android:fontFamily="@font/lexenddeca"
+                    android:hint="@string/Confirm_Password"
+                    android:inputType="textPassword"
+                    android:paddingHorizontal="16dp"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/abuabu3"
+                    android:textSize="14sp" />
+            </com.google.android.material.card.MaterialCardView>
+
+            <CheckBox
+                android:id="@+id/checkbox_privacy"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="24dp"
+                android:layout_marginTop="16dp"
+                android:buttonTint="#33A1E0"
+                android:fontFamily="@font/lexenddeca"
+                android:text="@string/Privacy_Policy"
+                android:textColor="@color/abuabu2"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/card_konfirmasi" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/register_button"
+                android:layout_width="match_parent"
+                android:layout_height="64dp"
+                android:layout_marginHorizontal="24dp"
+                android:layout_marginTop="32dp"
+                android:backgroundTint="@color/warnaUtama"
+                android:fontFamily="@font/lexenddeca"
+                android:text="@string/Register"
+                android:textAllCaps="false"
+                android:textColor="@color/putih"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:cornerRadius="16dp"
+                app:strokeColor="@color/black"
+                app:strokeWidth="3dp"
+                app:layout_constraintTop_toBottomOf="@+id/checkbox_privacy" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/main"
+        android:id="@+id/loading_overlay"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingBottom="40dp"
-        tools:context=".Auth.RegisterActivity">
+        android:layout_height="match_parent"
+        android:background="#99FFFFFF"
+        android:clickable="true"
+        android:focusable="true"
+        android:elevation="10dp"
+        android:visibility="gone"
+        tools:visibility="visible">
 
-        <ImageView
-            android:id="@+id/register_logo"
-            android:layout_width="180dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
-            android:adjustViewBounds="true"
-            android:contentDescription="@string/logo_sehatin"
-            android:src="@drawable/logo_sehatin"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/register_title"
+        <com.google.android.material.card.MaterialCardView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="24dp"
-            android:fontFamily="@font/lexenddeca"
-            android:text="@string/register_title"
-            android:textColor="@color/warnaUtama"
-            android:textSize="28sp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/register_logo" />
-
-        <TextView
-            android:id="@+id/Selamat_Datang"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="4dp"
-            android:fontFamily="@font/lexenddeca"
-            android:text="@string/Welcome"
-            android:textColor="@color/abuabu2"
-            android:textSize="14sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/register_title" />
-
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/card_nama"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_marginHorizontal="24dp"
-            android:layout_marginTop="32dp"
-            app:cardBackgroundColor="@color/putih2"
-            app:cardCornerRadius="16dp"
-            app:cardElevation="0dp"
-            app:strokeColor="@color/black"
-            app:strokeWidth="2dp"
-            app:layout_constraintTop_toBottomOf="@+id/Selamat_Datang">
-
-            <EditText
-                android:id="@+id/kolom_nama"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:autofillHints="name"
-                android:background="@android:color/transparent"
-                android:drawableStart="@drawable/user"
-                android:drawablePadding="16dp"
-                android:fontFamily="@font/lexenddeca"
-                android:hint="@string/Name"
-                android:inputType="textPersonName"
-                android:paddingHorizontal="16dp"
-                android:textColor="@color/black"
-                android:textColorHint="@color/abuabu3"
-                android:textSize="14sp" />
-        </com.google.android.material.card.MaterialCardView>
-
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/card_email"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_marginHorizontal="24dp"
-            android:layout_marginTop="16dp"
-            app:cardBackgroundColor="@color/putih4"
-            app:cardCornerRadius="16dp"
-            app:cardElevation="0dp"
-            app:strokeColor="@color/black"
-            app:strokeWidth="2dp"
-            app:layout_constraintTop_toBottomOf="@+id/card_nama">
-
-            <EditText
-                android:id="@+id/kolom_Email"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:autofillHints="emailAddress"
-                android:background="@android:color/transparent"
-                android:drawableStart="@drawable/mail"
-                android:drawablePadding="16dp"
-                android:fontFamily="@font/lexenddeca"
-                android:hint="@string/Email"
-                android:inputType="textEmailAddress"
-                android:paddingHorizontal="16dp"
-                android:textColor="@color/black"
-                android:textColorHint="@color/abuabu3"
-                android:textSize="14sp" />
-        </com.google.android.material.card.MaterialCardView>
-
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/card_password"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_marginHorizontal="24dp"
-            android:layout_marginTop="16dp"
-            app:cardBackgroundColor="@color/putih4"
-            app:cardCornerRadius="16dp"
-            app:cardElevation="0dp"
-            app:strokeColor="@color/black"
-            app:strokeWidth="2dp"
-            app:layout_constraintTop_toBottomOf="@+id/card_email">
-
-            <EditText
-                android:id="@+id/kolom_Password"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:autofillHints="password"
-                android:background="@android:color/transparent"
-                android:drawableStart="@drawable/password"
-                android:drawablePadding="16dp"
-                android:fontFamily="@font/lexenddeca"
-                android:hint="@string/Password"
-                android:inputType="textPassword"
-                android:paddingHorizontal="16dp"
-                android:textColor="@color/black"
-                android:textColorHint="@color/abuabu3"
-                android:textSize="14sp" />
-        </com.google.android.material.card.MaterialCardView>
-
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/card_konfirmasi"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_marginHorizontal="24dp"
-            android:layout_marginTop="16dp"
-            app:cardBackgroundColor="@color/putih4"
-            app:cardCornerRadius="16dp"
-            app:cardElevation="0dp"
-            app:strokeColor="@color/black"
-            app:strokeWidth="2dp"
-            app:layout_constraintTop_toBottomOf="@+id/card_password">
-
-            <EditText
-                android:id="@+id/kolom_Konfirmasi"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:autofillHints="password"
-                android:background="@android:color/transparent"
-                android:drawableStart="@drawable/konfirmasi_password"
-                android:drawablePadding="16dp"
-                android:fontFamily="@font/lexenddeca"
-                android:hint="@string/Confirm_Password"
-                android:inputType="textPassword"
-                android:paddingHorizontal="16dp"
-                android:textColor="@color/black"
-                android:textColorHint="@color/abuabu3"
-                android:textSize="14sp" />
-        </com.google.android.material.card.MaterialCardView>
-
-        <CheckBox
-            android:id="@+id/checkbox_privacy"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="24dp"
-            android:layout_marginTop="16dp"
-            android:buttonTint="#33A1E0"
-            android:fontFamily="@font/lexenddeca"
-            android:text="@string/Privacy_Policy"
-            android:textColor="@color/abuabu2"
-            android:textSize="12sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/card_konfirmasi" />
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/register_button"
-            android:layout_width="match_parent"
-            android:layout_height="64dp"
-            android:layout_marginHorizontal="24dp"
-            android:layout_marginTop="32dp"
-            android:backgroundTint="@color/warnaUtama"
-            android:fontFamily="@font/lexenddeca"
-            android:text="@string/Register"
-            android:textAllCaps="false"
-            android:textColor="@color/putih"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            app:cornerRadius="16dp"
+            app:cardBackgroundColor="@color/putih"
+            app:cardCornerRadius="20dp"
+            app:cardElevation="8dp"
             app:strokeColor="@color/black"
             app:strokeWidth="3dp"
-            app:layout_constraintTop_toBottomOf="@+id/checkbox_privacy" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:paddingHorizontal="48dp"
+                android:paddingVertical="32dp">
+
+                <ProgressBar
+                    android:layout_width="56dp"
+                    android:layout_height="56dp"
+                    android:indeterminateTint="@color/warnaUtama" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="@font/lexenddeca"
+                    android:text="@string/register_Memuat"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
     </androidx.constraintlayout.widget.ConstraintLayout>
-</ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

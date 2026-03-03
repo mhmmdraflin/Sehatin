@@ -22,6 +22,7 @@
     <string name="Privacy_Policy">Saya setuju dengan Kebijakan Privasi.</string>
     <string name="sudah_punya_akun">sudah punya akun?</string>
     <string name="Register">Daftar</string>
+    <string name="register_Memuat">Membuat Akun...</string>
 
     <!--Halaman Login-->
     <string name="Masuk">Masuk</string>
@@ -36,6 +37,8 @@
     <string name="Password_Login">Password</string>
     <string name="Masuk_Sebagai_Guest">Masuk Sebagai Guest</string>
     <string name="Atau_Coba_Dahulu">Atau Coba Dahulu</string>
+    <string name="login_Memuat">Memuat...</string>
+
 
     <!--user data-->
     <string name="Selamat_datang_Sobat_Sehatin">Selamat Datang\nSobat Sehatin!</string>
@@ -53,6 +56,7 @@
     <string name="UserData_Pilih_Gender">Pilih Gender</string>
     <string name="cm">cm</string>
     <string name="kg">kg</string>
+    <string name="UserData_Memuat">Menyimpan Data...</string>
 
     <!--Navbar-->
     <string name="beranda">Beranda</string>
@@ -267,6 +271,7 @@
     <string name="congratulations_Sehatin_poin_Text">Sehatin Poin</string>
     <string name="btn_klaim_kembali">Klaim Hadiah!</string>
     <string name="btn_kembali">Kembali</string>
+    <string name="congratulations_loading">Mengambil Hadiah...</string>
 
     <!--activity Inventaris-->
     <string name="Inventaris_Sehatin">Inventaris Sehatin</string>
