@@ -5,10 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFF9C4"
-    tools:context=".ui.Tantangan.CongratulationsActivity">
+    tools:context=".ui.Tantangan.CongratulationsMakananActivity">
 
     <ImageView
-        android:id="@+id/iv_chest_reward"
+        android:id="@+id/iv_chest_reward_makanan"
         android:layout_width="250dp"
         android:layout_height="250dp"
         android:layout_marginTop="50dp"
@@ -23,7 +23,7 @@
         tools:ignore="SpeakableTextPresentCheck" />
 
     <TextView
-        android:id="@+id/tv_tap_instruction"
+        android:id="@+id/tv_tap_instruction_makanan"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="-16dp"
@@ -34,10 +34,10 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/iv_chest_reward" />
+        app:layout_constraintTop_toBottomOf="@+id/iv_chest_reward_makanan" />
 
     <TextView
-        android:id="@+id/tv_congrats_title"
+        android:id="@+id/tv_congrats_title_makanan"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -46,32 +46,32 @@
         android:shadowDx="3"
         android:shadowDy="4"
         android:shadowRadius="1"
-        android:text="@string/congratulations_misi_selesai"
-        android:textColor="@color/warnaUtama"
-        android:textSize="36sp"
+        android:text="@string/Congratulations_Makanan_Misi_Nutrisi"
+        android:textColor="#4CAF50"
+        android:textSize="32sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_tap_instruction" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_tap_instruction_makanan" />
 
     <TextView
-        android:id="@+id/tv_congrats_subtitle"
+        android:id="@+id/tv_congrats_subtitle_makanan"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="32dp"
         android:layout_marginTop="8dp"
         android:fontFamily="@font/lexenddeca"
         android:lineSpacingExtra="4dp"
-        android:text="@string/congratulations_deskripsi_misiselesai"
+        android:text="@string/Congratulations_Makanan_deskripsi_misiselesai"
         android:textAlignment="center"
         android:textColor="#757575"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_congrats_title" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_congrats_title_makanan" />
 
     <com.google.android.material.card.MaterialCardView
-        android:id="@+id/card_reward_panel"
+        android:id="@+id/card_reward_panel_makanan"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="32dp"
@@ -82,7 +82,7 @@
         app:cardElevation="0dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_congrats_subtitle"
+        app:layout_constraintTop_toBottomOf="@+id/tv_congrats_subtitle_makanan"
         app:strokeColor="@color/black"
         app:strokeWidth="4dp">
 
@@ -122,12 +122,12 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/tv_reward_exp"
+                    android:id="@+id/tv_reward_exp_makanan"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/lexenddeca"
                     android:text="@string/congratulations_exp"
-                    android:textColor="@color/warnaUtama"
+                    android:textColor="#4CAF50"
                     android:textSize="20sp"
                     android:textStyle="bold" />
             </LinearLayout>
@@ -160,7 +160,7 @@
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/tv_reward_poin"
+                        android:id="@+id/tv_reward_poin_makanan"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/lexenddeca"
@@ -174,15 +174,15 @@
     </com.google.android.material.card.MaterialCardView>
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/btn_klaim_kembali"
+        android:id="@+id/btn_klaim_kembali_makanan"
         android:layout_width="match_parent"
         android:layout_height="64dp"
         android:layout_marginHorizontal="32dp"
         android:layout_marginBottom="40dp"
         android:alpha="0"
-        android:backgroundTint="#33A1E0"
+        android:backgroundTint="#4CAF50"
         android:fontFamily="@font/lexenddeca"
-        android:text="Klaim Hadiah!"
+        android:text="@string/Congratulations_Makanan_btn_klaim_kembali"
         android:textAllCaps="false"
         android:textColor="#FFFFFF"
         android:textSize="20sp"
@@ -195,13 +195,13 @@
         app:strokeWidth="3dp" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/loading_overlay"
+        android:id="@+id/loading_overlay_makanan"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#99FFFFFF"
         android:clickable="true"
-        android:focusable="true"
         android:elevation="10dp"
+        android:focusable="true"
         android:visibility="gone"
         tools:visibility="visible">
 
@@ -211,12 +211,12 @@
             app:cardBackgroundColor="@color/putih"
             app:cardCornerRadius="20dp"
             app:cardElevation="8dp"
-            app:strokeColor="@color/black"
-            app:strokeWidth="3dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"
+            app:strokeColor="@color/black"
+            app:strokeWidth="3dp">
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -229,7 +229,7 @@
                 <ProgressBar
                     android:layout_width="56dp"
                     android:layout_height="56dp"
-                    android:indeterminateTint="@color/warnaUtama" />
+                    android:indeterminateTint="#4CAF50" />
 
                 <TextView
                     android:layout_width="wrap_content"

@@ -11,6 +11,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Sehatin">
         <activity
+            android:name=".ui.Tantangan.CongratulationsMakananActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.Tantangan.DetailTantanganMakananActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.Tantangan.DetailAktivitasMakananActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.Profil.InventarisActivity"
             android:exported="false" />
         <activity

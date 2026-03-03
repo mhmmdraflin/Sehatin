@@ -272,6 +272,40 @@
     <string name="btn_klaim_kembali">Klaim Hadiah!</string>
     <string name="btn_kembali">Kembali</string>
     <string name="congratulations_loading">Mengambil Hadiah…</string>
+    <string name="congratulations_loading_text">Loading</string>
+
+    <!--Activity Congratulations Makanan-->
+    <string name="Congratulations_Makanan_Sehatin">Selamat!</string>
+    <string name="Congratulations_Makanan_membuka">Ketuk untuk Membuka!</string>
+    <string name="Congratulations_Makanan_misi_selesai">MISI SELESAI!</string>
+    <string name="Congratulations_Makanan_deskripsi_misiselesai">Tubuhmu berterima kasih atas nutrisi sehat hari ini!</string>
+    <string name="Congratulations_Makanan_hadiah">Hadiah Kamu</string>
+    <string name="Congratulations_Makanan_exp">+50 EXP</string>
+    <string name="Congratulations_Makanan_exp_text">Experience (EXP)n</string>
+    <string name="Congratulations_Makanan_poin">+20 Poin</string>
+    <string name="Congratulations_Makanan_Sehatin_poin_Text">Sehatin Poin</string>
+    <string name="Congratulations_Makanan_loading">Mengambil Hadiah…</string>
+    <string name="Congratulations_Makanan_loading_text">Loading</string>
+    <string name="Congratulations_Makanan_kembali">Kembali</string>
+    <string name="Congratulations_Makanan_btn_klaim_kembali">Klaim Hadiah!</string>
+    <string name="Congratulations_Makanan_Misi_Nutrisi">Misi Nutrisi Selesai!</string>
+
+    <!--Activity Detail Aktivitas Makanan-->
+    <string name="Detail_Aktivitas_Makanan_Poin">+50 Poin</string>
+    <string name="Detail_Aktivitas_Makanan_Makan_Sayur_Hijau">Makan Sayur Hijau</string>
+    <string name="Detail_Aktivitas_Makanan_Deskripsi_Sub_judul">Misi Kamu Hari Ini:!</string>
+    <string name="Detail_Aktivitas_Makanan_Deskripsi">Makan 1 porsi buah (Pisang/Apel) sebelum jam 10 pagi.</string>
+    <string name="Detail_Aktivitas_Makanan_Tandai_Selesai">Tandai Selesai</string>
+
+    <!--Activity Detail Tantangan Makanan-->
+    <string name="Detail_Tantangan_Makanan_Misi_Nutrisi">Misi Nutrisi</string>
+    <string name="Detail_Tantangan_Makanan_Makan_Sayur_Hijau">Makan Sayur Hijau</string>
+    <string name="Detail_Tantangan_Makanan_Deskripsi_Sub_judul"> Penuhi nutrisimu, raih poinnya!</string>
+    <string name="Detail_Tantangan_Makanan_Misi1">  Makan 1 Porsi Buah</string>
+    <string name="Detail_Tantangan_Makanan_Misi1_Poin">  +50 Poin</string>
+    <string name="Detail_Tantangan_Makanan_Misi2_poin">  +35 Poin</string>
+
+
 
     <!--activity Inventaris-->
     <string name="Inventaris_Sehatin">Inventaris Sehatin</string>
