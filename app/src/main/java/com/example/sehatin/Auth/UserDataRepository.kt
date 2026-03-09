@@ -7,4 +7,8 @@ class UserDataRepository(private val pref: UserPreference) {
     fun saveUser(user: UserBody) {
         pref.setUserBody(user.umur, user.tinggi, user.berat, user.gender)
     }
+
+    fun saveKondisiTubuh(kondisiTubuh: String) {
+        pref.setKondisiTubuh(kondisiTubuh)
+    }
 }

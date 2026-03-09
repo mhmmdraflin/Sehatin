@@ -12,4 +12,8 @@ class LoginRepository (private val pref: UserPreference) {
     fun setLoginSuccess() {
         pref.setLogin(true)
     }
+    fun isRememberMe(): Boolean = pref.isRememberMe()
+    fun getSavedEmail(): String? = pref.getEmail()
+    fun getSavedPassword(): String? = pref.getPassword()
+    fun setRememberMe(isChecked: Boolean) = pref.setRememberMe(isChecked)
 }

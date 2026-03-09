@@ -94,7 +94,7 @@
     <!--dashboard-->
     <string name="selamat_datang">Selamat Datang</string>
     <string name="Username">Username</string>
-    <string name="point">Point</string>
+    <string name="point">Point : 0</string>
     <string name="kondisi">Kalorimu Saat Ini</string>
     <string name="KKAL">1.000 KKAL</string>
     <string name="Umur">Umur</string>

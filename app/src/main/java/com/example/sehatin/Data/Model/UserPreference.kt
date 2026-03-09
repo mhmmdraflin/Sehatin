@@ -25,7 +25,19 @@ class UserPreference(context: Context) {
         private const val KEY_UMUR = "user_umur"
         private const val KEY_TINGGI = "user_tinggi"
         private const val KEY_BERAT = "user_berat"
+
+        private const val KEY_KONDISI_TUBUH = "user_kondisi_tubuh"
+        private const val KEY_REMEMBER_ME = "remember_me"
     }
+
+    fun setRememberMe(value: Boolean) {
+        pref.edit { putBoolean(KEY_REMEMBER_ME, value) }
+    }
+
+    fun isRememberMe(): Boolean {
+        return pref.getBoolean(KEY_REMEMBER_ME, false)
+    }
+
 
     // --- BAGIAN AUTH ---
     fun saveAccount(nama: String, email: String, pass: String) {
@@ -45,6 +57,16 @@ class UserPreference(context: Context) {
     fun setLogin(isLogin: Boolean) {
         pref.edit { putBoolean(KEY_IS_LOGIN, isLogin) }
     }
+
+    fun setKondisiTubuh(kondisiTubuh: String) {
+        pref.edit { putString(KEY_KONDISI_TUBUH, kondisiTubuh) }
+    }
+
+    fun getKondisiTubuh(): String {
+        return pref.getString(KEY_KONDISI_TUBUH, "Belum Dihitung") ?: "Belum Dihitung"
+    }
+
+    // Cek Status Login
 
     fun isLogin(): Boolean = pref.getBoolean(KEY_IS_LOGIN, false)
 
@@ -110,5 +132,18 @@ class UserPreference(context: Context) {
             Berat : $berat
             ================================
         """.trimIndent()
+    }
+
+    fun getPoint(): Int {
+        // Menggunakan 'pref', bukan 'preferences'
+        return pref.getInt("USER_POINT", 0)
+    }
+
+    fun tambahPoint(tambahan: Int) {
+        val poinSekarang = getPoint()
+        // Menggunakan pref.edit { } yang jauh lebih ringkas
+        pref.edit {
+            putInt("USER_POINT", poinSekarang + tambahan)
+        }
     }
 }
