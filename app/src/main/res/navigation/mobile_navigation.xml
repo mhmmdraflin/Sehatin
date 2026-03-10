@@ -12,12 +12,6 @@
         tools:layout="@layout/fragment_dashboard" />
 
     <fragment
-        android:id="@+id/navigation_dashboard_girl"
-        android:name="com.example.sehatin.ui.Dashboard.DashboardGirlFragment"
-        android:label="@string/beranda"
-        tools:layout="@layout/fragment_dashboard_girl" />
-
-    <fragment
         android:id="@+id/navigation_pencapaian"
         android:name="com.example.sehatin.ui.Pencapaian.PencapaianFragment"
         android:label="@string/pencapaian"
