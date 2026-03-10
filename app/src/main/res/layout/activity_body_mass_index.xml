@@ -6,14 +6,15 @@
     android:layout_height="match_parent"
     android:background="@color/putih"
     android:fillViewport="true"
+    android:fitsSystemWindows="true"
     tools:context=".ui.SideFeature.BodyMassIndexActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/main"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingHorizontal="24dp"
-        android:paddingTop="32dp"
+        android:paddingHorizontal="28dp"
+        android:paddingTop="24dp"
         android:paddingBottom="32dp">
 
         <com.google.android.material.card.MaterialCardView
@@ -44,9 +45,9 @@
             android:id="@+id/header_container"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
             android:gravity="center_vertical"
             android:orientation="horizontal"
-            android:layout_marginStart="16dp"
             app:layout_constraintBottom_toBottomOf="@+id/btn_back"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/btn_back"
@@ -81,7 +82,7 @@
                     android:text="@string/BMI_Kalkulator"
                     android:textColor="@color/black"
                     android:textSize="14sp"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold" />
             </LinearLayout>
         </LinearLayout>
 
@@ -382,6 +383,7 @@
             app:layout_constraintTop_toBottomOf="@+id/container_gender" />
 
         <ImageView
+            android:id="@+id/img_logo_bawah"
             android:layout_width="140dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
@@ -389,9 +391,11 @@
             android:contentDescription="@string/logo_sehatin"
             android:scaleType="fitCenter"
             android:src="@drawable/logo_sehatin"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btn_hitung_bmi" />
+            app:layout_constraintTop_toBottomOf="@+id/btn_hitung_bmi"
+            app:layout_constraintVertical_bias="1.0" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

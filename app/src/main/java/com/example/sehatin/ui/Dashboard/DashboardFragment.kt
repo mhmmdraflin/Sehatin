@@ -1,21 +1,34 @@
 package com.example.sehatin.ui.Dashboard
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import com.example.sehatin.Data.Model.UserPreference
 import com.example.sehatin.R
 import com.example.sehatin.databinding.FragmentDashboardBinding
+import com.example.sehatin.ui.SideFeature.BodyMassIndexActivity
+import com.example.sehatin.ui.SideFeature.Informasi_MakananActivity
+import com.example.sehatin.ui.SideFeature.JamMakan.Pengingat_Jam_MakanActivity
+import com.example.sehatin.ui.SideFeature.Olahraga.OlahragaActivity
 
 class DashboardFragment : Fragment() {
 
     private var _binding: FragmentDashboardBinding? = null
     private val binding get() = _binding!!
 
-    private lateinit var userPref: UserPreference
+    // =======================================================
+    // INISIALISASI VIEWMODEL
+    // =======================================================
+    private val viewModel: DashboardViewModel by viewModels {
+        val pref = UserPreference(requireContext())
+        val repo = DashboardRepository(pref)
+        DashboardViewModelFactory(repo)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -27,41 +40,66 @@ class DashboardFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        userPref = UserPreference(requireContext())
 
+        // Memuat data profil ke layar
         tampilkanDataProfil()
 
-        // Navigasi Menu (Bisa di-uncomment jika Activity sudah siap)
-        // binding.btnBmiCard.setOnClickListener { ... }
+        // Memuat fungsi klik tombol kategori
+        setupTombolKategori()
+    }
+
+    // =======================================================
+    // FUNGSI KLIK PINDAH HALAMAN (INTENT)
+    // =======================================================
+    private fun setupTombolKategori() {
+        // 1. Tombol Body Mass Index (BMI)
+        binding.btnBmiCard.setOnClickListener {
+            val intent = Intent(requireContext(), BodyMassIndexActivity::class.java)
+            startActivity(intent)
+        }
+
+        // 2. Tombol Pengingat Jam Makan
+        binding.btnPengingatMakanCard.setOnClickListener {
+            val intent = Intent(requireContext(), Pengingat_Jam_MakanActivity::class.java)
+            startActivity(intent)
+        }
+
+        // 3. Tombol Informasi Makanan
+        binding.btnInfoMakananCard.setOnClickListener {
+            val intent = Intent(requireContext(), Informasi_MakananActivity::class.java)
+            startActivity(intent)
+        }
+
+        // 4. Tombol Olahraga
+        binding.btnOlahragaCard.setOnClickListener {
+            val intent = Intent(requireContext(), OlahragaActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     @SuppressLint("SetTextI18n")
     private fun tampilkanDataProfil() {
-        val nama = userPref.getName() ?: "Sobat Sehatin"
-        val fisikUser = userPref.getUserBody()
-        val kondisiTubuh = userPref.getKondisiTubuh()
+        val nama = viewModel.getName() ?: "Sobat Sehatin"
+        val fisikUser = viewModel.getUserBody()
+        val kondisiTubuh = viewModel.getKondisiTubuh()
+        val pointUser = viewModel.getPoint()
 
-        // [BARU] Ambil jumlah Point dari penyimpanan (Default: 0)
-        val pointUser = userPref.getPoint()
-
+        // Menampilkan teks ke XML
         binding.dashboardUsername.text = nama
         binding.tvUmurVal.text = "${fisikUser.umur} Tahun"
         binding.tvTinggiVal.text = "${fisikUser.tinggi} cm"
         binding.tvBeratVal.text = "${fisikUser.berat} kg"
         binding.kondisiTubuh.text = kondisiTubuh
-
-        // [BARU] Tampilkan Point ke Layar
         binding.dashboardPoint.text = "$pointUser Point"
 
         // =======================================================
         // LOGIKA GANTI BACKGROUND & KARAKTER (GENDER + BMI)
         // =======================================================
         if (fisikUser.gender == "L") {
-            // 1. Setting Background & Foto Profil Laki-laki
+            // Dashboard untuk Laki-laki
             binding.bgIconCharacter.setImageResource(R.drawable.bg_dashboard_character)
             binding.dashProfilePict.setImageResource(R.drawable.profile_boy)
 
-            // 2. Setting Karakter Laki-laki berdasarkan BMI
             val imageRes = when (kondisiTubuh) {
                 "Kurus" -> R.drawable.character_boy_lebih_kurus
                 "Normal" -> R.drawable.character_ideal
@@ -72,13 +110,12 @@ class DashboardFragment : Fragment() {
             binding.characterIllustration.setImageResource(imageRes)
 
         } else {
-            // 1. Setting Background & Foto Profil Perempuan
+            // Dashboard untuk Perempuan
             binding.bgIconCharacter.setImageResource(R.drawable.bg_dashboard_girl)
             binding.dashProfilePict.setImageResource(R.drawable.profile_girl)
 
-            // 2. Setting Karakter Perempuan berdasarkan BMI
             val imageRes = when (kondisiTubuh) {
-                "Kurus" -> R.drawable.character_girl
+                "Kurus" -> R.drawable.character_girl_lebih_kurus
                 "Normal" -> R.drawable.character_girl_ideal
                 "Gemuk" -> R.drawable.character_girl_gemuk
                 "Obesitas" -> R.drawable.character_girl_obesitas
@@ -90,6 +127,6 @@ class DashboardFragment : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
-        _binding = null
+        _binding = null // Mencegah memory leak
     }
 }
