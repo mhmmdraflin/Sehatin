@@ -20,4 +20,8 @@ class DashboardViewModel(private val repository: DashboardRepository) : ViewMode
     fun getPoint(): Int {
         return repository.getPoint()
     }
+
+    fun getExp(): Int {
+        return repository.getExp()
+    }
 }

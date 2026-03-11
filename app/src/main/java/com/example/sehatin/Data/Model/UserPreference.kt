@@ -12,8 +12,6 @@ class UserPreference(context: Context) {
     // 2. Gunakan variabel 'name' tersebut di sini
     private val pref = context.getSharedPreferences(name, Context.MODE_PRIVATE)
 
-    // HAPUS fungsi getSharedPreferences kosong yang tadi ada disini
-
     companion object {
         private const val KEY_EMAIL = "user_email"
         private const val KEY_PASSWORD = "user_password"
@@ -28,6 +26,10 @@ class UserPreference(context: Context) {
 
         private const val KEY_KONDISI_TUBUH = "user_kondisi_tubuh"
         private const val KEY_REMEMBER_ME = "remember_me"
+
+        // Poin & EXP
+        private const val KEY_USER_POINT = "user_point"
+        private const val KEY_USER_EXP = "user_exp"
     }
 
     fun setRememberMe(value: Boolean) {
@@ -37,7 +39,6 @@ class UserPreference(context: Context) {
     fun isRememberMe(): Boolean {
         return pref.getBoolean(KEY_REMEMBER_ME, false)
     }
-
 
     // --- BAGIAN AUTH ---
     fun saveAccount(nama: String, email: String, pass: String) {
@@ -67,13 +68,11 @@ class UserPreference(context: Context) {
     }
 
     // Cek Status Login
-
     fun isLogin(): Boolean = pref.getBoolean(KEY_IS_LOGIN, false)
 
     // --- BAGIAN USER DATA (FISIK) ---
 
-    // 1. Simpan Data Fisik (Update: Menambah Gender)
-    // Kita ubah parameternya jadi String satu-satu agar lebih fleksibel dari ViewModel
+    // 1. Simpan Data Fisik
     fun setUserBody(umur: String, tinggi: String, berat: String, gender: String) {
         pref.edit {
             putString(KEY_UMUR, umur)
@@ -83,7 +82,7 @@ class UserPreference(context: Context) {
         }
     }
 
-    // 2. Ambil Data Fisik (Untuk Beranda / Hitung BMI)
+    // 2. Ambil Data Fisik
     fun getUserBody(): UserBody {
         return UserBody(
             umur = pref.getString(KEY_UMUR, "0") ?: "0",
@@ -94,14 +93,37 @@ class UserPreference(context: Context) {
     }
 
     // 3. Cek Kelengkapan Data (GATEKEEPER Login)
-    // Fungsi ini dipakai LoginActivity untuk menentukan user ke Beranda atau UserData
     fun isUserDataFilled(): Boolean {
         val umur = pref.getString(KEY_UMUR, null)
         val tinggi = pref.getString(KEY_TINGGI, null)
         val berat = pref.getString(KEY_BERAT, null)
 
-        // Jika salah satu kosong, return false (Belum lengkap)
         return !umur.isNullOrEmpty() && !tinggi.isNullOrEmpty() && !berat.isNullOrEmpty()
+    }
+
+    // --- LOGIKA POINT (KOIN) & EXP (LEVEL) ---
+
+    fun getPoint(): Int {
+        return pref.getInt(KEY_USER_POINT, 0)
+    }
+
+    fun tambahPoint(tambahan: Int) {
+        val poinSekarang = getPoint()
+        pref.edit {
+            putInt(KEY_USER_POINT, poinSekarang + tambahan)
+        }
+    }
+
+    fun getExp(): Int {
+        // [PERBAIKAN] Menggunakan variabel 'pref' yang benar
+        return pref.getInt(KEY_USER_EXP, 0)
+    }
+
+    fun setExp(exp: Int) {
+        // [PERBAIKAN] Menggunakan format 'pref.edit {}' agar konsisten
+        pref.edit {
+            putInt(KEY_USER_EXP, exp)
+        }
     }
 
     // --- DEBUGGING (LOGCAT) ---
@@ -115,6 +137,9 @@ class UserPreference(context: Context) {
         val tinggi = pref.getString(KEY_TINGGI, "KOSONG")
         val berat = pref.getString(KEY_BERAT, "KOSONG")
         val gender = pref.getString(KEY_GENDER, "KOSONG")
+
+        val point = getPoint()
+        val exp = getExp()
 
         return """
             === CEK DATA USER PREFERENCE ===
@@ -130,20 +155,11 @@ class UserPreference(context: Context) {
             Umur  : $umur
             Tinggi: $tinggi
             Berat : $berat
+            
+            [Gamifikasi]
+            Point : $point
+            EXP   : $exp
             ================================
         """.trimIndent()
-    }
-
-    fun getPoint(): Int {
-        // Menggunakan 'pref', bukan 'preferences'
-        return pref.getInt("USER_POINT", 0)
-    }
-
-    fun tambahPoint(tambahan: Int) {
-        val poinSekarang = getPoint()
-        // Menggunakan pref.edit { } yang jauh lebih ringkas
-        pref.edit {
-            putInt("USER_POINT", poinSekarang + tambahan)
-        }
     }
 }

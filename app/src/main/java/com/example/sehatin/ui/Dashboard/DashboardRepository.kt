@@ -20,4 +20,8 @@ class DashboardRepository(private val pref: UserPreference) {
     fun getPoint(): Int {
         return pref.getPoint()
     }
+
+    fun getExp(): Int {
+        return pref.getExp()
+    }
 }

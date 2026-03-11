@@ -2,6 +2,7 @@ package com.example.sehatin.ui.Dashboard
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.graphics.Point
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -77,12 +78,17 @@ class DashboardFragment : Fragment() {
         }
     }
 
+
     @SuppressLint("SetTextI18n")
     private fun tampilkanDataProfil() {
         val nama = viewModel.getName() ?: "Sobat Sehatin"
         val fisikUser = viewModel.getUserBody()
         val kondisiTubuh = viewModel.getKondisiTubuh()
+
+        //  Point dan EXP
         val pointUser = viewModel.getPoint()
+        val expUser = viewModel.getExp()
+
 
         // Menampilkan teks ke XML
         binding.dashboardUsername.text = nama
@@ -91,6 +97,19 @@ class DashboardFragment : Fragment() {
         binding.tvBeratVal.text = "${fisikUser.berat} kg"
         binding.kondisiTubuh.text = kondisiTubuh
         binding.dashboardPoint.text = "$pointUser Point"
+
+        // =======================================================
+        // LOGIKA LEVEL & EXP (PROGRESS BAR BERGERAK)
+        // Asumsi: Setiap 100 Point = Naik 1 Level
+        // =======================================================
+        val currentLevel = expUser / 100 // Contoh: EXP 150 / 100 = Level 1
+        val currentProgress = expUser % 100 // Sisa bagi: EXP 150 % 100 = Progress 50 (50%)
+
+        // Menampilkan angka level (0, 1, 2, dst)
+        binding.tvLevelAngka.text = currentLevel.toString()
+
+        // Membuat garis biru (Progress Bar) bergerak mengikuti EXP
+        binding.pbExpLevel.setProgressCompat(currentProgress, true)
 
         // =======================================================
         // LOGIKA GANTI BACKGROUND & KARAKTER (GENDER + BMI)
