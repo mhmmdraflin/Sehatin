@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="24dp"
+    app:cardBackgroundColor="@color/putih"
+    app:cardCornerRadius="24dp"
+    app:cardElevation="8dp"
+    app:strokeColor="@color/black"
+    app:strokeWidth="3dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingHorizontal="24dp"
+        android:paddingTop="24dp"
+        android:paddingBottom="24dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/lexenddeca"
+            android:text="Pengaturan Tambahan"
+            android:textAlignment="center"
+            android:textColor="@color/warnaUtama"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginVertical="16dp"
+            android:background="#E0E0E0" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/lexenddeca"
+            android:text="Ulangi Pengingat"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <RadioGroup
+            android:id="@+id/rg_tipe_ulangi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp">
+
+            <RadioButton
+                android:id="@+id/rb_sekali_saja"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/lexenddeca"
+                android:text="Cukup Sekali Saja"
+                android:textSize="14sp" />
+
+            <RadioButton
+                android:id="@+id/rb_setiap_hari"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/lexenddeca"
+                android:text="Setiap Hari"
+                android:textSize="14sp" />
+
+            <RadioButton
+                android:id="@+id/rb_kustom"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/lexenddeca"
+                android:text="Pilih Hari Tertentu"
+                android:textSize="14sp" />
+        </RadioGroup>
+
+        <LinearLayout
+            android:id="@+id/layout_kustom_hari"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone"
+            android:paddingStart="32dp"
+            android:paddingTop="8dp">
+
+            <CheckBox android:id="@+id/cb_senin" android:layout_width="wrap_content" android:layout_height="40dp" android:text="Senin" android:fontFamily="@font/lexenddeca" android:textSize="12sp"/>
+            <CheckBox android:id="@+id/cb_selasa" android:layout_width="wrap_content" android:layout_height="40dp" android:text="Selasa" android:fontFamily="@font/lexenddeca" android:textSize="12sp"/>
+            <CheckBox android:id="@+id/cb_rabu" android:layout_width="wrap_content" android:layout_height="40dp" android:text="Rabu" android:fontFamily="@font/lexenddeca" android:textSize="12sp"/>
+            <CheckBox android:id="@+id/cb_kamis" android:layout_width="wrap_content" android:layout_height="40dp" android:text="Kamis" android:fontFamily="@font/lexenddeca" android:textSize="12sp"/>
+            <CheckBox android:id="@+id/cb_jumat" android:layout_width="wrap_content" android:layout_height="40dp" android:text="Jumat" android:fontFamily="@font/lexenddeca" android:textSize="12sp"/>
+            <CheckBox android:id="@+id/cb_sabtu" android:layout_width="wrap_content" android:layout_height="40dp" android:text="Sabtu" android:fontFamily="@font/lexenddeca" android:textSize="12sp"/>
+            <CheckBox android:id="@+id/cb_minggu" android:layout_width="wrap_content" android:layout_height="40dp" android:text="Minggu" android:fontFamily="@font/lexenddeca" android:textSize="12sp"/>
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginVertical="16dp"
+            android:background="#E0E0E0" />
+
+        <TextView
+            android:id="@+id/tv_label_snooze"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/lexenddeca"
+            android:text="Waktu Tunda (Snooze): 5 Menit"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <com.google.android.material.slider.Slider
+            android:id="@+id/slider_snooze"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:stepSize="1.0"
+            android:valueFrom="1.0"
+            android:valueTo="15.0"
+            android:value="5.0"
+            app:thumbColor="@color/warnaUtama"
+            app:trackColorActive="@color/warnaUtama" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_batal_pengaturan"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:layout_width="0dp"
+                android:layout_height="56dp"
+                android:layout_marginEnd="8dp"
+                android:layout_weight="1"
+                android:fontFamily="@font/lexenddeca"
+                android:text="Batal"
+                android:textAllCaps="false"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                app:cornerRadius="16dp"
+                app:strokeColor="@color/black"
+                app:strokeWidth="2dp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_simpan_pengaturan"
+                android:layout_width="0dp"
+                android:layout_height="56dp"
+                android:layout_marginStart="8dp"
+                android:layout_weight="1"
+                android:backgroundTint="@color/warnaUtama"
+                android:fontFamily="@font/lexenddeca"
+                android:text="Simpan"
+                android:textAllCaps="false"
+                android:textColor="@color/putih"
+                android:textStyle="bold"
+                app:cornerRadius="16dp"
+                app:strokeColor="@color/black"
+                app:strokeWidth="2dp" />
+        </LinearLayout>
+    </LinearLayout>
+</com.google.android.material.card.MaterialCardView>

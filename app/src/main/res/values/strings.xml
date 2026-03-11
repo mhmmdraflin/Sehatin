@@ -54,8 +54,8 @@
     <string name="UserData_Lakilaki">Laki-laki</string>
     <string name="UserData_Perempuan">Perempuan</string>
     <string name="UserData_Pilih_Gender">Pilih Gender</string>
-    <string name="cm">cm</string>
-    <string name="kg">kg</string>
+    <string name="cm">Cm</string>
+    <string name="kg">Kg</string>
     <string name="UserData_Memuat">Menyimpan Data…</string>
 
     <!--Navbar-->
@@ -105,9 +105,9 @@
     <string name="dashboard_Berat_Badan">Berat</string>
     <string name="Tinggi_Badan">Tinggi</string>
     <string name="Tahun18">18 Tahun</string>
-    <string name="cm170">170 Cm</string>
+    <string name="cm170">170</string>
     <string name="exp_level">13</string>
-    <string name="kg40">40 Kg</string>
+    <string name="kg40">40</string>
     <string name="berat">Berat</string>
     <string name="Body_Mass_Index"> Body Mass\nIndex</string>
     <string name="Pengingat_jam_makan">Pengingat\nJam Makan</string>

@@ -157,15 +157,34 @@
                 android:textStyle="normal" />
         </LinearLayout>
 
-        <ImageButton
-            android:id="@+id/dashboard_editprof"
+        <FrameLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:layout_marginEnd="15dp"
-            android:backgroundTint="@color/warnaUtama"
-            android:contentDescription="@string/Notification"
-            android:src="@drawable/ic_notifications" />
+            android:layout_marginEnd="15dp">
+
+            <ImageButton
+                android:id="@+id/dashboard_editprof"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/warnaUtama"
+                android:contentDescription="@string/Notification"
+                android:src="@drawable/ic_notifications" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/badge_notifikasi"
+                android:layout_width="12dp"
+                android:layout_height="12dp"
+                android:layout_gravity="top|end"
+                android:layout_marginTop="6dp"
+                android:layout_marginEnd="6dp"
+                android:visibility="gone"
+                app:cardBackgroundColor="#F44336"
+                app:cardCornerRadius="6dp"
+                app:cardElevation="2dp"
+                app:strokeColor="@color/putih"
+                app:strokeWidth="1dp" />
+        </FrameLayout>
     </LinearLayout>
 
     <LinearLayout
