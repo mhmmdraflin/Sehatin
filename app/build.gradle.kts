@@ -54,6 +54,7 @@ dependencies {
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
     implementation("com.google.code.gson:gson:2.13.2")
+    implementation("com.github.bumptech.glide:glide:4.16.0")
 
 
 }
