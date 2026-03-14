@@ -55,6 +55,9 @@ dependencies {
     implementation(libs.androidx.navigation.ui.ktx)
     implementation("com.google.code.gson:gson:2.13.2")
     implementation("com.github.bumptech.glide:glide:4.16.0")
+    implementation("androidx.datastore:datastore-preferences:1.0.0")
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.6.2")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2")
 
 
 }

@@ -24,15 +24,34 @@
             android:scaleType="centerCrop"
             android:src="@drawable/bg_olahraga" />
 
-        <ImageView
-            android:id="@+id/iv_karakter_olahraga"
+        <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
-            android:layout_height="220dp"
+            android:layout_height="240dp"
             android:layout_gravity="bottom|center_horizontal"
-            android:layout_marginBottom="0dp"
-            android:contentDescription="@string/ic_olahraga"
-            android:scaleType="fitCenter"
-            tools:src="@drawable/ic_pushup" />
+            android:layout_marginHorizontal="32dp"
+            android:layout_marginBottom="24dp"
+            app:cardBackgroundColor="#F8F9FA"
+            app:cardCornerRadius="24dp"
+            app:cardElevation="12dp"
+            app:strokeColor="#000000"
+            app:strokeWidth="4dp">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="16dp">
+
+                <ImageView
+                    android:id="@+id/iv_karakter_olahraga"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:adjustViewBounds="true"
+                    android:contentDescription="@string/ic_olahraga"
+                    android:scaleType="fitCenter" />
+            </FrameLayout>
+
+        </com.google.android.material.card.MaterialCardView>
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/btn_pause_card"
@@ -44,10 +63,10 @@
             android:focusable="true"
             android:foreground="?attr/selectableItemBackground"
             app:cardBackgroundColor="#FFFFFF"
-            app:cardCornerRadius="12dp"
-            app:cardElevation="4dp"
+            app:cardCornerRadius="14dp"
+            app:cardElevation="6dp"
             app:strokeColor="#000000"
-            app:strokeWidth="2dp">
+            app:strokeWidth="3dp">
 
             <ImageView
                 android:layout_width="24dp"
@@ -65,7 +84,7 @@
         android:layout_height="0dp"
         android:layout_margin="24dp"
         app:cardBackgroundColor="@color/warnaUtama"
-        app:cardCornerRadius="24dp"
+        app:cardCornerRadius="32dp"
         app:cardElevation="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/container_ilustrasi"

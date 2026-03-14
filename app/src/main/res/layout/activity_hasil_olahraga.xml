@@ -9,6 +9,7 @@
     tools:context=".ui.SideFeature.Olahraga.HasilOlahragaActivity">
 
     <com.google.android.material.card.MaterialCardView
+        android:id="@+id/card_main_hasil"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="24dp"
@@ -30,6 +31,7 @@
             android:padding="32dp">
 
             <ImageView
+                android:id="@+id/iv_trofi"
                 android:layout_width="160dp"
                 android:layout_height="160dp"
                 android:contentDescription="@string/ic_trofi"
@@ -158,6 +160,7 @@
                 android:background="@color/putih" />
 
             <com.google.android.material.card.MaterialCardView
+                android:id="@+id/card_hasil_exp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:cardBackgroundColor="#FFD700"

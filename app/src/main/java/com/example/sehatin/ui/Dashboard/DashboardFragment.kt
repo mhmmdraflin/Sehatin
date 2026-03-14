@@ -14,6 +14,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sehatin.Data.Model.UserPreference
@@ -24,6 +25,11 @@ import com.example.sehatin.ui.SideFeature.Informasi_MakananActivity
 import com.example.sehatin.ui.SideFeature.JamMakan.Pengingat_Jam_MakanActivity
 import com.example.sehatin.ui.SideFeature.Olahraga.OlahragaActivity
 import com.example.sehatin.ui.SideFeature.JamMakan.NotifikasiRiwayat
+import com.example.sehatin.ui.SideFeature.Olahraga.OlahragaPreferences
+import com.example.sehatin.ui.SideFeature.Olahraga.OlahragaRepository
+import com.example.sehatin.ui.SideFeature.Olahraga.OlahragaViewModel
+import com.example.sehatin.ui.SideFeature.Olahraga.OlahragaViewModelFactory
+import com.example.sehatin.ui.SideFeature.Olahraga.dataStore
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 
@@ -33,9 +39,9 @@ class DashboardFragment : Fragment() {
     private val binding get() = _binding!!
 
     // =======================================================
-    // INISIALISASI VIEWMODEL
+    // INISIALISASI DASHBOARD VIEWMODEL
     // =======================================================
-    private val viewModel: DashboardViewModel by viewModels {
+    private val dashboardViewModel: DashboardViewModel by viewModels {
         val pref = UserPreference(requireContext())
         val repo = DashboardRepository(pref)
         DashboardViewModelFactory(repo)
@@ -62,6 +68,28 @@ class DashboardFragment : Fragment() {
         binding.dashboardEditprof.setOnClickListener {
             bukaRiwayatNotifikasi()
         }
+
+        // =======================================================
+        // INTEGRASI EXP OLAHRAGA & ANIMASI PROGRESS BAR
+        // =======================================================
+        val prefOlahraga = OlahragaPreferences.getInstance(requireContext().dataStore)
+        val factoryOlahraga = OlahragaViewModelFactory(OlahragaRepository(prefOlahraga))
+        val olahragaViewModel = ViewModelProvider(this, factoryOlahraga)[OlahragaViewModel::class.java]
+
+        olahragaViewModel.getTotalExp().observe(viewLifecycleOwner) { totalExp ->
+            val MAX_EXP_PER_LEVEL = 100
+
+            // Rumus Level: (Total EXP / 100) + 1 (Agar mulai dari Level 1)
+            val levelSekarang = (totalExp / MAX_EXP_PER_LEVEL) + 1
+
+            // Rumus Bar: Sisa EXP untuk menuju level berikutnya
+            val progressSaatIni = totalExp % MAX_EXP_PER_LEVEL
+
+            binding.tvLevelAngka.text = levelSekarang.toString()
+
+            // Parameter 'true' di bawah ini yang akan membuat bar biru beranimasi mulus!
+            binding.pbExpLevel.setProgressCompat(progressSaatIni, true)
+        }
     }
 
     override fun onResume() {
@@ -77,26 +105,23 @@ class DashboardFragment : Fragment() {
         val prefs = requireContext().getSharedPreferences("NotifikasiPrefs", Context.MODE_PRIVATE)
         val jsonLama = prefs.getString("LIST_NOTIFIKASI", null)
 
-        // Cek jika ada notifikasi di memori dan tidak kosong
         if (jsonLama != null && jsonLama != "[]") {
-            binding.badgeNotifikasi.visibility = View.VISIBLE // Munculkan titik merah
+            binding.badgeNotifikasi.visibility = View.VISIBLE
         } else {
-            binding.badgeNotifikasi.visibility = View.GONE // Sembunyikan titik merah
+            binding.badgeNotifikasi.visibility = View.GONE
         }
     }
 
     private fun bukaRiwayatNotifikasi() {
-        // Memanggil desain XML Kustom untuk Pusat Notifikasi
         val dialogView = layoutInflater.inflate(R.layout.dialog_pusat_notifikasi, null)
         val dialog = AlertDialog.Builder(requireContext()).setView(dialogView).create()
-        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT)) // Agar background melengkung terlihat
+        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
         val rvNotif = dialogView.findViewById<RecyclerView>(R.id.rv_notifikasi)
         val tvKosong = dialogView.findViewById<TextView>(R.id.tv_notif_kosong)
         val btnHapusSemua = dialogView.findViewById<Button>(R.id.btn_hapus_semua_notif)
         val btnTutup = dialogView.findViewById<Button>(R.id.btn_tutup_notif)
 
-        // Ambil data notifikasi dari penyimpanan lokal (GSON)
         val prefs = requireContext().getSharedPreferences("NotifikasiPrefs", Context.MODE_PRIVATE)
         val jsonLama = prefs.getString("LIST_NOTIFIKASI", null)
 
@@ -106,37 +131,28 @@ class DashboardFragment : Fragment() {
             daftarRiwayat = Gson().fromJson(jsonLama, type)
         }
 
-        // Memasukkan data ke Adapter (Bentuk Kartu Notifikasi)
         val adapterNotif = NotifikasiAdapter(daftarRiwayat)
         rvNotif.layoutManager = LinearLayoutManager(requireContext())
         rvNotif.adapter = adapterNotif
 
-        // Logika Tampilan (Kosong atau Terisi)
         if (daftarRiwayat.isEmpty()) {
             rvNotif.visibility = View.GONE
             tvKosong.visibility = View.VISIBLE
-            btnHapusSemua.isEnabled = false // Matikan tombol hapus jika tidak ada pesan
+            btnHapusSemua.isEnabled = false
         } else {
             rvNotif.visibility = View.VISIBLE
             tvKosong.visibility = View.GONE
             btnHapusSemua.isEnabled = true
         }
 
-        // Aksi Tombol Tutup
         btnTutup.setOnClickListener { dialog.dismiss() }
 
-        // Aksi Tombol Hapus Semua Pesan
         btnHapusSemua.setOnClickListener {
-            // Hapus semua data di memori
             prefs.edit().clear().apply()
-
-            // Kosongkan layar secara langsung
             adapterNotif.updateData(emptyList())
             rvNotif.visibility = View.GONE
             tvKosong.visibility = View.VISIBLE
             btnHapusSemua.isEnabled = false
-
-            // Update titik merah agar langsung hilang
             cekBadgeNotifikasi()
         }
 
@@ -148,34 +164,28 @@ class DashboardFragment : Fragment() {
     // =======================================================
     private fun setupTombolKategori() {
         binding.btnBmiCard.setOnClickListener {
-            val intent = Intent(requireContext(), BodyMassIndexActivity::class.java)
-            startActivity(intent)
+            startActivity(Intent(requireContext(), BodyMassIndexActivity::class.java))
         }
         binding.btnPengingatMakanCard.setOnClickListener {
-            val intent = Intent(requireContext(), Pengingat_Jam_MakanActivity::class.java)
-            startActivity(intent)
+            startActivity(Intent(requireContext(), Pengingat_Jam_MakanActivity::class.java))
         }
         binding.btnInfoMakananCard.setOnClickListener {
-            val intent = Intent(requireContext(), Informasi_MakananActivity::class.java)
-            startActivity(intent)
+            startActivity(Intent(requireContext(), Informasi_MakananActivity::class.java))
         }
         binding.btnOlahragaCard.setOnClickListener {
-            val intent = Intent(requireContext(), OlahragaActivity::class.java)
-            startActivity(intent)
+            startActivity(Intent(requireContext(), OlahragaActivity::class.java))
         }
     }
 
     // =======================================================
-    // LOGIKA TAMPILAN PROFIL & GAMEFIKASI (EXP/POINT)
+    // LOGIKA TAMPILAN PROFIL KONDISI FISIK
     // =======================================================
     @SuppressLint("SetTextI18n")
     private fun tampilkanDataProfil() {
-        val nama = viewModel.getName() ?: "Sobat Sehatin"
-        val fisikUser = viewModel.getUserBody()
-        val kondisiTubuh = viewModel.getKondisiTubuh()
-
-        val pointUser = viewModel.getPoint()
-        val expUser = viewModel.getExp()
+        val nama = dashboardViewModel.getName() ?: "Sobat Sehatin"
+        val fisikUser = dashboardViewModel.getUserBody()
+        val kondisiTubuh = dashboardViewModel.getKondisiTubuh()
+        val pointUser = dashboardViewModel.getPoint()
 
         // Menampilkan teks data diri
         binding.dashboardUsername.text = nama
@@ -184,13 +194,6 @@ class DashboardFragment : Fragment() {
         binding.tvBeratVal.text = "${fisikUser.berat} kg"
         binding.kondisiTubuh.text = kondisiTubuh
         binding.dashboardPoint.text = "$pointUser Point"
-
-        // Mengatur Level & Pergerakan Progress Bar Biru
-        val currentLevel = expUser / 100
-        val currentProgress = expUser % 100
-
-        binding.tvLevelAngka.text = currentLevel.toString()
-        binding.pbExpLevel.setProgressCompat(currentProgress, true)
 
         // Logika Ganti Latar Belakang & Karakter sesuai Gender dan BMI
         if (fisikUser.gender == "L") {
