@@ -25,30 +25,19 @@ class LoginActivity : AppCompatActivity() {
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // ========================================================
-        // FITUR "INGAT SAYA" (100% MVVM Murni)
-        // Bertanya pada ViewModel, bukan ke SharedPreferences
-        // ========================================================
+        // Fitur Ingat Saya
         if (viewModel.isRememberMe()) {
             binding.kolomNamaLogin.setText(viewModel.getSavedEmail())
             binding.kolomPasswordLogin.setText(viewModel.getSavedPassword())
             binding.checkboxPrivacy.isChecked = true
         }
 
-        // ========================================================
-        // 1. OBSERVER UNTUK STATUS LOADING
-        // ========================================================
+        // Observer Loading
         viewModel.isLoading.observe(this) { isLoading ->
-            if (isLoading) {
-                binding.loadingOverlay.visibility = View.VISIBLE
-            } else {
-                binding.loadingOverlay.visibility = View.GONE
-            }
+            binding.loadingOverlay.visibility = if (isLoading) View.VISIBLE else View.GONE
         }
 
-        // ========================================================
-        // 2. OBSERVER UNTUK HASIL LOGIN
-        // ========================================================
+        // Observer Hasil Login
         viewModel.loginResult.observe(this) { isSuccess ->
             if (isSuccess) {
                 Toast.makeText(this, "Login Berhasil!", Toast.LENGTH_SHORT).show()
@@ -61,27 +50,20 @@ class LoginActivity : AppCompatActivity() {
             }
         }
 
-        // ========================================================
-        // 3. AKSI KLIK TOMBOL LOGIN
-        // ========================================================
+        // Tombol Login
         binding.registerButton.setOnClickListener {
-            val email = binding.kolomNamaLogin.text.toString()
+            val email = binding.kolomNamaLogin.text.toString().trim() // Pakai trim agar aman dari spasi
             val pass = binding.kolomPasswordLogin.text.toString()
 
             if (email.isEmpty() || pass.isEmpty()) {
                 Toast.makeText(this, "Email dan Password harus diisi", Toast.LENGTH_SHORT).show()
             } else {
-                // Simpan status checkbox ke ViewModel
                 viewModel.saveRememberMeStatus(binding.checkboxPrivacy.isChecked)
-
-                // Lanjut proses login
                 viewModel.login(email, pass)
             }
         }
 
-        // ========================================================
-        // 4. AKSI KLIK TOMBOL DAFTAR
-        // ========================================================
+        // Tombol Daftar
         binding.btnDaftar.setOnClickListener {
             startActivity(Intent(this, RegisterActivity::class.java))
         }

@@ -2,16 +2,15 @@ package com.example.sehatin.Auth
 
 import com.example.sehatin.Data.Model.UserPreference
 
-class LoginRepository (private val pref: UserPreference) {
+class LoginRepository(private val pref: UserPreference) {
     fun checkLogin(email: String, pass: String): Boolean {
-        val savedEmail = pref.getEmail()
-        val savedPass = pref.getPassword()
-        return email == savedEmail && pass == savedPass
+        return pref.isValidLogin(email, pass) // Cek di loker dinamis
     }
 
-    fun setLoginSuccess() {
-        pref.setLogin(true)
+    fun setLoginSuccess(email: String) {
+        pref.setKunciAktif(email) // Rekam siapa yang sedang login
     }
+
     fun isRememberMe(): Boolean = pref.isRememberMe()
     fun getSavedEmail(): String? = pref.getEmail()
     fun getSavedPassword(): String? = pref.getPassword()

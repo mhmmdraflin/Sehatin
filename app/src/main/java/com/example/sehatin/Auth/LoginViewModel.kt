@@ -18,11 +18,11 @@ class LoginViewModel(private val repository: LoginRepository) : ViewModel() {
     fun login(email: String, pass: String) {
         viewModelScope.launch {
             _isLoading.value = true
-            delay(1500)
+            delay(1500) // Simulasi loading
 
             val isSuccess = repository.checkLogin(email, pass)
             if (isSuccess) {
-                repository.setLoginSuccess()
+                repository.setLoginSuccess(email) // Kunci identitas aktif
             }
 
             _isLoading.value = false
@@ -30,9 +30,6 @@ class LoginViewModel(private val repository: LoginRepository) : ViewModel() {
         }
     }
 
-    // ==========================================
-    // [BARU] FUNGSI UNTUK FITUR INGAT SAYA
-    // ==========================================
     fun isRememberMe(): Boolean = repository.isRememberMe()
     fun getSavedEmail(): String? = repository.getSavedEmail()
     fun getSavedPassword(): String? = repository.getSavedPassword()

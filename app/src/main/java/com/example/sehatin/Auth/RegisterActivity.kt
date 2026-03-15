@@ -28,88 +28,62 @@ class RegisterActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         userPref = UserPreference(this)
-
-        // =================================================================
-        // [KUNCI PERBAIKAN] Hubungkan kolom konfirmasi dengan kolom password utama
-        // =================================================================
         binding.kolomKonfirmasi.targetPasswordView = binding.kolomPassword
 
-        // =================================================================
-        // [PRO-TIP] Memaksa kolom konfirmasi mengecek ulang setiap kali
-        // user merubah isi dari kolom password yang pertama
-        // =================================================================
         binding.kolomPassword.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                // Sengaja mengatur ulang teks konfirmasi agar validasinya terpicu ulang
                 val currentConfirmText = binding.kolomKonfirmasi.text.toString()
                 if (currentConfirmText.isNotEmpty()) {
                     binding.kolomKonfirmasi.text = Editable.Factory.getInstance().newEditable(currentConfirmText)
-                    binding.kolomKonfirmasi.setSelection(currentConfirmText.length) // Kembalikan kursor ke ujung
+                    binding.kolomKonfirmasi.setSelection(currentConfirmText.length)
                 }
             }
             override fun afterTextChanged(s: Editable?) {}
         })
 
-        // ========================================================
-        // 1. OBSERVER UNTUK STATUS LOADING
-        // ========================================================
         viewModel.isLoading.observe(this) { isLoading ->
-            if (isLoading) {
-                binding.loadingOverlay.visibility = View.VISIBLE
-            } else {
-                binding.loadingOverlay.visibility = View.GONE
-            }
+            binding.loadingOverlay.visibility = if (isLoading) View.VISIBLE else View.GONE
         }
 
-        // ========================================================
-        // 2. OBSERVER UNTUK HASIL REGISTRASI
-        // ========================================================
         viewModel.registerResult.observe(this) { isSuccess ->
             if (isSuccess) {
                 Toast.makeText(this, "Registrasi Berhasil!", Toast.LENGTH_SHORT).show()
+                // Arahkan ke pengisian data fisik setelah daftar
                 val intent = Intent(this, com.example.sehatin.UserData.UserDataActivity::class.java)
                 startActivity(intent)
                 finish()
             }
         }
 
-        // ========================================================
-        // 3. AKSI KLIK TOMBOL DAFTAR
-        // ========================================================
         binding.registerButton.setOnClickListener {
             val nama = binding.kolomNama.text.toString().trim()
-            val email = binding.kolomEmail.text.toString().trim()
+            val email = binding.kolomEmail.text.toString().trim() // Hindari spasi
             val pass = binding.kolomPassword.text.toString()
             val confirmPass = binding.kolomKonfirmasi.text.toString()
 
-            // 1. Cek Data Kosong
             if (nama.isEmpty() || email.isEmpty() || pass.isEmpty() || confirmPass.isEmpty()) {
                 Toast.makeText(this, "Mohon lengkapi semua data", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
-            // 2. Cek Custom View Error (Jangan lanjut kalau masih ada error pop-up di kolom)
             if (binding.kolomEmail.error != null || binding.kolomPassword.error != null || binding.kolomKonfirmasi.error != null) {
                 Toast.makeText(this, "Perbaiki format yang salah terlebih dahulu", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
-            // 3. Cek Apakah Email Sudah Digunakan? (Membandingkan dengan data di lokal)
-            val savedEmail = userPref.getEmail()
-            if (email.equals(savedEmail, ignoreCase = true)) {
-                binding.kolomEmail.error = "Email sudah terdaftar!" // Tampilkan pop-up error
+            // Cek apakah email sudah dipakai orang lain
+            if (userPref.isEmailRegistered(email)) {
+                binding.kolomEmail.error = "Email sudah terdaftar!"
                 Toast.makeText(this, "Gunakan email lain", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
-            // 4. Cek Konfirmasi Password (Keamanan Ekstra)
             if (pass != confirmPass) {
                 binding.kolomKonfirmasi.error = "Konfirmasi password tidak sesuai"
                 return@setOnClickListener
             }
 
-            // Jika semua lolos, Daftar!
             viewModel.register(nama, email, pass)
         }
     }

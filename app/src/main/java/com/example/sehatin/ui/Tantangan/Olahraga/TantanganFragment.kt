@@ -1,5 +1,6 @@
-package com.example.sehatin.ui.Profil
+package com.example.sehatin.ui.Tantangan.Olahraga
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,29 +10,24 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.sehatin.Data.Model.UserPreference
 import com.example.sehatin.R
-import com.google.android.material.progressindicator.LinearProgressIndicator
-
+import com.example.sehatin.ui.Tantangan.Olahraga.DetailTantanganActivity
 import com.example.sehatin.ui.Tantangan.TantanganPreferences
 import com.example.sehatin.ui.Tantangan.TantanganRepository
 import com.example.sehatin.ui.Tantangan.TantanganViewModel
 import com.example.sehatin.ui.Tantangan.TantanganViewModelFactory
 import com.example.sehatin.ui.Tantangan.dataStoreTantangan
+import com.google.android.material.card.MaterialCardView
 
-class ProfilFragment : Fragment() {
+class TantanganFragment : Fragment() {
 
     private lateinit var viewModel: TantanganViewModel
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_profil, container, false)
+        return inflater.inflate(R.layout.fragment_tantangan, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        val tvLevel = view.findViewById<TextView>(R.id.tv_profil_level)
-        val tvPoin = view.findViewById<TextView>(R.id.tv_profil_poin)
-        val pbExp = view.findViewById<LinearProgressIndicator>(R.id.pb_profil_exp)
-        val tvExpDetail = view.findViewById<TextView>(R.id.tv_profil_exp_detail)
 
         // ==========================================
         // TENTUKAN IDENTITAS USER AKTIF (Menggunakan getName)
@@ -43,22 +39,17 @@ class ProfilFragment : Fragment() {
         val factory = TantanganViewModelFactory(TantanganRepository(pref))
         viewModel = ViewModelProvider(this, factory)[TantanganViewModel::class.java]
 
-        val MAX_EXP_PER_LEVEL = 100
-        pbExp.max = MAX_EXP_PER_LEVEL
+        val tvTotalPoin = view.findViewById<TextView>(R.id.tv_total_poin_header)
+        val btnPeriksaOlahraga = view.findViewById<MaterialCardView>(R.id.btn_periksa)
 
-        // BACA POIN BERDASARKAN AKUN
+        // BACA TOTAL POIN BERDASARKAN AKUN
         viewModel.getTotalPoin(userKey).observe(viewLifecycleOwner) { totalPoin ->
-            tvPoin.text = "$totalPoin Poin"
+            tvTotalPoin.text = "$totalPoin Poin"
         }
 
-        // BACA EXP BERDASARKAN AKUN
-        viewModel.getTotalExp(userKey).observe(viewLifecycleOwner) { totalExp ->
-            val levelSekarang = (totalExp / MAX_EXP_PER_LEVEL) + 1
-            val progressSaatIni = totalExp % MAX_EXP_PER_LEVEL
-
-            tvLevel.text = "Level $levelSekarang"
-            tvExpDetail.text = "$progressSaatIni / $MAX_EXP_PER_LEVEL EXP"
-            pbExp.setProgressCompat(progressSaatIni, true)
+        btnPeriksaOlahraga.setOnClickListener {
+            val intent = Intent(requireContext(), DetailTantanganActivity::class.java)
+            startActivity(intent)
         }
     }
 }

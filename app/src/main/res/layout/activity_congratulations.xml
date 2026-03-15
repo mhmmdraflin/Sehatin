@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFF9C4"
-    tools:context=".ui.Tantangan.CongratulationsActivity">
+    tools:context=".ui.Tantangan.Olahraga.CongratulationsActivity">
 
     <ImageView
         android:id="@+id/iv_chest_reward"
@@ -16,7 +16,7 @@
         android:contentDescription="@string/ic_chest"
         android:focusable="true"
         android:foreground="?attr/selectableItemBackgroundBorderless"
-        android:src="@drawable/ic_chest_1"
+        android:src="@drawable/chest_open_animation"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -200,8 +200,8 @@
         android:layout_height="match_parent"
         android:background="#99FFFFFF"
         android:clickable="true"
-        android:focusable="true"
         android:elevation="10dp"
+        android:focusable="true"
         android:visibility="gone"
         tools:visibility="visible">
 
@@ -211,12 +211,12 @@
             app:cardBackgroundColor="@color/putih"
             app:cardCornerRadius="20dp"
             app:cardElevation="8dp"
-            app:strokeColor="@color/black"
-            app:strokeWidth="3dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"
+            app:strokeColor="@color/black"
+            app:strokeWidth="3dp">
 
             <LinearLayout
                 android:layout_width="wrap_content"

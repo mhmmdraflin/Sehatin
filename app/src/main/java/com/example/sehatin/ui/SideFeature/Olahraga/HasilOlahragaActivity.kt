@@ -10,13 +10,24 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.ViewModelProvider
+import com.example.sehatin.Data.Model.UserPreference
 import com.example.sehatin.R
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.card.MaterialCardView
 
+// =======================================================
+// IMPORT MESIN TANTANGAN (BANK PUSAT EXP)
+// =======================================================
+import com.example.sehatin.ui.Tantangan.TantanganPreferences
+import com.example.sehatin.ui.Tantangan.TantanganRepository
+import com.example.sehatin.ui.Tantangan.TantanganViewModel
+import com.example.sehatin.ui.Tantangan.TantanganViewModelFactory
+import com.example.sehatin.ui.Tantangan.dataStoreTantangan
+
 class HasilOlahragaActivity : AppCompatActivity() {
 
-    private lateinit var viewModel: OlahragaViewModel
+    private lateinit var viewModelOlahraga: OlahragaViewModel
+    private lateinit var viewModelTantangan: TantanganViewModel // Tambahan mesin utama
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,21 +40,45 @@ class HasilOlahragaActivity : AppCompatActivity() {
             insets
         }
 
-        // INISIALISASI MVVM
-        val pref = OlahragaPreferences.getInstance(applicationContext.dataStore)
-        val factory = OlahragaViewModelFactory(OlahragaRepository(pref))
-        viewModel = ViewModelProvider(this, factory)[OlahragaViewModel::class.java]
+        // =======================================================
+        // 1. AMBIL IDENTITAS USER AKTIF (MULTI-AKUN)
+        // =======================================================
+        val userPref = UserPreference(this)
+        val userKey = userPref.getName() ?: "guest_user"
 
-        // TANGKAP DATA HASIL
+        // =======================================================
+        // 2. INISIALISASI KEDUA VIEWMODEL
+        // =======================================================
+        // A. Mesin Olahraga (Untuk menyimpan Kalori & History Misi Olahraga)
+        val prefOlahraga = OlahragaPreferences.getInstance(applicationContext.dataStore)
+        val factoryOlahraga = OlahragaViewModelFactory(OlahragaRepository(prefOlahraga))
+        viewModelOlahraga = ViewModelProvider(this, factoryOlahraga)[OlahragaViewModel::class.java]
+
+        // B. Mesin Tantangan (Untuk menyetorkan EXP Utama ke Dashboard)
+        val prefTantangan = TantanganPreferences.getInstance(applicationContext.dataStoreTantangan)
+        val factoryTantangan = TantanganViewModelFactory(TantanganRepository(prefTantangan))
+        viewModelTantangan = ViewModelProvider(this, factoryTantangan)[TantanganViewModel::class.java]
+
+        // =======================================================
+        // 3. TANGKAP DATA HASIL OLAHRAGA
+        // =======================================================
         val idGerakanSelesai = intent.getIntExtra("HASIL_ID_GERAKAN", 0)
         val kaloriTerbakar = intent.getIntExtra("HASIL_KALORI", 0)
         val durasiDetik = intent.getIntExtra("HASIL_WAKTU", 0)
         val expDidapat = intent.getIntExtra("HASIL_EXP", 0)
 
-        // EKSEKUSI PENYIMPANAN KE VIEWMODEL
+        // =======================================================
+        // 4. DISTRIBUSIKAN DATA KE TEMPAT YANG TEPAT
+        // =======================================================
         if (idGerakanSelesai != 0) {
-            viewModel.simpanGerakanSelesai(idGerakanSelesai)
-            viewModel.tambahKaloriDanExp(kaloriTerbakar, expDidapat)
+            // A. Simpan Status Selesai Olahraga ke Mesin Olahraga
+            viewModelOlahraga.simpanGerakanSelesai(idGerakanSelesai)
+
+            // Catatan: Anda bisa mengubah tambahKaloriDanExp di OlahragaViewModel menjadi tambahKalori saja nanti
+            viewModelOlahraga.tambahKaloriDanExp(kaloriTerbakar, expDidapat)
+
+            // B. Setorkan EXP murni ke BANK PUSAT (Tantangan) berdasarkan Akun Aktif
+            viewModelTantangan.tambahExp(userKey, expDidapat)
         }
 
         // HUBUNGKAN KE XML
@@ -68,7 +103,6 @@ class HasilOlahragaActivity : AppCompatActivity() {
 
         // TOMBOL KEMBALI
         findViewById<MaterialButton>(R.id.btn_kembali_dashboard).setOnClickListener {
-            // Pastikan MainActivity adalah tujuan Dashboard Anda
             val intent = Intent(this, com.example.sehatin.Main.MainActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
             startActivity(intent)
@@ -81,9 +115,8 @@ class HasilOlahragaActivity : AppCompatActivity() {
         val ivTrofi = findViewById<ImageView>(R.id.iv_trofi)
         val cardExp = findViewById<MaterialCardView>(R.id.card_hasil_exp)
 
-        // 1. Set kondisi awal (Sembunyikan dan kecilkan komponen)
         cardMain.alpha = 0f
-        cardMain.translationY = 150f // Posisikan agak ke bawah
+        cardMain.translationY = 150f
 
         ivTrofi.scaleX = 0f
         ivTrofi.scaleY = 0f
@@ -91,29 +124,22 @@ class HasilOlahragaActivity : AppCompatActivity() {
         cardExp.scaleX = 0f
         cardExp.scaleY = 0f
 
-        // 2. Mulai Animasi Berantai
-        // A. Kartu Utama Muncul dari bawah
         cardMain.animate()
             .alpha(1f)
             .translationY(0f)
             .setDuration(600)
             .withEndAction {
-
-                // B. Trofi Muncul memantul (Overshoot)
                 ivTrofi.animate()
                     .scaleX(1f)
                     .scaleY(1f)
                     .setDuration(500)
                     .setInterpolator(OvershootInterpolator(1.5f))
                     .withEndAction {
-
-                        // C. Badge EXP Membesar (Pulse)
                         cardExp.animate()
-                            .scaleX(1.3f) // Membesar sedikit melebihi ukuran asli
+                            .scaleX(1.3f)
                             .scaleY(1.3f)
                             .setDuration(300)
                             .withEndAction {
-                                // Kembali ke ukuran normal
                                 cardExp.animate()
                                     .scaleX(1f)
                                     .scaleY(1f)

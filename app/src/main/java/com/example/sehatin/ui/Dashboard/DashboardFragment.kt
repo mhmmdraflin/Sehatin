@@ -25,22 +25,20 @@ import com.example.sehatin.ui.SideFeature.Informasi_MakananActivity
 import com.example.sehatin.ui.SideFeature.JamMakan.Pengingat_Jam_MakanActivity
 import com.example.sehatin.ui.SideFeature.Olahraga.OlahragaActivity
 import com.example.sehatin.ui.SideFeature.JamMakan.NotifikasiRiwayat
-import com.example.sehatin.ui.SideFeature.Olahraga.OlahragaPreferences
-import com.example.sehatin.ui.SideFeature.Olahraga.OlahragaRepository
-import com.example.sehatin.ui.SideFeature.Olahraga.OlahragaViewModel
-import com.example.sehatin.ui.SideFeature.Olahraga.OlahragaViewModelFactory
-import com.example.sehatin.ui.SideFeature.Olahraga.dataStore
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+
+import com.example.sehatin.ui.Tantangan.TantanganPreferences
+import com.example.sehatin.ui.Tantangan.TantanganRepository
+import com.example.sehatin.ui.Tantangan.TantanganViewModel
+import com.example.sehatin.ui.Tantangan.TantanganViewModelFactory
+import com.example.sehatin.ui.Tantangan.dataStoreTantangan
 
 class DashboardFragment : Fragment() {
 
     private var _binding: FragmentDashboardBinding? = null
     private val binding get() = _binding!!
 
-    // =======================================================
-    // INISIALISASI DASHBOARD VIEWMODEL
-    // =======================================================
     private val dashboardViewModel: DashboardViewModel by viewModels {
         val pref = UserPreference(requireContext())
         val repo = DashboardRepository(pref)
@@ -58,49 +56,42 @@ class DashboardFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Memuat data profil ke layar
         tampilkanDataProfil()
-
-        // Memuat fungsi klik tombol kategori
         setupTombolKategori()
+        binding.dashboardEditprof.setOnClickListener { bukaRiwayatNotifikasi() }
 
-        // Memuat fungsi klik tombol lonceng notifikasi
-        binding.dashboardEditprof.setOnClickListener {
-            bukaRiwayatNotifikasi()
-        }
+        // ==========================================
+        // TENTUKAN IDENTITAS USER AKTIF (Menggunakan getName)
+        // ==========================================
+        val userPref = UserPreference(requireContext())
+        val userKey = userPref.getName() ?: "guest_user"
 
-        // =======================================================
-        // INTEGRASI EXP OLAHRAGA & ANIMASI PROGRESS BAR
-        // =======================================================
-        val prefOlahraga = OlahragaPreferences.getInstance(requireContext().dataStore)
-        val factoryOlahraga = OlahragaViewModelFactory(OlahragaRepository(prefOlahraga))
-        val olahragaViewModel = ViewModelProvider(this, factoryOlahraga)[OlahragaViewModel::class.java]
+        // ==========================================
+        // INTEGRASI EXP & POIN BERDASARKAN AKUN
+        // ==========================================
+        val prefTantangan = TantanganPreferences.getInstance(requireContext().dataStoreTantangan)
+        val factoryTantangan = TantanganViewModelFactory(TantanganRepository(prefTantangan))
+        val tantanganViewModel = ViewModelProvider(this, factoryTantangan)[TantanganViewModel::class.java]
 
-        olahragaViewModel.getTotalExp().observe(viewLifecycleOwner) { totalExp ->
+        tantanganViewModel.getTotalExp(userKey).observe(viewLifecycleOwner) { totalExp ->
             val MAX_EXP_PER_LEVEL = 100
-
-            // Rumus Level: (Total EXP / 100) + 1 (Agar mulai dari Level 1)
             val levelSekarang = (totalExp / MAX_EXP_PER_LEVEL) + 1
-
-            // Rumus Bar: Sisa EXP untuk menuju level berikutnya
             val progressSaatIni = totalExp % MAX_EXP_PER_LEVEL
 
             binding.tvLevelAngka.text = levelSekarang.toString()
-
-            // Parameter 'true' di bawah ini yang akan membuat bar biru beranimasi mulus!
             binding.pbExpLevel.setProgressCompat(progressSaatIni, true)
+        }
+
+        tantanganViewModel.getTotalPoin(userKey).observe(viewLifecycleOwner) { totalPoin ->
+            binding.dashboardPoint.text = "$totalPoin Poin"
         }
     }
 
     override fun onResume() {
         super.onResume()
-        // Selalu cek badge (titik merah) setiap kali layar Dashboard muncul
         cekBadgeNotifikasi()
     }
 
-    // =======================================================
-    // LOGIKA PUSAT NOTIFIKASI & BADGE (TITIK MERAH)
-    // =======================================================
     private fun cekBadgeNotifikasi() {
         val prefs = requireContext().getSharedPreferences("NotifikasiPrefs", Context.MODE_PRIVATE)
         val jsonLama = prefs.getString("LIST_NOTIFIKASI", null)
@@ -159,9 +150,6 @@ class DashboardFragment : Fragment() {
         dialog.show()
     }
 
-    // =======================================================
-    // FUNGSI KLIK PINDAH HALAMAN KATEGORI
-    // =======================================================
     private fun setupTombolKategori() {
         binding.btnBmiCard.setOnClickListener {
             startActivity(Intent(requireContext(), BodyMassIndexActivity::class.java))
@@ -177,25 +165,18 @@ class DashboardFragment : Fragment() {
         }
     }
 
-    // =======================================================
-    // LOGIKA TAMPILAN PROFIL KONDISI FISIK
-    // =======================================================
     @SuppressLint("SetTextI18n")
     private fun tampilkanDataProfil() {
         val nama = dashboardViewModel.getName() ?: "Sobat Sehatin"
         val fisikUser = dashboardViewModel.getUserBody()
         val kondisiTubuh = dashboardViewModel.getKondisiTubuh()
-        val pointUser = dashboardViewModel.getPoint()
 
-        // Menampilkan teks data diri
         binding.dashboardUsername.text = nama
         binding.tvUmurVal.text = "${fisikUser.umur} Tahun"
         binding.tvTinggiVal.text = "${fisikUser.tinggi} cm"
         binding.tvBeratVal.text = "${fisikUser.berat} kg"
         binding.kondisiTubuh.text = kondisiTubuh
-        binding.dashboardPoint.text = "$pointUser Point"
 
-        // Logika Ganti Latar Belakang & Karakter sesuai Gender dan BMI
         if (fisikUser.gender == "L") {
             binding.bgIconCharacter.setImageResource(R.drawable.bg_dashboard_character)
             binding.dashProfilePict.setImageResource(R.drawable.profile_boy)

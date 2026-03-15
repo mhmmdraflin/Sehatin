@@ -19,7 +19,7 @@
 
     <fragment
         android:id="@+id/navigation_tantangan"
-        android:name="com.example.sehatin.ui.Tantangan.TantanganFragment"
+        android:name="com.example.sehatin.ui.Tantangan.Olahraga.TantanganFragment"
         android:label="@string/tantangan"
         tools:layout="@layout/fragment_tantangan" />
 
