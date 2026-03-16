@@ -124,8 +124,9 @@
     <string name="Tantangan_Makanan">Tantangan Makanan</string>
     <string name="Jadwal_Tantangan">Jadwal Tantangan</string>
     <string name="deskripsi_tantangan_olahraga">Tantangan Olahraga Push Up, Sit Up dan olahraga workout lainnya</string>
-    <string name="deskripsi_tantangan_makanan">Tantangan Makanan Sehat dan Minum dalam sehari</string>
     <string name="Tantangan_subText">Selesaikan misi harianmu!</string>
+    <string name="deskripsi_tantangan_makanan">Selesaikan Misi Edukasi Nutrisi untuk mendapatkan Poin &amp; EXP</string>
+
 
 
     <!--Fragment Lencana-->

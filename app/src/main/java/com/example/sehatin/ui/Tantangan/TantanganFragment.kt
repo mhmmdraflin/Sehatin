@@ -1,4 +1,4 @@
-package com.example.sehatin.ui.Tantangan.Olahraga
+package com.example.sehatin.ui.Tantangan
 
 import android.content.Intent
 import android.os.Bundle
@@ -11,11 +11,8 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.sehatin.Data.Model.UserPreference
 import com.example.sehatin.R
 import com.example.sehatin.ui.Tantangan.Olahraga.DetailTantanganActivity
-import com.example.sehatin.ui.Tantangan.TantanganPreferences
-import com.example.sehatin.ui.Tantangan.TantanganRepository
-import com.example.sehatin.ui.Tantangan.TantanganViewModel
-import com.example.sehatin.ui.Tantangan.TantanganViewModelFactory
-import com.example.sehatin.ui.Tantangan.dataStoreTantangan
+// [TAMBAHAN]: Import halaman tantangan makanan
+import com.example.sehatin.ui.Tantangan.Makanan.DetailTantanganMakananActivity
 import com.google.android.material.card.MaterialCardView
 
 class TantanganFragment : Fragment() {
@@ -42,13 +39,27 @@ class TantanganFragment : Fragment() {
         val tvTotalPoin = view.findViewById<TextView>(R.id.tv_total_poin_header)
         val btnPeriksaOlahraga = view.findViewById<MaterialCardView>(R.id.btn_periksa)
 
+        // [TAMBAHAN]: Hubungkan tombol periksa makanan ke ID di XML
+        val btnPeriksaMakanan = view.findViewById<MaterialCardView>(R.id.btn_periksa_makanan)
+
         // BACA TOTAL POIN BERDASARKAN AKUN
         viewModel.getTotalPoin(userKey).observe(viewLifecycleOwner) { totalPoin ->
             tvTotalPoin.text = "$totalPoin Poin"
         }
 
+        // ==========================================
+        // FUNGSI KLIK TOMBOL OLAHRAGA
+        // ==========================================
         btnPeriksaOlahraga.setOnClickListener {
             val intent = Intent(requireContext(), DetailTantanganActivity::class.java)
+            startActivity(intent)
+        }
+
+        // ==========================================
+        // FUNGSI KLIK TOMBOL MAKANAN
+        // ==========================================
+        btnPeriksaMakanan.setOnClickListener {
+            val intent = Intent(requireContext(), DetailTantanganMakananActivity::class.java)
             startActivity(intent)
         }
     }

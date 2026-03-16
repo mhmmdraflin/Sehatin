@@ -14,14 +14,32 @@ import com.example.sehatin.R
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.card.MaterialCardView
 
+// ==========================================
+// 1. DEKLARASI ALGORITMA FINITE STATE MACHINE (FSM)
+// ==========================================
+enum class TantanganOlahragaState {
+    BELUM_DIMULAI,
+    SEDANG_BERJALAN,
+    DI_JEDA,
+    SELESAI,
+    HADIAH_DITERIMA
+}
+
 class DetailAktivitasActivity : AppCompatActivity() {
 
+    // Komponen UI
     private lateinit var tvAngkaTarget: TextView
-    private var timer: CountDownTimer? = null
-    private var sisaWaktu: Long = 15000 // Contoh: 15 detik untuk 15 hitungan
-    private var isPaused: Boolean = false
-    private var isStarted: Boolean = false
+    private lateinit var btnMulai: MaterialButton
 
+    // State FSM Saat Ini
+    private var currentState = TantanganOlahragaState.BELUM_DIMULAI
+
+    // Variabel Timer Dinamis
+    private var timer: CountDownTimer? = null
+    private var waktuAwalMillis: Long = 0
+    private var sisaWaktuMillis: Long = 0
+
+    // Variabel Data
     private var rewardPoin: Int = 0
     private var rewardExp: Int = 0
 
@@ -33,7 +51,7 @@ class DetailAktivitasActivity : AppCompatActivity() {
 
         val tvNamaAktivitas = findViewById<TextView>(R.id.tv_nama_aktivitas)
         tvAngkaTarget = findViewById(R.id.tv_angka_target)
-        val btnMulai = findViewById<MaterialButton>(R.id.btn_action_toggle)
+        btnMulai = findViewById(R.id.btn_action_toggle)
         val btnPause = findViewById<MaterialCardView>(R.id.btn_pause_card)
         val ivIlustrasi = findViewById<ImageView>(R.id.iv_ilustrasi_aktivitas)
 
@@ -42,49 +60,71 @@ class DetailAktivitasActivity : AppCompatActivity() {
         val targetAngka = intent.getIntExtra("TARGET_ANGKA", 0)
         rewardPoin = intent.getIntExtra("REWARD_POIN", 0)
         rewardExp = intent.getIntExtra("REWARD_EXP", 0)
-
-        // Tangkap file GIF
         val fileGif = intent.getIntExtra("EXTRA_GIF_FILE", 0)
 
-        // 2. TAMPILKAN DATA KE LAYAR
+        // 2. SET WAKTU DINAMIS & TAMPILAN
+        waktuAwalMillis = targetAngka * 1000L // 1 Target = 1 Detik
         tvNamaAktivitas.text = "$namaMisi $targetAngka kali"
-        tvAngkaTarget.text = targetAngka.toString()
 
-        // 3. PUTAR GIF MENGGUNAKAN GLIDE
         if (fileGif != 0) {
             Glide.with(this)
                 .load(fileGif)
-                .centerCrop() // Agar gambar memenuhi area ImageView dengan rapi
+                .centerCrop()
                 .into(ivIlustrasi)
         }
 
-        // 4. LOGIKA TOMBOL MULAI & PAUSE
+        // 3. KONTROL TOMBOL UI (Pemicu FSM)
         btnMulai.setOnClickListener {
-            if (!isStarted) {
-                mulaiTimer()
-                btnMulai.text = "Sedang Beraksi..."
-                btnMulai.isEnabled = false
-                isStarted = true
+            if (currentState == TantanganOlahragaState.BELUM_DIMULAI) {
+                // Trigger: Mulai -> Masuk State SEDANG_BERJALAN
+                ubahState(TantanganOlahragaState.SEDANG_BERJALAN)
             }
         }
 
         btnPause.setOnClickListener {
-            if (isStarted && !isPaused) {
+            if (currentState == TantanganOlahragaState.SEDANG_BERJALAN) {
+                // Trigger: Pause -> Masuk State DI_JEDA
+                ubahState(TantanganOlahragaState.DI_JEDA)
+            }
+        }
+
+        // 4. MULAI FSM (Langkah Awal)
+        ubahState(TantanganOlahragaState.BELUM_DIMULAI)
+    }
+
+    // ========================================================
+    // 2. IMPLEMENTASI TRANSISI FSM (FUNGSI UTAMA KONTROLER)
+    // ========================================================
+    private fun ubahState(newState: TantanganOlahragaState) {
+        currentState = newState
+
+        when (newState) {
+            TantanganOlahragaState.BELUM_DIMULAI -> {
+                // RESET ALUR: Kembalikan waktu ke awal & nyalakan tombol
+                sisaWaktuMillis = waktuAwalMillis
+                tvAngkaTarget.text = (waktuAwalMillis / 1000).toString()
+
+                btnMulai.text = "Mulai"
+                btnMulai.isEnabled = true
+            }
+            TantanganOlahragaState.SEDANG_BERJALAN -> {
+                // Timer berjalan, matikan tombol Mulai
+                btnMulai.text = "Sedang Beraksi..."
+                btnMulai.isEnabled = false
+                mulaiTimer()
+            }
+            TantanganOlahragaState.DI_JEDA -> {
+                // Hentikan timer sementara dan tampilkan pop-up
                 jedaTimer()
                 tampilkanDialogJeda()
             }
-        }
-    }
-
-    private fun mulaiTimer() {
-        timer = object : CountDownTimer(sisaWaktu, 1000) {
-            override fun onTick(millisUntilFinished: Long) {
-                sisaWaktu = millisUntilFinished
-                tvAngkaTarget.text = (millisUntilFinished / 1000).toString()
+            TantanganOlahragaState.SELESAI -> {
+                // Target tercapai! Langsung transisi ke klaim hadiah
+                jedaTimer()
+                ubahState(TantanganOlahragaState.HADIAH_DITERIMA)
             }
-
-            override fun onFinish() {
-                // MISI SELESAI! PINDAH KE HALAMAN CONGRATULATIONS
+            TantanganOlahragaState.HADIAH_DITERIMA -> {
+                // Pindah ke layar Congratulations
                 val intent = Intent(this@DetailAktivitasActivity, CongratulationsActivity::class.java).apply {
                     putExtra("HASIL_POIN", rewardPoin)
                     putExtra("HASIL_EXP", rewardExp)
@@ -92,15 +132,34 @@ class DetailAktivitasActivity : AppCompatActivity() {
                 startActivity(intent)
                 finish()
             }
+        }
+    }
+
+    // ========================================================
+    // LOGIKA TIMER
+    // ========================================================
+    private fun mulaiTimer() {
+        timer = object : CountDownTimer(sisaWaktuMillis, 1000) {
+            override fun onTick(millisUntilFinished: Long) {
+                sisaWaktuMillis = millisUntilFinished
+                tvAngkaTarget.text = (millisUntilFinished / 1000).toString()
+            }
+
+            override fun onFinish() {
+                tvAngkaTarget.text = "0"
+                // Trigger: Waktu Habis (Sukses) -> Masuk State SELESAI
+                ubahState(TantanganOlahragaState.SELESAI)
+            }
         }.start()
-        isPaused = false
     }
 
     private fun jedaTimer() {
         timer?.cancel()
-        isPaused = true
     }
 
+    // ========================================================
+    // LOGIKA DIALOG (TRANSISI FSM JEDA)
+    // ========================================================
     private fun tampilkanDialogJeda() {
         val dialogView = layoutInflater.inflate(R.layout.dialog_jeda, null)
         val dialog = AlertDialog.Builder(this).setView(dialogView).setCancelable(false).create()
@@ -108,23 +167,23 @@ class DetailAktivitasActivity : AppCompatActivity() {
 
         dialogView.findViewById<MaterialButton>(R.id.btn_lanjutkan).setOnClickListener {
             dialog.dismiss()
-            mulaiTimer()
+            // Trigger: Lanjutkan -> Masuk State SEDANG_BERJALAN
+            ubahState(TantanganOlahragaState.SEDANG_BERJALAN)
         }
         dialogView.findViewById<MaterialButton>(R.id.btn_mulai_ulang).setOnClickListener {
             dialog.dismiss()
-            sisaWaktu = 15000 // Kembalikan ke waktu awal
-            tvAngkaTarget.text = "15"
-            mulaiTimer()
+            // Trigger: Mulai Ulang -> Masuk State BELUM_DIMULAI
+            ubahState(TantanganOlahragaState.BELUM_DIMULAI)
         }
         dialogView.findViewById<MaterialButton>(R.id.btn_keluar).setOnClickListener {
             dialog.dismiss()
-            finish()
+            finish() // Mengakhiri mesin FSM (State -> [*])
         }
         dialog.show()
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        timer?.cancel()
+        jedaTimer() // Pastikan timer mati saat keluar untuk mencegah memory leak
     }
 }
