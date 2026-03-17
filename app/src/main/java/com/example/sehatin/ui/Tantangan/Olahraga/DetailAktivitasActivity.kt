@@ -43,6 +43,12 @@ class DetailAktivitasActivity : AppCompatActivity() {
     private var rewardPoin: Int = 0
     private var rewardExp: Int = 0
 
+    // ========================================================
+    // PERBAIKAN: Jadikan namaMisi sebagai variabel global
+    // agar tidak terlupakan saat pindah ke halaman Peti Hadiah
+    // ========================================================
+    private var namaMisi: String = "Tantangan"
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail_aktivitas)
@@ -56,7 +62,7 @@ class DetailAktivitasActivity : AppCompatActivity() {
         val ivIlustrasi = findViewById<ImageView>(R.id.iv_ilustrasi_aktivitas)
 
         // 1. TERIMA DATA DARI HALAMAN SEBELUMNYA
-        val namaMisi = intent.getStringExtra("NAMA_MISI") ?: "Tantangan"
+        namaMisi = intent.getStringExtra("NAMA_MISI") ?: "Tantangan"
         val targetAngka = intent.getIntExtra("TARGET_ANGKA", 0)
         rewardPoin = intent.getIntExtra("REWARD_POIN", 0)
         rewardExp = intent.getIntExtra("REWARD_EXP", 0)
@@ -128,6 +134,11 @@ class DetailAktivitasActivity : AppCompatActivity() {
                 val intent = Intent(this@DetailAktivitasActivity, CongratulationsActivity::class.java).apply {
                     putExtra("HASIL_POIN", rewardPoin)
                     putExtra("HASIL_EXP", rewardExp)
+
+                    // ========================================================
+                    // KABEL SENSOR: Kirim Nama Misi ke Layar Peti Hadiah
+                    // ========================================================
+                    putExtra("HASIL_NAMA_MISI", namaMisi)
                 }
                 startActivity(intent)
                 finish()

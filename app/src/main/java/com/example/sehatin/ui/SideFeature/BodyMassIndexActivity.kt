@@ -4,8 +4,14 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.ViewModelProvider
 import com.example.sehatin.R
 import com.example.sehatin.databinding.ActivityBodyMassIndexBinding
+import com.example.sehatin.ui.Pencapaian.PencapaianPreferences
+import com.example.sehatin.ui.Pencapaian.PencapaianRepository
+import com.example.sehatin.ui.Pencapaian.PencapaianViewModel
+import com.example.sehatin.ui.Pencapaian.PencapaianViewModelFactory
+import com.example.sehatin.ui.Pencapaian.dataStorePencapaian
 import kotlin.math.pow
 
 class BodyMassIndexActivity : AppCompatActivity() {
@@ -34,7 +40,6 @@ class BodyMassIndexActivity : AppCompatActivity() {
     private fun setupCounterBeratDanTinggi() {
         // --- LOGIKA BERAT BADAN ---
         binding.btnPlusBerat.setOnClickListener {
-            // Ambil angka saat ini dari kolom teks, jika kosong anggap 40
             val currentBerat = binding.etValBerat.text.toString().toIntOrNull() ?: 40
             if (currentBerat < 250) {
                 binding.etValBerat.setText((currentBerat + 1).toString())
@@ -121,7 +126,17 @@ class BodyMassIndexActivity : AppCompatActivity() {
             val tinggiDalamMeter = tinggiBadan / 100.0
             val bmiScore = beratBadan / tinggiDalamMeter.pow(2.0)
 
-            // Kirim Data
+            // ========================================================
+            // SENSOR PENCAPAIAN: Lencana BMI
+            // ========================================================
+            val prefPencapaian = PencapaianPreferences.getInstance(applicationContext.dataStorePencapaian)
+            val factoryPencapaian = PencapaianViewModelFactory(PencapaianRepository(prefPencapaian))
+            val viewModelPencapaian = ViewModelProvider(this, factoryPencapaian)[PencapaianViewModel::class.java]
+
+            // Ubah progress BMI menjadi 1 (Maksimal)
+            viewModelPencapaian.updateProgress(prefPencapaian.BMI_KEY, 1)
+
+            // Kirim Data ke Halaman Hasil
             val intent = Intent(this, HasilBodyMassIndexActivity::class.java).apply {
                 putExtra("EXTRA_NAMA", nama)
                 putExtra("EXTRA_UMUR", umurString)

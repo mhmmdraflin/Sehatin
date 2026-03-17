@@ -91,7 +91,7 @@ class DetailAktivitasMakananActivity : AppCompatActivity() {
         binding.btnJawabanB.setOnClickListener { cekJawaban("B", binding.btnJawabanB) }
         binding.btnJawabanC.setOnClickListener { cekJawaban("C", binding.btnJawabanC) }
 
-        // Tombol ini sekarang HANYA muncul di akhir kuis untuk menyelesaikan
+        // Tombol ini HANYA muncul di akhir kuis untuk menyelesaikan
         binding.btnActionSelesaiMakanan.setOnClickListener {
             if (currentState == TantanganState.SELESAI) {
                 // PERCABANGAN FSM: Cek Skor Akhir!
@@ -200,35 +200,22 @@ class DetailAktivitasMakananActivity : AppCompatActivity() {
         } else {
             btnPilihan.setStrokeColor(Color.parseColor("#F44336"))
             btnPilihan.setCardBackgroundColor(Color.parseColor("#FFEBEE"))
-
-            // Opsional: Jika user salah, Anda bisa mewarnai kunci jawaban yang benar dengan warna hijau
-            // agar mereka bisa belajar dari kesalahannya (Buka blok komentar di bawah jika ingin dipakai)
-            /*
-            when (kunciJawaban) {
-                "A" -> { binding.btnJawabanA.setStrokeColor(Color.parseColor("#4CAF50")); binding.btnJawabanA.setCardBackgroundColor(Color.parseColor("#E8F5E9")) }
-                "B" -> { binding.btnJawabanB.setStrokeColor(Color.parseColor("#4CAF50")); binding.btnJawabanB.setCardBackgroundColor(Color.parseColor("#E8F5E9")) }
-                "C" -> { binding.btnJawabanC.setStrokeColor(Color.parseColor("#4CAF50")); binding.btnJawabanC.setCardBackgroundColor(Color.parseColor("#E8F5E9")) }
-            }
-            */
         }
 
         // ==========================================
         // AUTO NEXT MENGGUNAKAN HANDLER (Jeda 1 Detik)
         // ==========================================
         Handler(Looper.getMainLooper()).postDelayed({
-            // Pastikan Activity belum ditutup (user belum menekan Back saat jeda)
-            // dan kuis masih dalam state Berjalan
+            // Pastikan Activity belum ditutup dan kuis masih dalam state Berjalan
             if (!isDestroyed && currentState == TantanganState.SEDANG_BERJALAN) {
-
                 if (soalSekarangIndex == daftarPertanyaan.size - 1) {
                     ubahState(TantanganState.SELESAI) // Soal habis
                 } else {
                     soalSekarangIndex++
-                    tampilkanSoal(soalSekarangIndex) // Pindah otomatis ke soal selanjutnya
+                    tampilkanSoal(soalSekarangIndex) // Pindah otomatis
                 }
-
             }
-        }, 1000) // Angka 1000 berarti 1000 milidetik (1 detik)
+        }, 1000)
     }
 
     // ========================================================
@@ -289,7 +276,7 @@ class DetailAktivitasMakananActivity : AppCompatActivity() {
         val finalPoin = (rewardPoinMax * persentaseBenar).toInt()
         val finalExp = (rewardExpMax * persentaseBenar).toInt()
 
-        // Simpan progress (Misi dianggap tuntas)
+        // Simpan progress (Misi dianggap tuntas) ke MakananPreferences
         if (idMisi != 0) {
             val userPref = UserPreference(this)
             val userKey = userPref.getName() ?: "guest_user"

@@ -10,13 +10,25 @@ import android.view.View
 import android.view.animation.OvershootInterpolator
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import com.example.sehatin.Data.Model.UserPreference
 import com.example.sehatin.databinding.ActivityCongratulationsMakananBinding
+
+// Import Mesin Utama Tantangan
 import com.example.sehatin.ui.Tantangan.TantanganPreferences
 import com.example.sehatin.ui.Tantangan.TantanganRepository
 import com.example.sehatin.ui.Tantangan.TantanganViewModel
 import com.example.sehatin.ui.Tantangan.TantanganViewModelFactory
 import com.example.sehatin.ui.Tantangan.dataStoreTantangan
+
+// Import Mesin Pencapaian (Sensor Papan Skor)
+import com.example.sehatin.ui.Pencapaian.PencapaianPreferences
+import com.example.sehatin.ui.Pencapaian.PencapaianRepository
+import com.example.sehatin.ui.Pencapaian.PencapaianViewModel
+import com.example.sehatin.ui.Pencapaian.PencapaianViewModelFactory
+import com.example.sehatin.ui.Pencapaian.dataStorePencapaian
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.launch
 
 class CongratulationsMakananActivity : AppCompatActivity() {
 
@@ -32,6 +44,7 @@ class CongratulationsMakananActivity : AppCompatActivity() {
         binding = ActivityCongratulationsMakananBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        // Tangkap Poin & EXP dari halaman Kuis sebelumnya
         val expDiterima = intent.getIntExtra("HASIL_EXP", 0)
         val poinDiterima = intent.getIntExtra("HASIL_POIN", 0)
 
@@ -46,15 +59,33 @@ class CongratulationsMakananActivity : AppCompatActivity() {
         viewModel.tambahExp(userKey, expDiterima)
         viewModel.tambahPoin(userKey, poinDiterima)
 
-        // PERBAIKAN DI SINI: Langsung ambil animasi dari 'src' XML, jangan pakai setBackgroundResource lagi
+        // ========================================================
+        // 2. SENSOR PENCAPAIAN: Kuis Makanan (+1), Akumulasi Poin & EXP
+        // (Ini adalah bagian yang tersambung ke Fragment Pencapaian)
+        // ========================================================
+        val prefPencapaian = PencapaianPreferences.getInstance(applicationContext.dataStorePencapaian)
+        val factoryPencapaian = PencapaianViewModelFactory(PencapaianRepository(prefPencapaian))
+        val viewModelPencapaian = ViewModelProvider(this, factoryPencapaian)[PencapaianViewModel::class.java]
+
+        lifecycleScope.launch {
+            // Ambil data progres saat ini dari brankas Pencapaian
+            val stateSekarang = prefPencapaian.getPencapaianProgress().first()
+
+            // Tambah Lencana "Si Paling Paham Nutrisi" (+1)
+            viewModelPencapaian.updateProgress(prefPencapaian.MAKANAN_KEY, stateSekarang.makanan + 1)
+
+            // Tambah Lencana "Sultan Poin" & "Level Up" sesuai hadiah yang didapat
+            viewModelPencapaian.updateProgress(prefPencapaian.POIN_KEY, stateSekarang.poin + poinDiterima)
+            viewModelPencapaian.updateProgress(prefPencapaian.EXP_KEY, stateSekarang.exp + expDiterima)
+        }
+        // ========================================================
+
+        // Siapkan Animasi Peti
         chestAnimation = binding.ivChestRewardMakanan.drawable as AnimationDrawable
-
-        // 2. MULAI ANIMASI AWAL (Peti Berdetak pelan untuk mengundang klik)
         mulaiAnimasiDetakPeti()
-
         binding.btnKlaimKembaliMakanan.isEnabled = false
 
-        // 3. LOGIKA SAAT PETI DITEKAN
+        // LOGIKA SAAT PETI DITEKAN
         binding.ivChestRewardMakanan.setOnClickListener {
             if (!isChestOpened) {
                 isChestOpened = true
@@ -68,15 +99,14 @@ class CongratulationsMakananActivity : AppCompatActivity() {
                 // Mulai memutar sequence gambar peti terbuka
                 chestAnimation.start()
 
-                // Tunggu sampai animasi gambar selesai (misal: 6 frame x 120ms = 720ms)
-                // Kita beri jeda 800ms sebelum memunculkan kartu
+                // Tunggu sampai animasi gambar selesai, lalu munculkan kartu hadiah
                 Handler(Looper.getMainLooper()).postDelayed({
                     tampilkanHadiahBouncy(poinDiterima, expDiterima)
                 }, 800)
             }
         }
 
-        // 4. TOMBOL KEMBALI KE DASHBOARD
+        // TOMBOL KEMBALI KE DASHBOARD
         binding.btnKlaimKembaliMakanan.setOnClickListener {
             binding.loadingOverlayMakanan.visibility = View.VISIBLE
 
@@ -150,6 +180,6 @@ class CongratulationsMakananActivity : AppCompatActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
-        pulseAnimator?.cancel()
+        pulseAnimator?.cancel() // Amankan dari memory leak
     }
 }

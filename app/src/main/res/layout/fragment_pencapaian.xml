@@ -43,7 +43,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/lexenddeca"
                     android:text="@string/Lencana_Sehatin"
-                    android:textColor="@color/warnaUtama"
+                    android:textColor="#4CAF50"
                     android:textSize="24sp"
                     android:textStyle="bold" />
 
@@ -52,23 +52,21 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
                     android:fontFamily="@font/lexenddeca"
-                    android:text="@string/Pencapaian_subText"
-                    android:textColor="@color/abuabu2"
+                    android:text="Kumpulkan semua lencana kebanggaanmu!"
+                    android:textColor="#757575"
                     android:textSize="14sp" />
             </LinearLayout>
         </LinearLayout>
 
         <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card_achiev_welcome"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
-            android:clickable="true"
-            android:focusable="true"
-            android:foreground="?attr/selectableItemBackground"
-            app:cardBackgroundColor="@color/warnaUtama"
+            android:layout_marginBottom="16dp"
+            app:cardBackgroundColor="#9C27B0"
             app:cardCornerRadius="16dp"
             app:cardElevation="0dp"
-            app:strokeColor="@color/black"
+            app:strokeColor="#000000"
             app:strokeWidth="3dp">
 
             <LinearLayout
@@ -81,17 +79,15 @@
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="60dp"
                     android:layout_height="60dp"
-                    app:cardBackgroundColor="@color/putih"
+                    app:cardBackgroundColor="#FFFFFF"
                     app:cardCornerRadius="30dp"
-                    app:cardElevation="0dp"
-                    app:strokeColor="@color/black"
+                    app:strokeColor="#000000"
                     app:strokeWidth="2dp">
 
                     <ImageView
                         android:layout_width="36dp"
                         android:layout_height="36dp"
                         android:layout_gravity="center"
-                        android:contentDescription="@string/icon_lencana_sehatin"
                         android:src="@drawable/logo_sehatin" />
                 </com.google.android.material.card.MaterialCardView>
 
@@ -106,8 +102,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/lexenddeca"
-                        android:text="@string/Pencapaian_Pejuang_Push_Up"
-                        android:textColor="@color/putih"
+                        android:text="Langkah Pertama"
+                        android:textColor="#FFFFFF"
                         android:textSize="16sp"
                         android:textStyle="bold" />
 
@@ -116,8 +112,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="2dp"
                         android:fontFamily="@font/lexenddeca"
-                        android:text="@string/deskripsi_lencana_pushup"
-                        android:textColor="@color/putih2"
+                        android:text="Resmi menjadi bagian dari keluarga Sehatin"
+                        android:textColor="#E0E0E0"
                         android:textSize="12sp" />
 
                     <LinearLayout
@@ -128,116 +124,24 @@
                         android:orientation="horizontal">
 
                         <com.google.android.material.progressindicator.LinearProgressIndicator
+                            android:id="@+id/progress_welcome"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:max="1"
                             android:progress="0"
-                            app:indicatorColor="@color/kuning"
-                            app:trackColor="@color/shadow"
+                            app:indicatorColor="#FFD700"
+                            app:trackColor="#80000000"
                             app:trackCornerRadius="4dp"
                             app:trackThickness="8dp" />
 
                         <TextView
+                            android:id="@+id/tv_progress_welcome"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="8dp"
                             android:fontFamily="@font/lexenddeca"
-                            android:text="@string/Pencapaian_Penyelesaian_PejuangPushUp"
-                            android:textColor="@color/kuning"
-                            android:textSize="12sp"
-                            android:textStyle="bold" />
-                    </LinearLayout>
-                </LinearLayout>
-            </LinearLayout>
-        </com.google.android.material.card.MaterialCardView>
-
-        <com.google.android.material.card.MaterialCardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
-            android:clickable="true"
-            android:focusable="true"
-            android:foreground="?attr/selectableItemBackground"
-            app:cardBackgroundColor="@color/warnaUtama"
-            app:cardCornerRadius="16dp"
-            app:cardElevation="0dp"
-            app:strokeColor="@color/black"
-            app:strokeWidth="3dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:padding="16dp">
-
-                <com.google.android.material.card.MaterialCardView
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    app:cardBackgroundColor="@color/putih2"
-                    app:cardCornerRadius="30dp"
-                    app:cardElevation="0dp"
-                    app:strokeColor="@color/black"
-                    app:strokeWidth="2dp">
-
-                    <ImageView
-                        android:layout_width="36dp"
-                        android:layout_height="36dp"
-                        android:layout_gravity="center"
-                        android:contentDescription="@string/logo_sehatin"
-                        android:src="@drawable/logo_sehatin" />
-                </com.google.android.material.card.MaterialCardView>
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/lexenddeca"
-                        android:text="@string/Pencapaian_RajaKardio"
-                        android:textColor="@color/putih"
-                        android:textSize="16sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="2dp"
-                        android:fontFamily="@font/lexenddeca"
-                        android:text="@string/deskripsi_pencapaian_raja_kardio"
-                        android:textColor="@color/putih2"
-                        android:textSize="12sp" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:gravity="center_vertical"
-                        android:orientation="horizontal">
-
-                        <com.google.android.material.progressindicator.LinearProgressIndicator
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:max="5"
-                            android:progress="3"
-                            app:indicatorColor="@color/kuning"
-                            app:trackColor="@color/shadow"
-                            app:trackCornerRadius="4dp"
-                            app:trackThickness="8dp" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="8dp"
-                            android:fontFamily="@font/lexenddeca"
-                            android:text="@string/Pencapaian_Penyelesaian_rajakardio"
+                            android:text="0/1"
                             android:textColor="#FFD700"
                             android:textSize="12sp"
                             android:textStyle="bold" />
@@ -247,15 +151,12 @@
         </com.google.android.material.card.MaterialCardView>
 
         <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card_achiev_bmi"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
-            android:clickable="true"
-            android:focusable="true"
-            android:foreground="?attr/selectableItemBackground"
-            app:cardBackgroundColor="#33A1E0"
+            android:layout_marginBottom="16dp"
+            app:cardBackgroundColor="#2196F3"
             app:cardCornerRadius="16dp"
-            app:cardElevation="0dp"
             app:strokeColor="#000000"
             app:strokeWidth="3dp">
 
@@ -271,7 +172,6 @@
                     android:layout_height="60dp"
                     app:cardBackgroundColor="#FFFFFF"
                     app:cardCornerRadius="30dp"
-                    app:cardElevation="0dp"
                     app:strokeColor="#000000"
                     app:strokeWidth="2dp">
 
@@ -279,7 +179,6 @@
                         android:layout_width="36dp"
                         android:layout_height="36dp"
                         android:layout_gravity="center"
-                        android:contentDescription="@string/logo_sehatin"
                         android:src="@drawable/logo_sehatin" />
                 </com.google.android.material.card.MaterialCardView>
 
@@ -294,8 +193,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/lexenddeca"
-                        android:text="@string/Pencapaian_Disiplin_Makan"
-                        android:textColor="@color/putih"
+                        android:text="Kesadaran Diri"
+                        android:textColor="#FFFFFF"
                         android:textSize="16sp"
                         android:textStyle="bold" />
 
@@ -304,8 +203,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="2dp"
                         android:fontFamily="@font/lexenddeca"
-                        android:text="@string/deskripsi_pencapaian_Disiplin_Makan"
-                        android:textColor="@color/putih4"
+                        android:text="Cek Kalkulator BMI Anda untuk pertama kali"
+                        android:textColor="#E0E0E0"
                         android:textSize="12sp" />
 
                     <LinearLayout
@@ -316,22 +215,24 @@
                         android:orientation="horizontal">
 
                         <com.google.android.material.progressindicator.LinearProgressIndicator
+                            android:id="@+id/progress_bmi"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:max="7"
+                            android:max="1"
                             android:progress="0"
-                            app:indicatorColor="@color/kuning"
-                            app:trackColor="@color/shadow_abuabu"
+                            app:indicatorColor="#FFD700"
+                            app:trackColor="#80000000"
                             app:trackCornerRadius="4dp"
                             app:trackThickness="8dp" />
 
                         <TextView
+                            android:id="@+id/tv_progress_bmi"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="8dp"
                             android:fontFamily="@font/lexenddeca"
-                            android:text="@string/Pencapaian_Penyelesaian_rajakardio"
+                            android:text="0/1"
                             android:textColor="#FFD700"
                             android:textSize="12sp"
                             android:textStyle="bold" />
@@ -341,15 +242,12 @@
         </com.google.android.material.card.MaterialCardView>
 
         <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card_achiev_makanan"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
-            android:clickable="true"
-            android:focusable="true"
-            android:foreground="?attr/selectableItemBackground"
-            app:cardBackgroundColor="#33A1E0"
+            android:layout_marginBottom="16dp"
+            app:cardBackgroundColor="#FF9800"
             app:cardCornerRadius="16dp"
-            app:cardElevation="0dp"
             app:strokeColor="#000000"
             app:strokeWidth="3dp">
 
@@ -365,7 +263,6 @@
                     android:layout_height="60dp"
                     app:cardBackgroundColor="#FFFFFF"
                     app:cardCornerRadius="30dp"
-                    app:cardElevation="0dp"
                     app:strokeColor="#000000"
                     app:strokeWidth="2dp">
 
@@ -373,7 +270,6 @@
                         android:layout_width="36dp"
                         android:layout_height="36dp"
                         android:layout_gravity="center"
-                        android:contentDescription="@string/logo_sehatin"
                         android:src="@drawable/logo_sehatin" />
                 </com.google.android.material.card.MaterialCardView>
 
@@ -388,8 +284,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/lexenddeca"
-                        android:text="@string/Pencapaian_Master_Plank"
-                        android:textColor="@color/putih"
+                        android:text="Si Paling Paham Nutrisi"
+                        android:textColor="#FFFFFF"
                         android:textSize="16sp"
                         android:textStyle="bold" />
 
@@ -398,8 +294,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="2dp"
                         android:fontFamily="@font/lexenddeca"
-                        android:text="@string/deskripsi_pencapaian_plank"
-                        android:textColor="@color/putih4"
+                        android:text="Selesaikan 10 Misi Kuis Edukasi Makanan"
+                        android:textColor="#E0E0E0"
                         android:textSize="12sp" />
 
                     <LinearLayout
@@ -410,23 +306,25 @@
                         android:orientation="horizontal">
 
                         <com.google.android.material.progressindicator.LinearProgressIndicator
+                            android:id="@+id/progress_makanan"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:max="5"
-                            android:progress="2"
-                            app:indicatorColor="@color/kuning"
-                            app:trackColor="@color/shadow_abuabu"
+                            android:max="10"
+                            android:progress="0"
+                            app:indicatorColor="#FFD700"
+                            app:trackColor="#80000000"
                             app:trackCornerRadius="4dp"
                             app:trackThickness="8dp" />
 
                         <TextView
+                            android:id="@+id/tv_progress_makanan"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="8dp"
                             android:fontFamily="@font/lexenddeca"
-                            android:text="@string/Pencapaian_Penyelesaian_plank"
-                            android:textColor="@color/kuning"
+                            android:text="0/10"
+                            android:textColor="#FFD700"
                             android:textSize="12sp"
                             android:textStyle="bold" />
                     </LinearLayout>
@@ -435,16 +333,13 @@
         </com.google.android.material.card.MaterialCardView>
 
         <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card_achiev_pushup"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
-            android:clickable="true"
-            android:focusable="true"
-            android:foreground="?attr/selectableItemBackground"
-            app:cardBackgroundColor="@color/warnaUtama"
+            android:layout_marginBottom="16dp"
+            app:cardBackgroundColor="#4CAF50"
             app:cardCornerRadius="16dp"
-            app:cardElevation="0dp"
-            app:strokeColor="@color/black"
+            app:strokeColor="#000000"
             app:strokeWidth="3dp">
 
             <LinearLayout
@@ -457,17 +352,15 @@
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="60dp"
                     android:layout_height="60dp"
-                    app:cardBackgroundColor="@color/kuning"
+                    app:cardBackgroundColor="#FFFFFF"
                     app:cardCornerRadius="30dp"
-                    app:cardElevation="0dp"
-                    app:strokeColor="@color/black"
+                    app:strokeColor="#000000"
                     app:strokeWidth="2dp">
 
                     <ImageView
                         android:layout_width="36dp"
                         android:layout_height="36dp"
                         android:layout_gravity="center"
-                        android:contentDescription="@string/logo_sehatin"
                         android:src="@drawable/logo_sehatin" />
                 </com.google.android.material.card.MaterialCardView>
 
@@ -482,8 +375,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/lexenddeca"
-                        android:text="@string/Pencapaian_Target_Hidrasi"
-                        android:textColor="@color/putih"
+                        android:text="Pejuang Push Up"
+                        android:textColor="#FFFFFF"
                         android:textSize="16sp"
                         android:textStyle="bold" />
 
@@ -492,8 +385,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="2dp"
                         android:fontFamily="@font/lexenddeca"
-                        android:text="@string/deskripsi_pencapaian_plank"
-                        android:textColor="@color/putih4"
+                        android:text="Selesaikan Tantangan Push Up perdanamu"
+                        android:textColor="#E0E0E0"
                         android:textSize="12sp" />
 
                     <LinearLayout
@@ -504,23 +397,389 @@
                         android:orientation="horizontal">
 
                         <com.google.android.material.progressindicator.LinearProgressIndicator
+                            android:id="@+id/progress_pushup"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:max="8"
-                            android:progress="8"
-                            app:indicatorColor="@color/kuning"
-                            app:trackColor="@color/shadow_abuabu"
+                            android:max="1"
+                            android:progress="0"
+                            app:indicatorColor="#FFD700"
+                            app:trackColor="#80000000"
                             app:trackCornerRadius="4dp"
                             app:trackThickness="8dp" />
 
                         <TextView
+                            android:id="@+id/tv_progress_pushup"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="8dp"
                             android:fontFamily="@font/lexenddeca"
-                            android:text="@string/Pencapaian_Selesai"
-                            android:textColor="@color/kuning"
+                            android:text="0/1"
+                            android:textColor="#FFD700"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card_achiev_plank"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            app:cardBackgroundColor="#00BCD4"
+            app:cardCornerRadius="16dp"
+            app:strokeColor="#000000"
+            app:strokeWidth="3dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="16dp">
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    app:cardBackgroundColor="#FFFFFF"
+                    app:cardCornerRadius="30dp"
+                    app:strokeColor="#000000"
+                    app:strokeWidth="2dp">
+
+                    <ImageView
+                        android:layout_width="36dp"
+                        android:layout_height="36dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/logo_sehatin" />
+                </com.google.android.material.card.MaterialCardView>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/lexenddeca"
+                        android:text="Master Plank"
+                        android:textColor="#FFFFFF"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:fontFamily="@font/lexenddeca"
+                        android:text="Bertahan dalam tantangan Plank 5 kali"
+                        android:textColor="#E0E0E0"
+                        android:textSize="12sp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <com.google.android.material.progressindicator.LinearProgressIndicator
+                            android:id="@+id/progress_plank"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:max="5"
+                            android:progress="0"
+                            app:indicatorColor="#FFD700"
+                            app:trackColor="#80000000"
+                            app:trackCornerRadius="4dp"
+                            app:trackThickness="8dp" />
+
+                        <TextView
+                            android:id="@+id/tv_progress_plank"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:fontFamily="@font/lexenddeca"
+                            android:text="0/5"
+                            android:textColor="#FFD700"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card_achiev_pengingat"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            app:cardBackgroundColor="#E91E63"
+            app:cardCornerRadius="16dp"
+            app:strokeColor="#000000"
+            app:strokeWidth="3dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="16dp">
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    app:cardBackgroundColor="#FFFFFF"
+                    app:cardCornerRadius="30dp"
+                    app:strokeColor="#000000"
+                    app:strokeWidth="2dp">
+
+                    <ImageView
+                        android:layout_width="36dp"
+                        android:layout_height="36dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/logo_sehatin" />
+                </com.google.android.material.card.MaterialCardView>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/lexenddeca"
+                        android:text="Disiplin Waktu"
+                        android:textColor="#FFFFFF"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:fontFamily="@font/lexenddeca"
+                        android:text="Aktifkan minimal 3 Alarm Pengingat"
+                        android:textColor="#E0E0E0"
+                        android:textSize="12sp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <com.google.android.material.progressindicator.LinearProgressIndicator
+                            android:id="@+id/progress_pengingat"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:max="3"
+                            android:progress="0"
+                            app:indicatorColor="#FFD700"
+                            app:trackColor="#80000000"
+                            app:trackCornerRadius="4dp"
+                            app:trackThickness="8dp" />
+
+                        <TextView
+                            android:id="@+id/tv_progress_pengingat"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:fontFamily="@font/lexenddeca"
+                            android:text="0/3"
+                            android:textColor="#FFD700"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card_achiev_poin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            app:cardBackgroundColor="#FFC107"
+            app:cardCornerRadius="16dp"
+            app:strokeColor="#000000"
+            app:strokeWidth="3dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="16dp">
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    app:cardBackgroundColor="#FFFFFF"
+                    app:cardCornerRadius="30dp"
+                    app:strokeColor="#000000"
+                    app:strokeWidth="2dp">
+
+                    <ImageView
+                        android:layout_width="36dp"
+                        android:layout_height="36dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/logo_sehatin" />
+                </com.google.android.material.card.MaterialCardView>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/lexenddeca"
+                        android:text="Sultan Poin"
+                        android:textColor="#000000"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:fontFamily="@font/lexenddeca"
+                        android:text="Kumpulkan 1000 Poin Sehatin pertamamu"
+                        android:textColor="#424242"
+                        android:textSize="12sp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <com.google.android.material.progressindicator.LinearProgressIndicator
+                            android:id="@+id/progress_poin"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:max="1000"
+                            android:progress="0"
+                            app:indicatorColor="#FFFFFF"
+                            app:trackColor="#80000000"
+                            app:trackCornerRadius="4dp"
+                            app:trackThickness="8dp" />
+
+                        <TextView
+                            android:id="@+id/tv_progress_poin"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:fontFamily="@font/lexenddeca"
+                            android:text="0/1000"
+                            android:textColor="#000000"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card_achiev_exp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            app:cardBackgroundColor="#673AB7"
+            app:cardCornerRadius="16dp"
+            app:strokeColor="#000000"
+            app:strokeWidth="3dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="16dp">
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    app:cardBackgroundColor="#FFFFFF"
+                    app:cardCornerRadius="30dp"
+                    app:strokeColor="#000000"
+                    app:strokeWidth="2dp">
+
+                    <ImageView
+                        android:layout_width="36dp"
+                        android:layout_height="36dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/logo_sehatin" />
+                </com.google.android.material.card.MaterialCardView>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/lexenddeca"
+                        android:text="Level Up!"
+                        android:textColor="#FFFFFF"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:fontFamily="@font/lexenddeca"
+                        android:text="Kumpulkan 500 EXP dari berbagai misi"
+                        android:textColor="#E0E0E0"
+                        android:textSize="12sp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <com.google.android.material.progressindicator.LinearProgressIndicator
+                            android:id="@+id/progress_exp"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:max="500"
+                            android:progress="0"
+                            app:indicatorColor="#FFD700"
+                            app:trackColor="#80000000"
+                            app:trackCornerRadius="4dp"
+                            app:trackThickness="8dp" />
+
+                        <TextView
+                            android:id="@+id/tv_progress_exp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:fontFamily="@font/lexenddeca"
+                            android:text="0/500"
+                            android:textColor="#FFD700"
                             android:textSize="12sp"
                             android:textStyle="bold" />
                     </LinearLayout>
@@ -529,5 +788,4 @@
         </com.google.android.material.card.MaterialCardView>
 
     </LinearLayout>
-
 </ScrollView>

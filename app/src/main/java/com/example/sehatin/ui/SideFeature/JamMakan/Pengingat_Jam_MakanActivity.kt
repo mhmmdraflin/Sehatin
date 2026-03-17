@@ -24,9 +24,15 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.sehatin.R
 import com.example.sehatin.databinding.ActivityPengingatJamMakanBinding
+import com.example.sehatin.ui.Pencapaian.PencapaianPreferences
+import com.example.sehatin.ui.Pencapaian.PencapaianRepository
+import com.example.sehatin.ui.Pencapaian.PencapaianViewModel
+import com.example.sehatin.ui.Pencapaian.PencapaianViewModelFactory
+import com.example.sehatin.ui.Pencapaian.dataStorePencapaian
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.slider.Slider
 import java.util.Calendar
@@ -96,7 +102,19 @@ class Pengingat_Jam_MakanActivity : AppCompatActivity() {
 
     // Fungsi canggih MVVM: Memantau data jika ada yang ditambah/dihapus/diubah
     private fun observeViewModel() {
+
+        // ========================================================
+        // SENSOR PENCAPAIAN: Lencana Alarm / Disiplin Waktu
+        // ========================================================
+        val prefPencapaian = PencapaianPreferences.getInstance(applicationContext.dataStorePencapaian)
+        val factoryPencapaian = PencapaianViewModelFactory(PencapaianRepository(prefPencapaian))
+        val viewModelPencapaian = ViewModelProvider(this, factoryPencapaian)[PencapaianViewModel::class.java]
+
         viewModel.alarms.observe(this) { daftarAlarm ->
+
+            // Mengirimkan total alarm yang aktif ke Papan Pencapaian
+            viewModelPencapaian.updateProgress(prefPencapaian.PENGINGAT_KEY, daftarAlarm.size)
+
             // Update data di Adapter secara otomatis
             adapter = JamMakanAdapter(
                 listAlarm = daftarAlarm.toMutableList(),

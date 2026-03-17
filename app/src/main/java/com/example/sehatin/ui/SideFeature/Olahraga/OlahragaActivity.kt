@@ -28,9 +28,13 @@ class OlahragaActivity : AppCompatActivity() {
             insets
         }
 
-        findViewById<MaterialCardView>(R.id.btn_back).setOnClickListener { finish() }
+        findViewById<MaterialCardView>(R.id.btn_back).setOnClickListener {
+            finish()
+        }
 
-        // INISIALISASI MVVM
+        // ==========================================
+        // INISIALISASI MVVM OLAHRAGA
+        // ==========================================
         val pref = OlahragaPreferences.getInstance(applicationContext.dataStore)
         val factory = OlahragaViewModelFactory(OlahragaRepository(pref))
         viewModel = ViewModelProvider(this, factory)[OlahragaViewModel::class.java]
@@ -53,6 +57,8 @@ class OlahragaActivity : AppCompatActivity() {
         )
 
         adapter = OlahragaAdapter(daftarGerakan) { gerakanTerpilih ->
+
+            // Pindah ke layar Timer (SesiOlahragaActivity) dengan membawa bekal data
             val intent = Intent(this, SesiOlahragaActivity::class.java).apply {
                 putExtra("EXTRA_ID_GERAKAN", gerakanTerpilih.idGerakan)
                 putExtra("EXTRA_NAMA_GERAKAN", gerakanTerpilih.namaGerakan)
@@ -71,6 +77,7 @@ class OlahragaActivity : AppCompatActivity() {
         rvOlahraga.adapter = adapter
 
         // OBSERVE DATA DARI VIEWMODEL UNTUK STATUS SELESAI
+        // Jika olahraga sudah pernah diselesaikan, beri tanda centang di RecyclerView
         viewModel.getCompletedGerakanIds().observe(this) { completedIds ->
             adapter.setCompletedGerakan(completedIds)
         }
