@@ -135,7 +135,7 @@ class UserPreference(context: Context) {
     fun setExp(exp: Int) { pref.edit { putInt(KEY_USER_EXP + getActiveEmailKey(), exp) } }
 
     // ==========================================
-    // 5. DEBUGGING (LOGCAT)
+    // 5. DEBUGGING & LOGOUT
     // ==========================================
     fun getAllDataDebug(): String {
         val isLogin = isLogin()
@@ -150,5 +150,61 @@ class UserPreference(context: Context) {
             [Data Fisik] : Gender=${userBody.gender}, Umur=${userBody.umur}, TB=${userBody.tinggi}, BB=${userBody.berat}
             ================================
         """.trimIndent()
+    }
+
+    // PERBAIKAN: Fungsi clear() yang aman untuk Multi-Akun
+    fun clear() {
+        pref.edit {
+            // Kita hanya menghapus sesi user yang sedang aktif (Logout).
+            // Data pendaftaran (Nama, Password, EXP, Profil) TETAP AMAN di database.
+            remove(KEY_EMAIL)
+            remove(KEY_NAME)
+            putBoolean(KEY_IS_LOGIN, false)
+        }
+    }
+
+    // ==========================================
+    // 6. FITUR EDIT PROFIL
+    // ==========================================
+    fun updateProfile(newName: String, newEmail: String) {
+        val oldEmail = getEmail() ?: return // Ambil email yang lama sebelum ditimpa
+
+        pref.edit {
+            // 1. Update identitas sesi layar yang sedang aktif
+            putString(KEY_NAME, newName)
+            putString(KEY_EMAIL, newEmail)
+
+            // 2. JIKA EMAIL BERUBAH: Pindahkan Password & Data Fisik, lalu HAPUS yang lama
+            if (oldEmail != newEmail) {
+                // A. Pindahkan Password agar bisa Login kembali
+                val oldPassword = pref.getString("PASS_$oldEmail", null)
+                if (oldPassword != null) {
+                    putString("PASS_$newEmail", oldPassword)
+                    remove("PASS_$oldEmail") // HAPUS LOGIN EMAIL LAMA
+                }
+
+                // B. Simpan Nama Baru & Hapus Nama Lama
+                putString("NAMA_$newEmail", newName)
+                remove("NAMA_$oldEmail")
+
+                // C. Pindahkan Data Fisik (Kalkulator BMI) agar karakter tidak ter-reset
+                putString(KEY_GENDER + newEmail, pref.getString(KEY_GENDER + oldEmail, "L"))
+                putString(KEY_UMUR + newEmail, pref.getString(KEY_UMUR + oldEmail, "0"))
+                putString(KEY_TINGGI + newEmail, pref.getString(KEY_TINGGI + oldEmail, "0"))
+                putString(KEY_BERAT + newEmail, pref.getString(KEY_BERAT + oldEmail, "0"))
+                putString(KEY_KONDISI_TUBUH + newEmail, pref.getString(KEY_KONDISI_TUBUH + oldEmail, "Belum Dihitung"))
+
+                // Hapus rekam jejak data fisik email lama
+                remove(KEY_GENDER + oldEmail)
+                remove(KEY_UMUR + oldEmail)
+                remove(KEY_TINGGI + oldEmail)
+                remove(KEY_BERAT + oldEmail)
+                remove(KEY_KONDISI_TUBUH + oldEmail)
+
+            } else {
+                // Jika user HANYA ganti nama (email tidak berubah)
+                putString("NAMA_$newEmail", newName)
+            }
+        }
     }
 }

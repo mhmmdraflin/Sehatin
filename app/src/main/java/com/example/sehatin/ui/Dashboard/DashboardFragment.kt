@@ -28,6 +28,13 @@ import com.example.sehatin.ui.SideFeature.JamMakan.NotifikasiRiwayat
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 
+// Import untuk membaca Inventaris
+import com.example.sehatin.ui.Profil.ProfilPreferences
+import com.example.sehatin.ui.Profil.ProfilRepository
+import com.example.sehatin.ui.Profil.ProfilViewModel
+import com.example.sehatin.ui.Profil.ProfilViewModelFactory
+import com.example.sehatin.ui.Profil.dataStoreProfil
+
 import com.example.sehatin.ui.Tantangan.TantanganPreferences
 import com.example.sehatin.ui.Tantangan.TantanganRepository
 import com.example.sehatin.ui.Tantangan.TantanganViewModel
@@ -56,12 +63,11 @@ class DashboardFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        tampilkanDataProfil()
         setupTombolKategori()
         binding.dashboardEditprof.setOnClickListener { bukaRiwayatNotifikasi() }
 
         // ==========================================
-        // TENTUKAN IDENTITAS USER AKTIF (Menggunakan getName)
+        // TENTUKAN IDENTITAS USER AKTIF
         // ==========================================
         val userPref = UserPreference(requireContext())
         val userKey = userPref.getName() ?: "guest_user"
@@ -85,6 +91,31 @@ class DashboardFragment : Fragment() {
         tantanganViewModel.getTotalPoin(userKey).observe(viewLifecycleOwner) { totalPoin ->
             binding.dashboardPoint.text = "$totalPoin Poin"
         }
+
+        // ==========================================
+        // INTEGRASI INVENTARIS SKIN & LATAR (Diperbaiki)
+        // ==========================================
+        val prefProfil = ProfilPreferences.getInstance(requireContext().dataStoreProfil)
+        val factoryProfil = ProfilViewModelFactory(ProfilRepository(prefProfil))
+        val viewModelProfil = ViewModelProvider(this, factoryProfil)[ProfilViewModel::class.java]
+
+        viewModelProfil.getProfilData().observe(viewLifecycleOwner) { data ->
+
+            // 1. Tampilkan Wujud & Latar Asli dulu (Berdasarkan Gender & BMI)
+            tampilkanDataProfil()
+
+            // 2. TIMPA (OVERRIDE) Latar Belakang jika user pakai latar dari Inventaris
+            if (data.backgroundId == 2) {
+                binding.bgIconCharacter.setImageResource(R.drawable.bg_tantangan)
+            } else if (data.backgroundId == 3) {
+                binding.bgIconCharacter.setImageResource(R.drawable.bg_olahraga)
+            }
+
+            // 3. TIMPA (OVERRIDE) Wujud Karakter jika user pakai skin dari Inventaris
+            if (data.characterId == 2) {
+                binding.characterIllustration.setImageResource(R.drawable.ic_pushup)
+            }
+        }
     }
 
     override fun onResume() {
@@ -102,6 +133,7 @@ class DashboardFragment : Fragment() {
             binding.badgeNotifikasi.visibility = View.GONE
         }
     }
+
 
     private fun bukaRiwayatNotifikasi() {
         val dialogView = layoutInflater.inflate(R.layout.dialog_pusat_notifikasi, null)
