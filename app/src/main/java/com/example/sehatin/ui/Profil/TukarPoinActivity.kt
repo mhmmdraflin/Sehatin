@@ -2,6 +2,7 @@ package com.example.sehatin.ui.Profil
 
 import android.graphics.Color
 import android.os.Bundle
+import android.widget.ImageView // TAMBAHAN IMPORT
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
@@ -9,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.example.sehatin.Data.Model.UserPreference
 import com.example.sehatin.R
+import com.example.sehatin.Utils.CharacterImageUtils // IMPORT OTAK TERPADU
 import com.example.sehatin.ui.Tantangan.TantanganPreferences
 import com.example.sehatin.ui.Tantangan.TantanganRepository
 import com.example.sehatin.ui.Tantangan.TantanganViewModel
@@ -31,14 +33,29 @@ class TukarPoinActivity : AppCompatActivity() {
 
         val tvUserPoin = findViewById<TextView>(R.id.tv_user_poin)
         val btnBack = findViewById<MaterialCardView>(R.id.btn_back)
-        val btnBeliLatarGym = findViewById<MaterialButton>(R.id.btn_beli_1)
-        val btnBeliLatarTaman = findViewById<MaterialButton>(R.id.btn_beli_2)
+
+        // Penamaan variabel diubah menjadi Elite dan Special
+        val btnBeliLatarElite = findViewById<MaterialButton>(R.id.btn_beli_1)
+        val btnBeliLatarSpecial = findViewById<MaterialButton>(R.id.btn_beli_2)
 
         btnBack.setOnClickListener { finish() }
 
-        // 1. AMBIL IDENTITAS USER
+        // 1. AMBIL IDENTITAS & GENDER USER
         val userPref = UserPreference(this)
         userKey = userPref.getName() ?: "guest_user"
+        val userGender = userPref.getUserBody().gender
+
+        // ==========================================
+        // SET GAMBAR ETALASE TOKO SESUAI GENDER (ELITE & SPECIAL)
+        // ==========================================
+        // Langsung memanggil ID dari ImageView yang sudah Anda tambahkan di XML
+        val ivEtalaseElite = findViewById<ImageView>(R.id.iv_etalase_elite)
+        val ivEtalaseSpecial = findViewById<ImageView>(R.id.iv_etalase_special)
+
+        // Memanggil Otak Terpadu (Background ID 2 = Elite, ID 3 = Special)
+        ivEtalaseElite?.setImageResource(CharacterImageUtils.getBackgroundImageRes(userGender, 2))
+        ivEtalaseSpecial?.setImageResource(CharacterImageUtils.getBackgroundImageRes(userGender, 3))
+        // ==========================================
 
         // 2. INISIALISASI BANK POIN (Tantangan) & INVENTARIS (Profil)
         val prefTantangan = TantanganPreferences.getInstance(applicationContext.dataStoreTantangan)
@@ -54,31 +71,29 @@ class TukarPoinActivity : AppCompatActivity() {
         }
 
         viewModelProfil.getProfilData().observe(this) { data ->
-            // Jika Latar sudah dibeli, ubah tombol jadi "Dimiliki"
+            // Menggunakan properti database yang sama, namun konteksnya kini Elite & Special
             if (data.hasBgGym) {
-                setTombolDimiliki(btnBeliLatarGym)
+                setTombolDimiliki(btnBeliLatarElite)
             }
             if (data.hasBgTaman) {
-                setTombolDimiliki(btnBeliLatarTaman)
+                setTombolDimiliki(btnBeliLatarSpecial)
             }
         }
 
         // 4. LOGIKA KLIK TOMBOL BELI DENGAN POP-UP KONFIRMASI
-        btnBeliLatarGym.setOnClickListener {
-            tampilkanPopUpKonfirmasi("Latar Gym Retro", 500) {
-                // Aksi jika user menekan "Tukar" di Pop-Up
-                viewModelTantangan.tambahPoin(userKey, -500) // Potong poin
-                viewModelProfil.buyBgGym() // Masukkan ke Inventaris
-                Toast.makeText(this, "Berhasil menukar Latar Gym!", Toast.LENGTH_SHORT).show()
+        btnBeliLatarElite.setOnClickListener {
+            tampilkanPopUpKonfirmasi("Latar Elite", 500) {
+                viewModelTantangan.tambahPoin(userKey, -500)
+                viewModelProfil.buyBgGym() // Backend tetap pakai fungsi aslinya agar aman
+                Toast.makeText(this, "Berhasil menukar Latar Elite!", Toast.LENGTH_SHORT).show()
             }
         }
 
-        btnBeliLatarTaman.setOnClickListener {
-            tampilkanPopUpKonfirmasi("Latar Taman", 300) {
-                // Aksi jika user menekan "Tukar" di Pop-Up
-                viewModelTantangan.tambahPoin(userKey, -300) // Potong poin
-                viewModelProfil.buyBgTaman() // Masukkan ke Inventaris
-                Toast.makeText(this, "Berhasil menukar Latar Taman!", Toast.LENGTH_SHORT).show()
+        btnBeliLatarSpecial.setOnClickListener {
+            tampilkanPopUpKonfirmasi("Latar Special", 300) {
+                viewModelTantangan.tambahPoin(userKey, -300)
+                viewModelProfil.buyBgTaman() // Backend tetap pakai fungsi aslinya agar aman
+                Toast.makeText(this, "Berhasil menukar Latar Special!", Toast.LENGTH_SHORT).show()
             }
         }
     }

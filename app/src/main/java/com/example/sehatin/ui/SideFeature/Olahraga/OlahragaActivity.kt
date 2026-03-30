@@ -76,10 +76,10 @@ class OlahragaActivity : AppCompatActivity() {
         rvOlahraga.layoutManager = LinearLayoutManager(this)
         rvOlahraga.adapter = adapter
 
-        // OBSERVE DATA DARI VIEWMODEL UNTUK STATUS SELESAI
-        // Jika olahraga sudah pernah diselesaikan, beri tanda centang di RecyclerView
-        viewModel.getCompletedGerakanIds().observe(this) { completedIds ->
-            adapter.setCompletedGerakan(completedIds)
-        }
+        // FITUR STATUS SELESAI DIMATIKAN SESUAI PERMINTAAN
+        // Tombol sekarang selalu menampilkan teks statis "Lakukan"
+        // viewModel.getCompletedGerakanIds().observe(this) { completedIds ->
+        //     adapter.setCompletedGerakan(completedIds)
+        // }
     }
 }

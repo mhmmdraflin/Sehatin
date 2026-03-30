@@ -213,7 +213,7 @@
                         android:layout_height="match_parent"
                         android:contentDescription="@string/bg_tantangan"
                         android:scaleType="centerCrop"
-                        android:src="@drawable/bg_tantangan" />
+                        android:src="@drawable/background_laki_perempuan_skin_elite" />
                 </com.google.android.material.card.MaterialCardView>
 
                 <com.google.android.material.card.MaterialCardView
@@ -355,7 +355,7 @@
                         android:contentDescription="@string/character_illustration"
                         android:padding="8dp"
                         android:scaleType="centerInside"
-                        android:src="@drawable/ic_pushup" />
+                        android:src="@drawable/boy_skin_elite_ideal" />
                 </com.google.android.material.card.MaterialCardView>
 
                 <com.google.android.material.card.MaterialCardView

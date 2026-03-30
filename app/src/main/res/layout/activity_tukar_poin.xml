@@ -143,6 +143,7 @@
                             app:strokeColor="#000000"
                             app:strokeWidth="2dp">
                             <ImageView
+                                android:id="@+id/iv_etalase_elite"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:scaleType="centerCrop"
@@ -211,6 +212,7 @@
                             app:strokeColor="#000000"
                             app:strokeWidth="2dp">
                             <ImageView
+                                android:id="@+id/iv_etalase_special"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:scaleType="centerCrop"

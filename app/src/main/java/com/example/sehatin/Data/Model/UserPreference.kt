@@ -125,6 +125,16 @@ class UserPreference(context: Context) {
         return !umur.isNullOrEmpty() && !tinggi.isNullOrEmpty() && !berat.isNullOrEmpty()
     }
 
+    // =======================================================
+    // FUNGSI BARU: UPDATE BERAT BADAN DARI POP-UP DASHBOARD
+    // =======================================================
+    fun updateBeratBadan(beratBaru: String) {
+        pref.edit {
+            // Menggunakan kunci dinamis yang sama persis dengan getUserBody()
+            putString(KEY_BERAT + getActiveEmailKey(), beratBaru)
+        }
+    }
+
     // ==========================================
     // 4. POINT & EXP LAMA (Legacy - Dinamis)
     // ==========================================

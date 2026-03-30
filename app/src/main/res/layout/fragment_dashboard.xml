@@ -434,11 +434,24 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="2dp"
             android:fontFamily="@font/lexenddeca"
-            android:text="@string/KKAL"
+            android:text="Belum Dihitung"
             android:textAlignment="center"
             android:textColor="@color/white"
-            android:textSize="32sp"
+            android:textSize="28sp"
             android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_kalori_terbakar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:fontFamily="@font/lexenddeca"
+            android:text="- 0 Kkal Keluar"
+            android:textAlignment="center"
+            android:textColor="#FF5252"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:visibility="gone" />
 
         <View
             android:layout_width="match_parent"

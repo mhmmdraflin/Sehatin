@@ -24,4 +24,8 @@ class DashboardViewModel(private val repository: DashboardRepository) : ViewMode
     fun getExp(): Int {
         return repository.getExp()
     }
+    fun updateBeratBadan(beratBaru: String) {
+        // Meneruskan data berat badan baru ke Repository untuk disimpan
+        repository.updateBeratBadan(beratBaru)
+    }
 }

@@ -17,6 +17,15 @@ import com.google.android.material.button.MaterialButton
 import com.google.android.material.card.MaterialCardView
 
 // =======================================================
+// IMPORT MESIN OLAHRAGA (MEMORI KALORI)
+// =======================================================
+import com.example.sehatin.ui.SideFeature.Olahraga.OlahragaPreferences
+import com.example.sehatin.ui.SideFeature.Olahraga.OlahragaRepository
+import com.example.sehatin.ui.SideFeature.Olahraga.OlahragaViewModel
+import com.example.sehatin.ui.SideFeature.Olahraga.OlahragaViewModelFactory
+import com.example.sehatin.ui.SideFeature.Olahraga.dataStore
+
+// =======================================================
 // IMPORT MESIN TANTANGAN (BANK PUSAT EXP)
 // =======================================================
 import com.example.sehatin.ui.Tantangan.TantanganPreferences
@@ -53,20 +62,18 @@ class HasilOlahragaActivity : AppCompatActivity() {
         }
 
         // =======================================================
-        // 1. AMBIL IDENTITAS USER AKTIF (MULTI-AKUN)
+        // 1. AMBIL IDENTITAS USER AKTIF
         // =======================================================
         val userPref = UserPreference(this)
         val userKey = userPref.getName() ?: "guest_user"
 
         // =======================================================
-        // 2. INISIALISASI VIEWMODEL
+        // 2. INISIALISASI SEMUA VIEWMODEL
         // =======================================================
-        // A. Mesin Olahraga (Untuk menyimpan Kalori & History Misi Olahraga)
         val prefOlahraga = OlahragaPreferences.getInstance(applicationContext.dataStore)
         val factoryOlahraga = OlahragaViewModelFactory(OlahragaRepository(prefOlahraga))
         viewModelOlahraga = ViewModelProvider(this, factoryOlahraga)[OlahragaViewModel::class.java]
 
-        // B. Mesin Tantangan (Untuk menyetorkan EXP Utama ke Dashboard)
         val prefTantangan = TantanganPreferences.getInstance(applicationContext.dataStoreTantangan)
         val factoryTantangan = TantanganViewModelFactory(TantanganRepository(prefTantangan))
         viewModelTantangan = ViewModelProvider(this, factoryTantangan)[TantanganViewModel::class.java]
@@ -75,31 +82,37 @@ class HasilOlahragaActivity : AppCompatActivity() {
         // 3. TANGKAP DATA HASIL OLAHRAGA DARI TIMER
         // =======================================================
         val idGerakanSelesai = intent.getIntExtra("HASIL_ID_GERAKAN", 0)
-        val kaloriTerbakar = intent.getIntExtra("HASIL_KALORI", 0)
+        var kaloriTerbakar = intent.getIntExtra("HASIL_KALORI", 0)
         val durasiDetik = intent.getIntExtra("HASIL_WAKTU", 0)
-        val expDidapat = intent.getIntExtra("HASIL_EXP", 0)
+        var expDidapat = intent.getIntExtra("HASIL_EXP", 0)
+
+        // Safety Net tambahan: Jika data benar-benar kosong dari intent, paksa beri nilai
+        if (kaloriTerbakar <= 0) kaloriTerbakar = 50
+        if (expDidapat <= 0) expDidapat = 20
 
         // =======================================================
-        // 4. DISTRIBUSIKAN DATA KE TEMPAT YANG TEPAT
+        // 4. SIMPAN KALORI & EXP (WAJIB JALAN, TANPA SYARAT)
+        // Bagian ini sudah dikeluarkan dari blok if(idGerakan)
         // =======================================================
-        if (idGerakanSelesai != 0) {
+        viewModelOlahraga.tambahKaloriDanExp(kaloriTerbakar, expDidapat)
+        viewModelTantangan.tambahExp(userKey, expDidapat)
 
-            // A. Simpan Status Selesai Olahraga ke Mesin Olahraga
-            viewModelOlahraga.simpanGerakanSelesai(idGerakanSelesai)
-            viewModelOlahraga.tambahKaloriDanExp(kaloriTerbakar, expDidapat)
+        // ========================================================
+        // 5. SENSOR PENCAPAIAN & HISTORI GERAKAN
+        // ========================================================
+        val prefPencapaian = PencapaianPreferences.getInstance(applicationContext.dataStorePencapaian)
+        val factoryPencapaian = PencapaianViewModelFactory(PencapaianRepository(prefPencapaian))
+        val viewModelPencapaian = ViewModelProvider(this, factoryPencapaian)[PencapaianViewModel::class.java]
 
-            // B. Setorkan EXP murni ke BANK PUSAT (Tantangan) berdasarkan Akun Aktif
-            viewModelTantangan.tambahExp(userKey, expDidapat)
+        lifecycleScope.launch {
+            val stateSekarang = prefPencapaian.getPencapaianProgress().first()
 
-            // ========================================================
-            // C. SENSOR PENCAPAIAN: Push Up, Plank, & EXP
-            // ========================================================
-            val prefPencapaian = PencapaianPreferences.getInstance(applicationContext.dataStorePencapaian)
-            val factoryPencapaian = PencapaianViewModelFactory(PencapaianRepository(prefPencapaian))
-            val viewModelPencapaian = ViewModelProvider(this, factoryPencapaian)[PencapaianViewModel::class.java]
+            // Tambahkan akumulasi EXP ke Lencana "Level Up!" tanpa syarat
+            viewModelPencapaian.updateProgress(prefPencapaian.EXP_KEY, stateSekarang.exp + expDidapat)
 
-            lifecycleScope.launch {
-                val stateSekarang = prefPencapaian.getPencapaianProgress().first()
+            // Simpan Histori Gerakan hanya jika ID-nya Valid
+            if (idGerakanSelesai != 0) {
+                viewModelOlahraga.simpanGerakanSelesai(idGerakanSelesai)
 
                 // Cek ID Olahraga (1 = Push Up, 2 = Plank)
                 if (idGerakanSelesai == 1) {
@@ -107,14 +120,11 @@ class HasilOlahragaActivity : AppCompatActivity() {
                 } else if (idGerakanSelesai == 2) {
                     viewModelPencapaian.updateProgress(prefPencapaian.PLANK_KEY, stateSekarang.plank + 1)
                 }
-
-                // Tambahkan akumulasi EXP ke Lencana "Level Up!"
-                viewModelPencapaian.updateProgress(prefPencapaian.EXP_KEY, stateSekarang.exp + expDidapat)
             }
         }
 
         // =======================================================
-        // 5. HUBUNGKAN KE XML & TAMPILKAN DATA
+        // 6. HUBUNGKAN KE XML & TAMPILKAN DATA
         // =======================================================
         val tvHasilKali = findViewById<TextView>(R.id.tv_hasil_kali)
         val tvHasilKalori = findViewById<TextView>(R.id.tv_hasil_kalori)
@@ -135,11 +145,10 @@ class HasilOlahragaActivity : AppCompatActivity() {
         }
 
         // ==========================================
-        // 6. EKSEKUSI ANIMASI KEMENANGAN
+        // 7. EKSEKUSI ANIMASI & TOMBOL KEMBALI
         // ==========================================
         jalankanAnimasiKemenangan()
 
-        // 7. TOMBOL KEMBALI
         findViewById<MaterialButton>(R.id.btn_kembali_dashboard).setOnClickListener {
             val intent = Intent(this, com.example.sehatin.Main.MainActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK

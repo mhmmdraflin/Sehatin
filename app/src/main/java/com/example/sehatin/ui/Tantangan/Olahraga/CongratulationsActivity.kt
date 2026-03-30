@@ -26,6 +26,15 @@ import com.google.android.material.card.MaterialCardView
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 
+// =======================================================
+// IMPORT BARU: Mesin Olahraga (Untuk menyimpan Kalori)
+// =======================================================
+import com.example.sehatin.ui.SideFeature.Olahraga.OlahragaPreferences
+import com.example.sehatin.ui.SideFeature.Olahraga.OlahragaRepository
+import com.example.sehatin.ui.SideFeature.Olahraga.OlahragaViewModel
+import com.example.sehatin.ui.SideFeature.Olahraga.OlahragaViewModelFactory
+import com.example.sehatin.ui.SideFeature.Olahraga.dataStore
+
 class CongratulationsActivity : AppCompatActivity() {
 
     private lateinit var viewModel: TantanganViewModel
@@ -44,6 +53,9 @@ class CongratulationsActivity : AppCompatActivity() {
 
         val expDiterima = intent.getIntExtra("HASIL_EXP", 0)
         val poinDiterima = intent.getIntExtra("HASIL_POIN", 0)
+
+        // TANGKAP KALORI DARI TANTANGAN (Jika tidak ada, default 50 Kkal)
+        val kaloriTerbakar = intent.getIntExtra("HASIL_KALORI", 50)
 
         // PENTING: Tangkap Nama Misi dari Intent sebelumnya (dikirim dari DetailAktivitasActivity)
         val namaMisiOlahraga = intent.getStringExtra("HASIL_NAMA_MISI") ?: ""
@@ -68,7 +80,17 @@ class CongratulationsActivity : AppCompatActivity() {
         viewModel.tambahPoin(userKey, poinDiterima)
 
         // ========================================================
-        // 3. SENSOR PENCAPAIAN: Push Up, Plank, Poin, & EXP
+        // 3. FITUR BARU: SIMPAN KALORI KE MEMORI OLAHRAGA (UNTUK DASHBOARD)
+        // ========================================================
+        val prefOlahraga = OlahragaPreferences.getInstance(applicationContext.dataStore)
+        val factoryOlahraga = OlahragaViewModelFactory(OlahragaRepository(prefOlahraga))
+        val olahragaViewModel = ViewModelProvider(this, factoryOlahraga)[OlahragaViewModel::class.java]
+
+        // Simpan Kalori agar langsung memotong BMR dan menyusutkan karakter di Dashboard
+        olahragaViewModel.tambahKaloriDanExp(kaloriTerbakar, 0) // EXP diset 0 karena sudah ditambahkan di atas
+
+        // ========================================================
+        // 4. SENSOR PENCAPAIAN: Push Up, Plank, Poin, & EXP
         // ========================================================
         val prefPencapaian = PencapaianPreferences.getInstance(applicationContext.dataStorePencapaian)
         val factoryPencapaian = PencapaianViewModelFactory(PencapaianRepository(prefPencapaian))

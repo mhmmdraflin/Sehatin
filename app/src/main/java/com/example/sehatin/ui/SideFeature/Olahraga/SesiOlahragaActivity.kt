@@ -22,10 +22,10 @@ class SesiOlahragaActivity : AppCompatActivity() {
     private var durasiAwalDetik: Int = 0
     private var isPaused: Boolean = false
 
-    // Variabel Data
+    // Variabel Penampung Data
     private var idGerakan: Int = 0
     private var kaloriDidapat: Int = 0
-    private var expDidapat: Int = 0 // Variabel untuk menyimpan EXP murni
+    private var expDidapat: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,22 +36,24 @@ class SesiOlahragaActivity : AppCompatActivity() {
         val ivKarakter = findViewById<ImageView>(R.id.iv_karakter_olahraga)
         val btnPause = findViewById<MaterialCardView>(R.id.btn_pause_card)
 
-        // MENERIMA DATA DARI INTENT
+        // MENERIMA DATA DARI INTENT (DENGAN NILAI DEFAULT AMAN)
         idGerakan = intent.getIntExtra("EXTRA_ID_GERAKAN", 0)
         val namaGerakan = intent.getStringExtra("EXTRA_NAMA_GERAKAN") ?: "Olahraga"
         durasiAwalDetik = intent.getIntExtra("EXTRA_DURASI", 30)
-        kaloriDidapat = intent.getIntExtra("EXTRA_KALORI", 0)
-        expDidapat = intent.getIntExtra("EXTRA_EXP_DIDAPAT", 0) // Tangkap EXP
+
+        // Safety Net: Jika data kosong, otomatis beri 50 Kalori dan 20 EXP
+        kaloriDidapat = intent.getIntExtra("EXTRA_KALORI", 50)
+        expDidapat = intent.getIntExtra("EXTRA_EXP_DIDAPAT", 20)
         val fileGif = intent.getIntExtra("EXTRA_GIF_FILE", 0)
 
         tvStatusSesi.text = "Lakukan $namaGerakan!"
         sisaWaktuMillis = durasiAwalDetik * 1000L
         updateTeksTimer()
 
-        // Memuat GIF
+        // Memuat Gambar Animasi GIF
         if (fileGif != 0) {
             Glide.with(this)
-                .asGif() // Gunakan asGif() jika file sudah dikembalikan ke format .gif
+                .asGif()
                 .load(fileGif)
                 .into(ivKarakter)
         }
@@ -74,12 +76,12 @@ class SesiOlahragaActivity : AppCompatActivity() {
             }
 
             override fun onFinish() {
-                // PINDAH KE HALAMAN HASIL DENGAN MEMBAWA EXP
+                // TIMER HABIS: Pindah ke Halaman Hasil dan Bawa Kalori & EXP
                 val intent = Intent(this@SesiOlahragaActivity, HasilOlahragaActivity::class.java).apply {
                     putExtra("HASIL_ID_GERAKAN", idGerakan)
                     putExtra("HASIL_KALORI", kaloriDidapat)
                     putExtra("HASIL_WAKTU", durasiAwalDetik)
-                    putExtra("HASIL_EXP", expDidapat) // Kirim EXP murni
+                    putExtra("HASIL_EXP", expDidapat)
                 }
                 startActivity(intent)
                 finish()

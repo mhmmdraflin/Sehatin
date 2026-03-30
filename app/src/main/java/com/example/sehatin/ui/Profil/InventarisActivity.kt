@@ -15,7 +15,9 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
+import com.example.sehatin.Data.Model.UserPreference
 import com.example.sehatin.R
+import com.example.sehatin.Utils.CharacterImageUtils // IMPORT OTAK TERPADU
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.card.MaterialCardView
 
@@ -42,9 +44,16 @@ class InventarisActivity : AppCompatActivity() {
     private lateinit var itemChar1: MaterialCardView
     private lateinit var itemChar2: MaterialCardView
 
+    // Variabel Gender User (Dinamis dari Akun)
+    private var userGender = "L"
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_inventaris)
+
+        // AMBIL GENDER DARI DATABASE USER
+        val userPref = UserPreference(this)
+        userGender = userPref.getUserBody().gender
 
         // 1. HUBUNGKAN ID XML UTAMA
         ivPreviewBg = findViewById(R.id.iv_preview_bg)
@@ -61,6 +70,20 @@ class InventarisActivity : AppCompatActivity() {
         val btnKeTokoChar = findViewById<MaterialCardView>(R.id.btn_ke_toko_char)
 
         btnBack.setOnClickListener { finish() }
+
+        // ==========================================
+        // SET IKON KOLEKSI BERDASARKAN GENDER SECARA DINAMIS
+        // ==========================================
+        val ivIconBg1 = itemBg1.getChildAt(0) as? ImageView
+        val ivIconBg2 = itemBg2.getChildAt(0) as? ImageView
+        val ivIconChar1 = itemChar1.getChildAt(0) as? ImageView
+        val ivIconChar2 = itemChar2.getChildAt(0) as? ImageView
+
+        ivIconBg1?.setImageResource(CharacterImageUtils.getBackgroundImageRes(userGender, 1))
+        ivIconBg2?.setImageResource(CharacterImageUtils.getBackgroundImageRes(userGender, 2))
+
+        ivIconChar1?.setImageResource(CharacterImageUtils.getCharacterImageRes(userGender, "Normal (Ideal)", 1))
+        ivIconChar2?.setImageResource(CharacterImageUtils.getCharacterImageRes(userGender, "Normal (Ideal)", 2))
 
         // ==========================================
         // TOMBOL JALAN PINTAS KE TOKO (TUKAR POIN)
@@ -133,11 +156,12 @@ class InventarisActivity : AppCompatActivity() {
         itemBg1.strokeColor = Color.parseColor("#E0E0E0")
         itemBg2.strokeColor = Color.parseColor("#E0E0E0")
 
+        // Memanggil Utils Terpadu agar sesuai dengan Gender
+        ivPreviewBg.setImageResource(CharacterImageUtils.getBackgroundImageRes(userGender, bgId))
+
         if (bgId == 1) {
-            ivPreviewBg.setImageResource(R.drawable.bg_dashboard_character)
             itemBg1.strokeColor = Color.parseColor("#33A1E0") // Warna biru aktif
         } else if (bgId == 2) {
-            ivPreviewBg.setImageResource(R.drawable.bg_tantangan)
             itemBg2.strokeColor = Color.parseColor("#33A1E0")
         }
     }
@@ -148,11 +172,12 @@ class InventarisActivity : AppCompatActivity() {
         itemChar1.strokeColor = Color.parseColor("#E0E0E0")
         itemChar2.strokeColor = Color.parseColor("#E0E0E0")
 
+        // Memanggil Utils Terpadu agar sesuai dengan Gender
+        ivPreviewChar.setImageResource(CharacterImageUtils.getCharacterImageRes(userGender, "Normal (Ideal)", charId))
+
         if (charId == 1) {
-            ivPreviewChar.setImageResource(R.drawable.character_ideal)
             itemChar1.strokeColor = Color.parseColor("#33A1E0")
         } else if (charId == 2) {
-            ivPreviewChar.setImageResource(R.drawable.ic_pushup)
             itemChar2.strokeColor = Color.parseColor("#33A1E0")
         }
     }
