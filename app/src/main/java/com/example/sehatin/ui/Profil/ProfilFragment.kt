@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView // Tambahan Import untuk ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
@@ -47,6 +48,9 @@ class ProfilFragment : Fragment() {
         val pbExp = view.findViewById<LinearProgressIndicator>(R.id.pb_profil_exp)
         val tvExpDetail = view.findViewById<TextView>(R.id.tv_profil_exp_detail)
 
+        // Menangkap ID Foto Profil
+        val ivFotoProfil = view.findViewById<ImageView>(R.id.iv_foto_profil)
+
         val btnEditProfil = view.findViewById<MaterialCardView>(R.id.btn_edit_profil_card)
         val btnTukarPoin = view.findViewById<MaterialCardView>(R.id.btn_tukar_poin)
         val btnInventaris = view.findViewById<MaterialCardView>(R.id.btn_inventaris)
@@ -54,9 +58,19 @@ class ProfilFragment : Fragment() {
 
         val userPref = UserPreference(requireContext())
         val userKey = userPref.getName() ?: "Sobat Sehatin"
+        val userGender = userPref.getUserBody().gender // Mengambil data Gender
 
         tvNama.text = userKey
         tvEmail.text = userPref.getEmail() ?: "$userKey@gmail.com"
+
+        // ==========================================
+        // LOGIKA SET FOTO PROFIL BERDASARKAN GENDER
+        // ==========================================
+        if (userGender == "L") {
+            ivFotoProfil.setImageResource(R.drawable.profile_boy)
+        } else {
+            ivFotoProfil.setImageResource(R.drawable.profile_girl)
+        }
 
         val prefTantangan = TantanganPreferences.getInstance(requireContext().dataStoreTantangan)
         val factory = TantanganViewModelFactory(TantanganRepository(prefTantangan))
