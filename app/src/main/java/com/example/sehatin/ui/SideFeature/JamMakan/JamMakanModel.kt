@@ -8,22 +8,21 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.sehatin.R
 import com.google.android.material.materialswitch.MaterialSwitch
 
-// 1. Cetakan Data yang menyesuaikan UI Anda
+// 1. Cetakan Data yang telah diperbaiki (Bebas Error)
 data class JamMakanModel(
     val id: Long,
     var kategori: String,
     var jam: Int,
     var menit: Int,
-    var hari: String = "Sekali Saja", // Default
-    var snooze: Int = 5, // Tambahan fitur Snooze (Default 5 Menit)
-    var isActive: Boolean = true
+    var hari: String = "Sekali Saja",
+    var isActive: Boolean = true // Tipe data diperbaiki menjadi Boolean agar switch berfungsi dengan benar
 )
 
 // 2. Adapter untuk RecyclerView
 class JamMakanAdapter(
     private val listAlarm: MutableList<JamMakanModel>,
-    private val onAlarmClick: (JamMakanModel, Int) -> Unit, // Untuk Edit/Hapus
-    private val onSwitchToggle: (JamMakanModel, Boolean) -> Unit // Untuk Switch ON/OFF
+    private val onAlarmClick: (JamMakanModel, Int) -> Unit,
+    private val onSwitchToggle: (JamMakanModel, Boolean) -> Unit
 ) : RecyclerView.Adapter<JamMakanAdapter.ViewHolder>() {
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -31,7 +30,7 @@ class JamMakanAdapter(
         val tvWaktu: TextView = view.findViewById(R.id.tv_waktu_makan)
         val tvHari: TextView = view.findViewById(R.id.tv_hari_makan)
         val switchAlarm: MaterialSwitch = view.findViewById(R.id.switch_alarm)
-        val cardItem: View = view // Keseluruhan kartu untuk diklik
+        val cardItem: View = view
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -43,7 +42,7 @@ class JamMakanAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val alarm = listAlarm[position]
 
-        // Format angka tunggal jadi dua digit (Contoh: jam 8 jadi 08:00)
+        // Memformat angka tunggal menjadi dua digit (Contoh: jam 8 jadi 08:00)
         val formatJam = String.format("%02d", alarm.jam)
         val formatMenit = String.format("%02d", alarm.menit)
 
@@ -51,16 +50,14 @@ class JamMakanAdapter(
         holder.tvKategori.text = alarm.kategori
         holder.tvHari.text = alarm.hari
 
-        // Hindari trigger animasi saat scroll
+        // Hindari pemicu animasi yang salah saat user melakukan scroll pada daftar
         holder.switchAlarm.setOnCheckedChangeListener(null)
         holder.switchAlarm.isChecked = alarm.isActive
 
-        // Deteksi jika switch dinyalakan/dimatikan
         holder.switchAlarm.setOnCheckedChangeListener { _, isChecked ->
             onSwitchToggle(alarm, isChecked)
         }
 
-        // Deteksi jika keseluruhan kartu diklik (untuk Edit / Hapus)
         holder.cardItem.setOnClickListener {
             onAlarmClick(alarm, position)
         }

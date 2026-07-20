@@ -1,8 +1,11 @@
 package com.example.sehatin.ui.Tantangan.Makanan
 
+import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
+import android.media.AudioAttributes
+import android.media.SoundPool
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.os.Handler
@@ -13,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.example.sehatin.Data.Model.UserPreference
 import com.example.sehatin.R
+import com.example.sehatin.Utils.BackgroundMusicManager
 import com.example.sehatin.databinding.ActivityDetailAktivitasMakananBinding
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.card.MaterialCardView
@@ -38,6 +42,7 @@ class DetailAktivitasMakananActivity : AppCompatActivity() {
 
     // Variabel Timer
     private var timer: CountDownTimer? = null
+    private var persiapanTimer: CountDownTimer? = null // Timer khusus untuk "Get Ready"
     private var sisaWaktuMillis: Long = 0
 
     // Variabel Hadiah Maksimal
@@ -57,20 +62,44 @@ class DetailAktivitasMakananActivity : AppCompatActivity() {
     private var sudahMenjawab = false
     private var jumlahBenar = 0
 
+    // VARIABEL SOUNDPOOL (Untuk Suara Klik Zero-Delay)
+    private var soundPool: SoundPool? = null
+    private var clickSoundId: Int = 0
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityDetailAktivitasMakananBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        // =======================================================
+        // A. INISIALISASI SOUNDPOOL
+        // =======================================================
+        val audioAttributes = AudioAttributes.Builder()
+            .setUsage(AudioAttributes.USAGE_ASSISTANCE_SONIFICATION)
+            .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
+            .build()
+
+        soundPool = SoundPool.Builder()
+            .setMaxStreams(3)
+            .setAudioAttributes(audioAttributes)
+            .build()
+
+        clickSoundId = soundPool?.load(this, R.raw.tombol_klik_sehatin, 1) ?: 0
+
+        // =======================================================
+        // B. SIAPKAN MUSIK LATAR TANTANGAN
+        // =======================================================
+        BackgroundMusicManager.stopMusic()
+        BackgroundMusicManager.initialize(application, R.raw.bgm_tantangan)
+
         // 1. TANGKAP ARRAY DARI INTENT
         idMisi = intent.getIntExtra("ID_MISI", 0)
         binding.tvNamaTantanganMakanan.text = intent.getStringExtra("NAMA_MISI") ?: "Tantangan Nutrisi"
 
-        // Simpan nilai maksimal yang bisa didapat
         rewardPoinMax = intent.getIntExtra("REWARD_POIN", 0)
         rewardExpMax = intent.getIntExtra("REWARD_EXP", 0)
 
-        binding.tvPoinMakanan.text = "Max: $rewardPoinMax Poin | $rewardExpMax EXP"
+        binding.tvPoinMakanan.text = "$rewardPoinMax Poin | $rewardExpMax EXP"
 
         daftarPertanyaan = intent.getStringArrayListExtra("LIST_PERTANYAAN") ?: ArrayList()
         daftarJawabA = intent.getStringArrayListExtra("LIST_A") ?: ArrayList()
@@ -79,9 +108,13 @@ class DetailAktivitasMakananActivity : AppCompatActivity() {
         daftarKunci = intent.getStringArrayListExtra("LIST_KUNCI") ?: ArrayList()
 
         // 2. KONTROL TOMBOL UI (Pemicu Transisi FSM)
-        binding.btnBackMakanan.setOnClickListener { finish() }
+        binding.btnBackMakanan.setOnClickListener {
+            mainkanSuaraKlik()
+            kembaliKeLayarUtama()
+        }
 
         binding.btnPauseMakanan.setOnClickListener {
+            mainkanSuaraKlik()
             if (currentState == TantanganState.SEDANG_BERJALAN) {
                 ubahState(TantanganState.DI_JEDA)
             }
@@ -93,12 +126,12 @@ class DetailAktivitasMakananActivity : AppCompatActivity() {
 
         // Tombol ini HANYA muncul di akhir kuis untuk menyelesaikan
         binding.btnActionSelesaiMakanan.setOnClickListener {
+            mainkanSuaraKlik()
             if (currentState == TantanganState.SELESAI) {
-                // PERCABANGAN FSM: Cek Skor Akhir!
                 if (jumlahBenar > 0) {
                     ubahState(TantanganState.HADIAH_DITERIMA)
                 } else {
-                    ubahState(TantanganState.GAGAL) // Gagal karena skor 0
+                    ubahState(TantanganState.GAGAL)
                 }
             }
         }
@@ -108,7 +141,7 @@ class DetailAktivitasMakananActivity : AppCompatActivity() {
     }
 
     // ========================================================
-    // IMPLEMENTASI TRANSISI FSM
+    // IMPLEMENTASI TRANSISI FSM & AUDIO
     // ========================================================
     private fun ubahState(newState: TantanganState) {
         currentState = newState
@@ -116,25 +149,31 @@ class DetailAktivitasMakananActivity : AppCompatActivity() {
         when (newState) {
             TantanganState.BELUM_DIMULAI -> {
                 soalSekarangIndex = 0
-                jumlahBenar = 0 // Reset skor ke 0
+                jumlahBenar = 0
                 sisaWaktuMillis = daftarPertanyaan.size * 15000L // 15 Detik per soal
-                ubahState(TantanganState.SEDANG_BERJALAN)
+                BackgroundMusicManager.pauseMusic() // Matikan musik saat aba-aba
+                mulaiGetReadyOverlay() // Panggil hitung mundur persiapan
             }
             TantanganState.SEDANG_BERJALAN -> {
+                binding.overlayGetReady.visibility = View.GONE
+                BackgroundMusicManager.resume() // Nyalakan BGM saat kuis mulai
                 tampilkanSoal(soalSekarangIndex)
                 mulaiTimer()
             }
             TantanganState.DI_JEDA -> {
-                jedaTimer()
+                jedaSemuaTimer()
+                BackgroundMusicManager.pauseMusic()
                 tampilkanDialogJeda()
             }
             TantanganState.SELESAI -> {
-                jedaTimer()
+                jedaSemuaTimer()
+                BackgroundMusicManager.stopMusic()
                 binding.btnActionSelesaiMakanan.text = "Selesaikan Tantangan"
                 binding.btnActionSelesaiMakanan.visibility = View.VISIBLE
             }
             TantanganState.GAGAL -> {
-                jedaTimer()
+                jedaSemuaTimer()
+                BackgroundMusicManager.stopMusic()
                 tampilkanDialogGagal()
             }
             TantanganState.HADIAH_DITERIMA -> {
@@ -146,6 +185,25 @@ class DetailAktivitasMakananActivity : AppCompatActivity() {
     // ========================================================
     // LOGIKA TIMER & KUIS
     // ========================================================
+    private fun mulaiGetReadyOverlay() {
+        binding.overlayGetReady.visibility = View.VISIBLE
+        binding.tvAngkaCountdown.text = "3"
+
+        persiapanTimer = object : CountDownTimer(3000, 1000) {
+            override fun onTick(millisUntilFinished: Long) {
+                val detik = (millisUntilFinished / 1000) + 1
+                binding.tvAngkaCountdown.text = detik.toString()
+            }
+
+            override fun onFinish() {
+                binding.tvAngkaCountdown.text = "GO!"
+                Handler(Looper.getMainLooper()).postDelayed({
+                    ubahState(TantanganState.SEDANG_BERJALAN)
+                }, 500)
+            }
+        }.start()
+    }
+
     private fun mulaiTimer() {
         timer = object : CountDownTimer(sisaWaktuMillis, 1000) {
             override fun onTick(millisUntilFinished: Long) {
@@ -157,13 +215,14 @@ class DetailAktivitasMakananActivity : AppCompatActivity() {
 
             override fun onFinish() {
                 binding.tvTimerKuis.text = "00:00"
-                ubahState(TantanganState.GAGAL) // Gagal karena waktu habis
+                ubahState(TantanganState.GAGAL)
             }
         }.start()
     }
 
-    private fun jedaTimer() {
+    private fun jedaSemuaTimer() {
         timer?.cancel()
+        persiapanTimer?.cancel()
     }
 
     private fun tampilkanSoal(index: Int) {
@@ -186,13 +245,12 @@ class DetailAktivitasMakananActivity : AppCompatActivity() {
     }
 
     private fun cekJawaban(pilihan: String, btnPilihan: MaterialCardView) {
-        // Blokir jika user sudah menekan salah satu jawaban
         if (sudahMenjawab || currentState != TantanganState.SEDANG_BERJALAN) return
 
-        sudahMenjawab = true // Kunci tombol
+        mainkanSuaraKlik()
+        sudahMenjawab = true
         val kunciJawaban = daftarKunci[soalSekarangIndex]
 
-        // WARNAI JAWABAN USER
         if (pilihan == kunciJawaban) {
             jumlahBenar++
             btnPilihan.setStrokeColor(Color.parseColor("#4CAF50"))
@@ -202,41 +260,53 @@ class DetailAktivitasMakananActivity : AppCompatActivity() {
             btnPilihan.setCardBackgroundColor(Color.parseColor("#FFEBEE"))
         }
 
-        // ==========================================
-        // AUTO NEXT MENGGUNAKAN HANDLER (Jeda 1 Detik)
-        // ==========================================
         Handler(Looper.getMainLooper()).postDelayed({
-            // Pastikan Activity belum ditutup dan kuis masih dalam state Berjalan
             if (!isDestroyed && currentState == TantanganState.SEDANG_BERJALAN) {
                 if (soalSekarangIndex == daftarPertanyaan.size - 1) {
-                    ubahState(TantanganState.SELESAI) // Soal habis
+                    ubahState(TantanganState.SELESAI)
                 } else {
                     soalSekarangIndex++
-                    tampilkanSoal(soalSekarangIndex) // Pindah otomatis
+                    tampilkanSoal(soalSekarangIndex)
                 }
             }
         }, 1000)
     }
 
     // ========================================================
-    // LOGIKA DIALOG (TRANSISI FSM)
+    // LOGIKA DIALOG & FUNGSI PENDUKUNG LAINNYA
     // ========================================================
+    private fun mainkanSuaraKlik() {
+        val sharedPrefs = getSharedPreferences("AudioSettings", Context.MODE_PRIVATE)
+        val volumeSfxInt = sharedPrefs.getInt("VOLUME_SFX", 100)
+        val volumeSfxFloat = volumeSfxInt / 100f
+        soundPool?.play(clickSoundId, volumeSfxFloat, volumeSfxFloat, 0, 0, 1f)
+    }
+
+    private fun kembaliKeLayarUtama() {
+        BackgroundMusicManager.stopMusic()
+        BackgroundMusicManager.initialize(application, R.raw.steps_in_sunlight)
+        finish()
+    }
+
     private fun tampilkanDialogJeda() {
         val dialogView = layoutInflater.inflate(R.layout.dialog_jeda, null)
         val dialog = AlertDialog.Builder(this).setView(dialogView).setCancelable(false).create()
         dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
         dialogView.findViewById<MaterialButton>(R.id.btn_lanjutkan).setOnClickListener {
+            mainkanSuaraKlik()
             dialog.dismiss()
-            ubahState(TantanganState.SEDANG_BERJALAN)
+            mulaiGetReadyOverlay() // Memunculkan aba-aba sebelum lanjut
         }
         dialogView.findViewById<MaterialButton>(R.id.btn_mulai_ulang).setOnClickListener {
+            mainkanSuaraKlik()
             dialog.dismiss()
             ubahState(TantanganState.BELUM_DIMULAI)
         }
         dialogView.findViewById<MaterialButton>(R.id.btn_keluar).setOnClickListener {
+            mainkanSuaraKlik()
             dialog.dismiss()
-            finish()
+            kembaliKeLayarUtama()
         }
         dialog.show()
     }
@@ -251,7 +321,6 @@ class DetailAktivitasMakananActivity : AppCompatActivity() {
 
         val btnUlang = dialogView.findViewById<MaterialButton>(R.id.btn_mulai_ulang)
 
-        // CEK ALASAN GAGAL: Waktu habis ATAU Skor 0?
         if (jumlahBenar == 0 && soalSekarangIndex == daftarPertanyaan.size - 1) {
             btnUlang.text = "Skor 0! Coba Lagi"
         } else {
@@ -259,24 +328,24 @@ class DetailAktivitasMakananActivity : AppCompatActivity() {
         }
 
         btnUlang.setOnClickListener {
+            mainkanSuaraKlik()
             dialog.dismiss()
             ubahState(TantanganState.BELUM_DIMULAI)
         }
 
         dialogView.findViewById<MaterialButton>(R.id.btn_keluar).setOnClickListener {
+            mainkanSuaraKlik()
             dialog.dismiss()
-            finish()
+            kembaliKeLayarUtama()
         }
         dialog.show()
     }
 
     private fun lanjutKeCongratulations() {
-        // PERHITUNGAN SKOR DINAMIS
         val persentaseBenar = jumlahBenar.toFloat() / daftarPertanyaan.size.toFloat()
         val finalPoin = (rewardPoinMax * persentaseBenar).toInt()
         val finalExp = (rewardExpMax * persentaseBenar).toInt()
 
-        // Simpan progress (Misi dianggap tuntas) ke MakananPreferences
         if (idMisi != 0) {
             val userPref = UserPreference(this)
             val userKey = userPref.getName() ?: "guest_user"
@@ -288,7 +357,8 @@ class DetailAktivitasMakananActivity : AppCompatActivity() {
             viewModelMakanan.simpanMisiSelesai(userKey, idMisi)
         }
 
-        // Kirim hasil akhir ke halaman Peti Hadiah
+        BackgroundMusicManager.initialize(application, R.raw.steps_in_sunlight)
+
         val intentLanjut = Intent(this, CongratulationsMakananActivity::class.java).apply {
             putExtra("HASIL_POIN", finalPoin)
             putExtra("HASIL_EXP", finalExp)
@@ -299,6 +369,8 @@ class DetailAktivitasMakananActivity : AppCompatActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
-        jedaTimer() // Amankan dari memory leak
+        jedaSemuaTimer()
+        soundPool?.release()
+        soundPool = null
     }
 }

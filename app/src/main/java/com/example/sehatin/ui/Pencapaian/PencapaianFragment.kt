@@ -2,6 +2,8 @@ package com.example.sehatin.ui.Pencapaian
 
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
+import android.media.AudioAttributes
+import android.media.SoundPool
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -24,6 +26,13 @@ class PencapaianFragment : Fragment() {
 
     private lateinit var viewModel: PencapaianViewModel
 
+    // VARIABEL SOUNDPOOL (Untuk Suara Zero-Delay)
+    private var soundPool: SoundPool? = null
+    private var clickSoundId: Int = 0
+
+    // Cek inisialisasi agar reset BMI hanya jalan sekali
+    private var isFirstLoad = true
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -35,27 +44,59 @@ class PencapaianFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // 1. Inisialisasi ViewModel & DataStore
+        // =======================================================
+        // INISIALISASI SOUNDPOOL
+        // =======================================================
+        val audioAttributes = AudioAttributes.Builder()
+            .setUsage(AudioAttributes.USAGE_MEDIA)
+            .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
+            .build()
+
+        soundPool = SoundPool.Builder()
+            .setMaxStreams(2)
+            .setAudioAttributes(audioAttributes)
+            .build()
+
+        clickSoundId = soundPool?.load(requireContext(), R.raw.tombol_klik_sehatin, 1) ?: 0
+
+        // =======================================================
+        // INISIALISASI VIEWMODEL & DATASTORE
+        // =======================================================
         val pref = PencapaianPreferences.getInstance(requireContext().dataStorePencapaian)
         val factory = PencapaianViewModelFactory(PencapaianRepository(pref))
         viewModel = ViewModelProvider(this, factory)[PencapaianViewModel::class.java]
 
-        // 2. Pantau (Observe) perubahan data secara Real-Time
+        // Pantau Perubahan Data
         viewModel.pencapaianState.observe(viewLifecycleOwner) { state ->
 
-            // AUTO-CLAIM UNTUK USER LAMA
+            // 1. AUTO-CLAIM UNTUK USER LAMA/BARU (Langkah Pertama)
             if (state.welcome == 0) {
                 viewModel.updateProgress(pref.WELCOME_KEY, 1)
             }
 
-            // Perbarui tampilan UI dan berikan fitur Klik
+            // 2. PERBAIKAN BUG BMI: Jika ini pertama kali diload,
+            // pastikan bahwa BMI tidak otomatis bernilai 1.
+            // (Hanya jika Anda menggunakan SharedPreferences lain untuk mengecek login)
+            if (isFirstLoad) {
+                isFirstLoad = false
+                val sharedPrefs = requireContext().getSharedPreferences("BMI_Prefs", android.content.Context.MODE_PRIVATE)
+                val isBmiDone = sharedPrefs.getBoolean("hasCheckedBMI", false)
+
+                // Jika sistem belum pernah cek BMI sama sekali tapi state nya 1, paksa jadi 0
+                if (!isBmiDone && state.bmi > 0) {
+                    viewModel.updateProgress(pref.BMI_KEY, 0)
+                }
+            }
+
             updateUI(state)
         }
     }
 
-    private fun updateUI(state: PencapaianState) {
-        // Format: (Kartu, ProgressBar, TextView, Nilai Saat Ini, Target Maksimal, Judul, Deskripsi, Icon)
+    private fun mainkanSuaraKlik() {
+        soundPool?.play(clickSoundId, 1f, 1f, 0, 0, 1f)
+    }
 
+    private fun updateUI(state: PencapaianState) {
         aturLencana(
             binding.cardAchievWelcome, binding.progressWelcome, binding.tvProgressWelcome,
             state.welcome, 1, "Langkah Pertama", "Resmi menjadi bagian dari keluarga Sehatin", R.drawable.logo_sehatin
@@ -107,7 +148,6 @@ class PencapaianFragment : Fragment() {
         deskripsi: String,
         iconRes: Int
     ) {
-        // Cegah agar progres tidak melebihi batas
         val safeValue = if (currentValue > maxValue) maxValue else currentValue
 
         progressBar.max = maxValue
@@ -116,21 +156,17 @@ class PencapaianFragment : Fragment() {
         val isTercapai = safeValue >= maxValue
 
         if (isTercapai) {
-            // UI Jika Lencana Selesai Tercapai
             textView.text = "TERCAPAI!"
             textView.setTextColor(Color.parseColor("#4CAF50"))
             progressBar.setIndicatorColor(Color.parseColor("#4CAF50"))
         } else {
-            // UI Jika Lencana Belum Selesai
             textView.text = "$safeValue/$maxValue"
             textView.setTextColor(Color.parseColor("#FFD700"))
             progressBar.setIndicatorColor(Color.parseColor("#FFD700"))
         }
 
-        // ==========================================
-        // LOGIKA KLIK KARTU (POP-UP / TOAST)
-        // ==========================================
         cardView.setOnClickListener {
+            mainkanSuaraKlik()
             if (isTercapai) {
                 tampilkanDialogLencana(judul, deskripsi, iconRes)
             } else {
@@ -139,9 +175,6 @@ class PencapaianFragment : Fragment() {
         }
     }
 
-    // ==========================================
-    // FUNGSI MEMUNCULKAN POP-UP (DIALOG)
-    // ==========================================
     private fun tampilkanDialogLencana(judul: String, deskripsi: String, iconRes: Int) {
         val dialogView = layoutInflater.inflate(R.layout.dialog_lencana, null)
         val dialog = AlertDialog.Builder(requireContext())
@@ -149,8 +182,6 @@ class PencapaianFragment : Fragment() {
             .setCancelable(true)
             .create()
 
-        // Buat background kotak dialog bawaan Android menjadi transparan
-        // agar MaterialCardView kita yang melengkung terlihat cantik
         dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
         val ivIcon = dialogView.findViewById<ImageView>(R.id.iv_dialog_badge)
@@ -158,12 +189,12 @@ class PencapaianFragment : Fragment() {
         val tvDeskripsi = dialogView.findViewById<TextView>(R.id.tv_dialog_desc)
         val btnTutup = dialogView.findViewById<MaterialButton>(R.id.btn_dialog_close)
 
-        // Set data sesuai lencana yang diklik
         ivIcon.setImageResource(iconRes)
         tvJudul.text = judul
         tvDeskripsi.text = deskripsi
 
         btnTutup.setOnClickListener {
+            mainkanSuaraKlik()
             dialog.dismiss()
         }
 
@@ -172,6 +203,8 @@ class PencapaianFragment : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
+        soundPool?.release()
+        soundPool = null
         _binding = null
     }
 }

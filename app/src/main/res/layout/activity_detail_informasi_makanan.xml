@@ -75,7 +75,7 @@
             android:shadowRadius="4"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btn_back" />k" />
+            app:layout_constraintTop_toBottomOf="@+id/btn_back" />
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/card_calories"

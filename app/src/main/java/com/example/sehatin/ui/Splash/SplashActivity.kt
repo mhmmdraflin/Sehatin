@@ -19,11 +19,9 @@ class SplashActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        // Setup ViewBinding
         binding = ActivitySplashBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // 1. Kondisi Awal Animasi (Sembunyikan dan geser keluar layar)
         binding.logoImage.translationX = -200f
         binding.logoImage.alpha = 0f
 
@@ -35,35 +33,31 @@ class SplashActivity : AppCompatActivity() {
 
         val duration = 1200L
 
-        // 2. Eksekusi Animasi Logo & Teks dengan efek Memantul (Overshoot)
         binding.logoImage.animate()
             .translationX(0f)
             .alpha(1f)
             .setDuration(duration)
-            .setInterpolator(OvershootInterpolator(1.2f)) // Efek memantul
+            .setInterpolator(OvershootInterpolator(1.2f))
             .start()
 
         binding.logoText.animate()
             .translationX(0f)
             .alpha(1f)
             .setDuration(duration)
-            .setInterpolator(OvershootInterpolator(1.2f)) // Efek memantul
+            .setInterpolator(OvershootInterpolator(1.2f))
             .start()
 
-        // 3. Eksekusi Animasi Slogan (Muncul sedikit lebih lambat dari logo)
         binding.tvSlogan.animate()
             .translationY(0f)
             .alpha(1f)
-            .setStartDelay(600) // Delay setengah detik
+            .setStartDelay(600)
             .setDuration(800)
             .start()
 
-        // 4. Pindah ke Intro Activity setelah 3 detik
         CoroutineScope(Dispatchers.Main).launch {
             delay(3000)
             startActivity(Intent(this@SplashActivity, IntroActivity::class.java))
 
-            // Tambahkan transisi Fade In/Out agar perpindahan mulus (smooth)
             overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
 
             finish()

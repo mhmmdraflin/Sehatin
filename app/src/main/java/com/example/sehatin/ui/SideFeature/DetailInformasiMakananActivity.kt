@@ -1,5 +1,7 @@
 package com.example.sehatin.ui.SideFeature
 
+import android.media.AudioAttributes // IMPORT AUDIO ATTRIBUTES
+import android.media.SoundPool       // IMPORT SOUNDPOOL
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -14,6 +16,10 @@ class DetailInformasiMakananActivity : AppCompatActivity() {
     // 1. Deklarasi ViewBinding
     private lateinit var binding: ActivityDetailInformasiMakananBinding
 
+    // VARIABEL SOUNDPOOL (Pour Suara Zero-Delay)
+    private var soundPool: SoundPool? = null
+    private var clickSoundId: Int = 0
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -21,6 +27,23 @@ class DetailInformasiMakananActivity : AppCompatActivity() {
         // 2. Inisialisasi ViewBinding
         binding = ActivityDetailInformasiMakananBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        // =======================================================
+        // INISIALISASI SOUNDPOOL
+        // =======================================================
+        val audioAttributes = AudioAttributes.Builder()
+            .setUsage(AudioAttributes.USAGE_ASSISTANCE_SONIFICATION)
+            .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
+            .build()
+
+        soundPool = SoundPool.Builder()
+            .setMaxStreams(2)
+            .setAudioAttributes(audioAttributes)
+            .build()
+
+        // Load suara ke memori sejak awal Activity dibuka
+        clickSoundId = soundPool?.load(this, R.raw.tombol_klik_sehatin, 1) ?: 0
+        // =======================================================
 
         // Mengatur jarak aman layar (Edge-to-Edge) menggunakan binding.root
         ViewCompat.setOnApplyWindowInsetsListener(binding.root) { v, insets ->
@@ -31,6 +54,7 @@ class DetailInformasiMakananActivity : AppCompatActivity() {
 
         // FUNGSI TOMBOL KEMBALI
         binding.btnBack.setOnClickListener {
+            mainkanSuaraKlik() // MEMAINKAN SUARA KLIK
             finish()
         }
 
@@ -48,7 +72,21 @@ class DetailInformasiMakananActivity : AppCompatActivity() {
         // MEMUAT GAMBAR MENGGUNAKAN GLIDE
         Glide.with(this)
             .load(gambarUrl)
-            .placeholder(R.drawable.gambar_salad) // Gambar default saat loading (Pastikan gambar_salad ada di drawable Anda)
+            .placeholder(R.drawable.gambar_salad) // Gambar default saat loading
             .into(binding.ivFoodImage)
+    }
+
+    // ========================================================
+    // FUNGSI UNTUK MEMAINKAN SUARA KLIK (ZERO-DELAY)
+    // ========================================================
+    private fun mainkanSuaraKlik() {
+        soundPool?.play(clickSoundId, 1f, 1f, 0, 0, 1f)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        // Bersihkan memori SoundPool agar tidak terjadi kebocoran memori (memory leak)
+        soundPool?.release()
+        soundPool = null
     }
 }

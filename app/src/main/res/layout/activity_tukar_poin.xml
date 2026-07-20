@@ -28,7 +28,7 @@
             android:foreground="?attr/selectableItemBackground"
             app:cardBackgroundColor="#FFFFFF"
             app:cardCornerRadius="14dp"
-            app:cardElevation="0dp"
+            app:cardElevation="2dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -49,9 +49,10 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:fontFamily="@font/lexenddeca"
-            android:text="Toko Sehatin"
+            android:text="TOKO"
+            android:letterSpacing="0.05"
             android:textColor="#000000"
-            android:textSize="20sp"
+            android:textSize="22sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/btn_back"
@@ -61,25 +62,39 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:cardBackgroundColor="#FFD700"
-            app:cardCornerRadius="12dp"
-            app:cardElevation="0dp"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="2dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:strokeColor="#000000"
-            app:strokeWidth="2dp">
+            app:strokeWidth="3dp">
 
-            <TextView
-                android:id="@+id/tv_user_poin"
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/lexenddeca"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
                 android:paddingHorizontal="12dp"
-                android:paddingVertical="8dp"
-                android:text="1,250 Poin"
-                android:textColor="#000000"
-                android:textSize="14sp"
-                android:textStyle="bold" />
+                android:paddingVertical="6dp">
+
+                <ImageView
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:layout_marginEnd="6dp"
+                    android:src="@android:drawable/btn_star_big_on"
+                    app:tint="#FFFFFF" />
+
+                <TextView
+                    android:id="@+id/tv_user_poin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/lexenddeca"
+                    android:text="1,250"
+                    android:textColor="#000000"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -108,16 +123,16 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
                 android:fontFamily="@font/lexenddeca"
-                android:text="Latar Belakang Spesial"
+                android:text="LATAR BELAKANG SPESIAL"
                 android:textColor="#757575"
-                android:textSize="16sp"
+                android:textSize="14sp"
                 android:textStyle="bold" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_marginBottom="16dp">
+                android:layout_marginBottom="24dp">
 
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="0dp"
@@ -126,7 +141,7 @@
                     android:layout_marginEnd="8dp"
                     app:cardBackgroundColor="#FFFFFF"
                     app:cardCornerRadius="16dp"
-                    app:cardElevation="4dp"
+                    app:cardElevation="6dp"
                     app:strokeColor="#000000"
                     app:strokeWidth="3dp">
 
@@ -136,49 +151,90 @@
                         android:orientation="vertical"
                         android:padding="12dp">
 
-                        <com.google.android.material.card.MaterialCardView
+                        <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="match_parent"
-                            android:layout_height="100dp"
-                            app:cardCornerRadius="8dp"
-                            app:strokeColor="#000000"
-                            app:strokeWidth="2dp">
-                            <ImageView
-                                android:id="@+id/iv_etalase_elite"
+                            android:layout_height="110dp">
+
+                            <com.google.android.material.card.MaterialCardView
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:scaleType="centerCrop"
-                                android:src="@drawable/bg_tantangan" /> </com.google.android.material.card.MaterialCardView>
+                                app:cardCornerRadius="8dp"
+                                app:strokeColor="#000000"
+                                app:strokeWidth="2dp">
+                                <ImageView
+                                    android:id="@+id/iv_etalase_elite"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:scaleType="centerCrop"
+                                    android:src="@drawable/bg_tantangan" />
+                            </com.google.android.material.card.MaterialCardView>
+
+                            <com.google.android.material.card.MaterialCardView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="6dp"
+                                android:layout_marginEnd="6dp"
+                                app:cardBackgroundColor="#9C27B0"
+                                app:cardCornerRadius="6dp"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:strokeColor="#FFFFFF"
+                                app:strokeWidth="2dp">
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:paddingHorizontal="6dp"
+                                    android:paddingVertical="2dp"
+                                    android:text="EPIC"
+                                    android:textColor="#FFFFFF"
+                                    android:textSize="10sp"
+                                    android:textStyle="bold" />
+                            </com.google.android.material.card.MaterialCardView>
+                        </androidx.constraintlayout.widget.ConstraintLayout>
 
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="8dp"
+                            android:layout_marginTop="12dp"
                             android:fontFamily="@font/lexenddeca"
-                            android:text="Latar Gym Retro"
+                            android:text="Gym Retro"
                             android:textColor="#000000"
                             android:textSize="14sp"
                             android:textStyle="bold"
                             android:maxLines="1"/>
 
-                        <TextView
-                            android:layout_width="match_parent"
+                        <LinearLayout
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="4dp"
-                            android:fontFamily="@font/lexenddeca"
-                            android:text="500 Poin"
-                            android:textColor="#FF8F00"
-                            android:textSize="14sp"
-                            android:textStyle="bold" />
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="14dp"
+                                android:layout_height="14dp"
+                                android:layout_marginEnd="4dp"
+                                android:src="@android:drawable/btn_star_big_on"
+                                app:tint="#FF8F00" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/lexenddeca"
+                                android:text="120"
+                                android:textColor="#FF8F00"
+                                android:textSize="14sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
 
                         <com.google.android.material.button.MaterialButton
-                            android:id="@+id/btn_beli_1"
+                            android:id="@+id/btn_beli_bg_1"
                             android:layout_width="match_parent"
                             android:layout_height="48dp"
                             android:layout_marginTop="12dp"
                             android:backgroundTint="#33A1E0"
                             android:fontFamily="@font/lexenddeca"
-                            android:text="Tukar"
-                            android:textAllCaps="false"
+                            android:text="TUKAR"
                             android:textColor="#FFFFFF"
                             android:textSize="14sp"
                             android:textStyle="bold"
@@ -195,7 +251,7 @@
                     android:layout_marginStart="8dp"
                     app:cardBackgroundColor="#FFFFFF"
                     app:cardCornerRadius="16dp"
-                    app:cardElevation="4dp"
+                    app:cardElevation="6dp"
                     app:strokeColor="#000000"
                     app:strokeWidth="3dp">
 
@@ -205,24 +261,51 @@
                         android:orientation="vertical"
                         android:padding="12dp">
 
-                        <com.google.android.material.card.MaterialCardView
+                        <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="match_parent"
-                            android:layout_height="100dp"
-                            app:cardCornerRadius="8dp"
-                            app:strokeColor="#000000"
-                            app:strokeWidth="2dp">
-                            <ImageView
-                                android:id="@+id/iv_etalase_special"
+                            android:layout_height="110dp">
+
+                            <com.google.android.material.card.MaterialCardView
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:scaleType="centerCrop"
-                                android:src="@drawable/bg_olahraga" />
-                        </com.google.android.material.card.MaterialCardView>
+                                app:cardCornerRadius="8dp"
+                                app:strokeColor="#000000"
+                                app:strokeWidth="2dp">
+                                <ImageView
+                                    android:id="@+id/iv_etalase_special"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:scaleType="centerCrop"
+                                    android:src="@drawable/bg_olahraga" />
+                            </com.google.android.material.card.MaterialCardView>
+
+                            <com.google.android.material.card.MaterialCardView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="6dp"
+                                android:layout_marginEnd="6dp"
+                                app:cardBackgroundColor="#2196F3"
+                                app:cardCornerRadius="6dp"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:strokeColor="#FFFFFF"
+                                app:strokeWidth="2dp">
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:paddingHorizontal="6dp"
+                                    android:paddingVertical="2dp"
+                                    android:text="RARE"
+                                    android:textColor="#FFFFFF"
+                                    android:textSize="10sp"
+                                    android:textStyle="bold" />
+                            </com.google.android.material.card.MaterialCardView>
+                        </androidx.constraintlayout.widget.ConstraintLayout>
 
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="8dp"
+                            android:layout_marginTop="12dp"
                             android:fontFamily="@font/lexenddeca"
                             android:text="Latar Taman"
                             android:textColor="#000000"
@@ -230,25 +313,279 @@
                             android:textStyle="bold"
                             android:maxLines="1"/>
 
-                        <TextView
-                            android:layout_width="match_parent"
+                        <LinearLayout
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="4dp"
-                            android:fontFamily="@font/lexenddeca"
-                            android:text="300 Poin"
-                            android:textColor="#FF8F00"
-                            android:textSize="14sp"
-                            android:textStyle="bold" />
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="14dp"
+                                android:layout_height="14dp"
+                                android:layout_marginEnd="4dp"
+                                android:src="@android:drawable/btn_star_big_on"
+                                app:tint="#FF8F00" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/lexenddeca"
+                                android:text="50"
+                                android:textColor="#FF8F00"
+                                android:textSize="14sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
 
                         <com.google.android.material.button.MaterialButton
-                            android:id="@+id/btn_beli_2"
+                            android:id="@+id/btn_beli_bg_2"
                             android:layout_width="match_parent"
                             android:layout_height="48dp"
                             android:layout_marginTop="12dp"
                             android:backgroundTint="#33A1E0"
                             android:fontFamily="@font/lexenddeca"
-                            android:text="Tukar"
-                            android:textAllCaps="false"
+                            android:text="TUKAR"
+                            android:textColor="#FFFFFF"
+                            android:textSize="14sp"
+                            android:textStyle="bold"
+                            app:cornerRadius="10dp"
+                            app:strokeColor="#000000"
+                            app:strokeWidth="2dp" />
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:fontFamily="@font/lexenddeca"
+                android:text="KARAKTER SPESIAL"
+                android:textColor="#757575"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="16dp">
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="8dp"
+                    app:cardBackgroundColor="#FFFFFF"
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="6dp"
+                    app:strokeColor="#000000"
+                    app:strokeWidth="3dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="12dp">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="110dp">
+
+                            <com.google.android.material.card.MaterialCardView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                app:cardCornerRadius="8dp"
+                                app:cardBackgroundColor="#EFEBE9"
+                                app:strokeColor="#000000"
+                                app:strokeWidth="2dp">
+                                <ImageView
+                                    android:id="@+id/iv_etalase_char_epic"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:scaleType="centerInside"
+                                    android:padding="8dp"
+                                    android:src="@drawable/boy_skin_elite_ideal" />
+                            </com.google.android.material.card.MaterialCardView>
+
+                            <com.google.android.material.card.MaterialCardView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="6dp"
+                                android:layout_marginEnd="6dp"
+                                app:cardBackgroundColor="#9C27B0"
+                                app:cardCornerRadius="6dp"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:strokeColor="#FFFFFF"
+                                app:strokeWidth="2dp">
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:paddingHorizontal="6dp"
+                                    android:paddingVertical="2dp"
+                                    android:text="EPIC"
+                                    android:textColor="#FFFFFF"
+                                    android:textSize="10sp"
+                                    android:textStyle="bold" />
+                            </com.google.android.material.card.MaterialCardView>
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="12dp"
+                            android:fontFamily="@font/lexenddeca"
+                            android:text="Setelan Elite"
+                            android:textColor="#000000"
+                            android:textSize="14sp"
+                            android:textStyle="bold"
+                            android:maxLines="1"/>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="14dp"
+                                android:layout_height="14dp"
+                                android:layout_marginEnd="4dp"
+                                android:src="@android:drawable/btn_star_big_on"
+                                app:tint="#FF8F00" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/lexenddeca"
+                                android:text="150"
+                                android:textColor="#FF8F00"
+                                android:textSize="14sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btn_beli_char_1"
+                            android:layout_width="match_parent"
+                            android:layout_height="48dp"
+                            android:layout_marginTop="12dp"
+                            android:backgroundTint="#33A1E0"
+                            android:fontFamily="@font/lexenddeca"
+                            android:text="TUKAR"
+                            android:textColor="#FFFFFF"
+                            android:textSize="14sp"
+                            android:textStyle="bold"
+                            app:cornerRadius="10dp"
+                            app:strokeColor="#000000"
+                            app:strokeWidth="2dp" />
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginStart="8dp"
+                    app:cardBackgroundColor="#FFFFFF"
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="6dp"
+                    app:strokeColor="#000000"
+                    app:strokeWidth="3dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="12dp">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="110dp">
+
+                            <com.google.android.material.card.MaterialCardView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                app:cardCornerRadius="8dp"
+                                app:cardBackgroundColor="#E0F2F1"
+                                app:strokeColor="#000000"
+                                app:strokeWidth="2dp">
+                                <ImageView
+                                    android:id="@+id/iv_etalase_char_rare"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:scaleType="centerInside"
+                                    android:padding="8dp"
+                                    android:src="@drawable/boy_skin_special_ideal" />
+                            </com.google.android.material.card.MaterialCardView>
+
+                            <com.google.android.material.card.MaterialCardView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="6dp"
+                                android:layout_marginEnd="6dp"
+                                app:cardBackgroundColor="#2196F3"
+                                app:cardCornerRadius="6dp"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:strokeColor="#FFFFFF"
+                                app:strokeWidth="2dp">
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:paddingHorizontal="6dp"
+                                    android:paddingVertical="2dp"
+                                    android:text="RARE"
+                                    android:textColor="#FFFFFF"
+                                    android:textSize="10sp"
+                                    android:textStyle="bold" />
+                            </com.google.android.material.card.MaterialCardView>
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="12dp"
+                            android:fontFamily="@font/lexenddeca"
+                            android:text="Baju Olahraga"
+                            android:textColor="#000000"
+                            android:textSize="14sp"
+                            android:textStyle="bold"
+                            android:maxLines="1"/>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="14dp"
+                                android:layout_height="14dp"
+                                android:layout_marginEnd="4dp"
+                                android:src="@android:drawable/btn_star_big_on"
+                                app:tint="#FF8F00" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/lexenddeca"
+                                android:text="80"
+                                android:textColor="#FF8F00"
+                                android:textSize="14sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btn_beli_char_2"
+                            android:layout_width="match_parent"
+                            android:layout_height="48dp"
+                            android:layout_marginTop="12dp"
+                            android:backgroundTint="#33A1E0"
+                            android:fontFamily="@font/lexenddeca"
+                            android:text="TUKAR"
                             android:textColor="#FFFFFF"
                             android:textSize="14sp"
                             android:textStyle="bold"

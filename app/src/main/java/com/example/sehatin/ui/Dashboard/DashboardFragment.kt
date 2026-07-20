@@ -5,6 +5,8 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
+import android.media.AudioAttributes // IMPORT AUDIO ATTRIBUTES
+import android.media.SoundPool       // IMPORT SOUNDPOOL
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -65,6 +67,10 @@ class DashboardFragment : Fragment() {
     private var currentSkinId = 1
     private var currentBackgroundId = 1
 
+    // VARIABEL SOUNDPOOL (Untuk Suara Zero-Delay)
+    private var soundPool: SoundPool? = null
+    private var clickSoundId: Int = 0
+
     private val dashboardViewModel: DashboardViewModel by viewModels {
         val pref = UserPreference(requireContext())
         val repo = DashboardRepository(pref)
@@ -82,8 +88,29 @@ class DashboardFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        // =======================================================
+        // INISIALISASI SOUNDPOOL
+        // =======================================================
+        val audioAttributes = AudioAttributes.Builder()
+            .setUsage(AudioAttributes.USAGE_MEDIA)
+            .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
+            .build()
+
+        soundPool = SoundPool.Builder()
+            .setMaxStreams(2) // Maksimal memutar 2 suara klik bersamaan jika ditekan cepat
+            .setAudioAttributes(audioAttributes)
+            .build()
+
+        // Load suara ke memori sejak awal Fragment dibuka
+        clickSoundId = soundPool?.load(requireContext(), R.raw.tombol_klik_sehatin, 1) ?: 0
+        // =======================================================
+
         setupTombolKategori()
-        binding.dashboardEditprof.setOnClickListener { bukaRiwayatNotifikasi() }
+
+        binding.dashboardEditprof.setOnClickListener {
+            mainkanSuaraKlik() // MEMAINKAN SUARA
+            bukaRiwayatNotifikasi()
+        }
 
         // ==========================================
         // PEMISAHAN KLIK AREA AGAR TIDAK BENTROK
@@ -91,12 +118,14 @@ class DashboardFragment : Fragment() {
 
         // 1. Jika teks merah KALORI diklik -> Buka Pop-up Kalori
         binding.tvKaloriTerbakar.setOnClickListener {
+            mainkanSuaraKlik() // MEMAINKAN SUARA
             tampilkanPopUpInfoKalori()
         }
 
-        // 2. Jika angka BERAT BADAN diklik -> Buka Pop-up Update Berat
-        binding.tvBeratVal.setOnClickListener {
-            tampilkanDialogUpdateBerat()
+        // 2. Tombol EDIT BUNDAR diklik -> Buka Pop-up Update Profil Lengkap
+        binding.btnUpdateData.setOnClickListener {
+            mainkanSuaraKlik() // MEMAINKAN SUARA
+            tampilkanDialogUpdateProfil()
         }
 
         val userPref = UserPreference(requireContext())
@@ -145,13 +174,18 @@ class DashboardFragment : Fragment() {
         val viewModelProfil = ViewModelProvider(this, factoryProfil)[ProfilViewModel::class.java]
 
         viewModelProfil.getProfilData().observe(viewLifecycleOwner) { data ->
-
-            // SIMPAN ID SKIN & BACKGROUND YANG TERPILIH (Agar bisa dipakai di bagian bawah)
+            // SIMPAN ID SKIN & BACKGROUND YANG TERPILIH
             currentSkinId = data.characterId
             currentBackgroundId = data.backgroundId
-
             tampilkanDataProfil()
         }
+    }
+
+    // ========================================================
+    // FUNGSI UNTUK MEMAINKAN SUARA KLIK (ZERO-DELAY)
+    // ========================================================
+    private fun mainkanSuaraKlik() {
+        soundPool?.play(clickSoundId, 1f, 1f, 0, 0, 1f)
     }
 
     // ========================================================
@@ -189,6 +223,7 @@ class DashboardFragment : Fragment() {
         dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
         btnTutup.setOnClickListener {
+            mainkanSuaraKlik() // MEMAINKAN SUARA
             dialog.dismiss()
         }
 
@@ -196,16 +231,22 @@ class DashboardFragment : Fragment() {
     }
 
     // ========================================================
-    // TAMPILKAN CUSTOM DIALOG UNTUK UPDATE BERAT BADAN
+    // TAMPILKAN CUSTOM DIALOG UNTUK UPDATE PROFIL LENGKAP
     // ========================================================
-    private fun tampilkanDialogUpdateBerat() {
-        val dialogView = layoutInflater.inflate(R.layout.dialog_update_berat, null)
-        val etBeratAngka = dialogView.findViewById<EditText>(R.id.et_update_berat_angka)
-        val btnBatal = dialogView.findViewById<Button>(R.id.btn_update_berat_batal)
-        val btnSimpan = dialogView.findViewById<Button>(R.id.btn_update_berat_simpan)
+    private fun tampilkanDialogUpdateProfil() {
+        val dialogView = layoutInflater.inflate(R.layout.dialog_update_profil, null)
 
+        val etBerat = dialogView.findViewById<EditText>(R.id.et_dialog_berat)
+        val etTinggi = dialogView.findViewById<EditText>(R.id.et_dialog_tinggi)
+        val etUmur = dialogView.findViewById<EditText>(R.id.et_dialog_umur)
+        val btnBatal = dialogView.findViewById<Button>(R.id.btn_dialog_batal)
+        val btnSimpan = dialogView.findViewById<Button>(R.id.btn_dialog_simpan)
+
+        // Isi form dengan data fisik yang tersimpan saat ini
         val fisikUser = dashboardViewModel.getUserBody()
-        etBeratAngka.setText(fisikUser.berat)
+        etBerat.setText(fisikUser.berat)
+        etTinggi.setText(fisikUser.tinggi)
+        etUmur.setText(fisikUser.umur)
 
         val dialog = AlertDialog.Builder(requireContext())
             .setView(dialogView)
@@ -214,33 +255,49 @@ class DashboardFragment : Fragment() {
 
         dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
-        btnBatal.setOnClickListener { dialog.dismiss() }
+        // Fungsi Batal
+        btnBatal.setOnClickListener {
+            mainkanSuaraKlik() // MEMAINKAN SUARA
+            dialog.dismiss()
+        }
 
+        // Fungsi Simpan
         btnSimpan.setOnClickListener {
-            val beratBaruStr = etBeratAngka.text.toString().trim()
+            mainkanSuaraKlik() // MEMAINKAN SUARA
 
-            if (beratBaruStr.isEmpty()) {
-                etBeratAngka.error = "Berat badan wajib diisi!"
+            val beratStr = etBerat.text.toString().trim()
+            val tinggiStr = etTinggi.text.toString().trim()
+            val umurStr = etUmur.text.toString().trim()
+
+            if (beratStr.isEmpty() || tinggiStr.isEmpty() || umurStr.isEmpty()) {
+                Toast.makeText(requireContext(), "Semua kolom harus diisi!", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
-            val beratDouble = beratBaruStr.toDoubleOrNull()
-            if (beratDouble == null || beratDouble <= 10.0 || beratDouble >= 250.0) {
-                etBeratAngka.error = "Masukkan angka yang logis (10-250 kg)"
+            val beratVal = beratStr.toDoubleOrNull() ?: 0.0
+            val tinggiVal = tinggiStr.toDoubleOrNull() ?: 0.0
+
+            if (beratVal <= 10.0 || beratVal >= 250.0) {
+                etBerat.error = "Masukkan angka yang logis (10-250 kg)"
+                return@setOnClickListener
+            }
+            if (tinggiVal <= 50.0 || tinggiVal >= 250.0) {
+                etTinggi.error = "Masukkan angka yang logis (50-250 cm)"
                 return@setOnClickListener
             }
 
-            // 1. SIMPAN DATA BARAT BADAN BARU KE DATABASE
-            dashboardViewModel.updateBeratBadan(beratBaruStr)
+            // 1. SIMPAN SEMUA DATA BARU KE DATABASE LOKAL
+            val userPref = UserPreference(requireContext())
+            userPref.setUserBody(umurStr, tinggiStr, beratStr, fisikUser.gender)
 
-            // 2. TUTUP DIALOG POP-UP
+            // 2. TUTUP DIALOG
             dialog.dismiss()
 
             // 3. REFRESH TAMPILAN SECARA INSTAN
             tampilkanDataProfil()
 
             // 4. MUNCULKAN PESAN SUKSES
-            Toast.makeText(requireContext(), "Berat badan berhasil diupdate ke $beratBaruStr kg!", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), "Data tubuh berhasil diperbarui!", Toast.LENGTH_SHORT).show()
         }
 
         dialog.show()
@@ -295,9 +352,13 @@ class DashboardFragment : Fragment() {
             btnHapusSemua.isEnabled = true
         }
 
-        btnTutup.setOnClickListener { dialog.dismiss() }
+        btnTutup.setOnClickListener {
+            mainkanSuaraKlik() // MEMAINKAN SUARA
+            dialog.dismiss()
+        }
 
         btnHapusSemua.setOnClickListener {
+            mainkanSuaraKlik() // MEMAINKAN SUARA
             prefs.edit().clear().apply()
             adapterNotif.updateData(emptyList())
             rvNotif.visibility = View.GONE
@@ -311,15 +372,19 @@ class DashboardFragment : Fragment() {
 
     private fun setupTombolKategori() {
         binding.btnBmiCard.setOnClickListener {
+            mainkanSuaraKlik() // MEMAINKAN SUARA
             startActivity(Intent(requireContext(), BodyMassIndexActivity::class.java))
         }
         binding.btnPengingatMakanCard.setOnClickListener {
+            mainkanSuaraKlik() // MEMAINKAN SUARA
             startActivity(Intent(requireContext(), Pengingat_Jam_MakanActivity::class.java))
         }
         binding.btnInfoMakananCard.setOnClickListener {
+            mainkanSuaraKlik() // MEMAINKAN SUARA
             startActivity(Intent(requireContext(), Informasi_MakananActivity::class.java))
         }
         binding.btnOlahragaCard.setOnClickListener {
+            mainkanSuaraKlik() // MEMAINKAN SUARA
             startActivity(Intent(requireContext(), OlahragaActivity::class.java))
         }
     }
@@ -358,10 +423,14 @@ class DashboardFragment : Fragment() {
         // 2. HITUNG ULANG KATEGORI BMI UNTUK MENGUBAH KARAKTER
         // ========================================================
         simulasiKondisiTubuh = kondisiAwal
+        var nilaiBmiUntukDitampilkan = 0.0 // Variabel penampung angka BMI
 
         if (beratAwal > 0 && tinggiAwal > 0) {
             val tinggiMeter = tinggiAwal / 100.0
             val bmiScore = beratSimulasi / (tinggiMeter * tinggiMeter)
+
+            // Simpan skor ke penampung
+            nilaiBmiUntukDitampilkan = bmiScore
 
             if (gender == "L") {
                 simulasiKondisiTubuh = when {
@@ -383,28 +452,36 @@ class DashboardFragment : Fragment() {
         binding.kondisiTubuh.text = simulasiKondisiTubuh
 
         // ========================================================
+        // TAMBAHAN BARU: TAMPILKAN TEKS SKOR BMI
+        // ========================================================
+        if (nilaiBmiUntukDitampilkan > 0) {
+            binding.tvSkorBmiDashboard.visibility = View.VISIBLE
+            binding.tvSkorBmiDashboard.text = "Skor BMI: ${String.format("%.1f", nilaiBmiUntukDitampilkan)}"
+        } else {
+            binding.tvSkorBmiDashboard.visibility = View.GONE
+        }
+
+        // ========================================================
         // 3. TAMPILKAN TEKS MERAH KALORI
         // ========================================================
         binding.tvKaloriTerbakar.visibility = View.VISIBLE
         binding.tvKaloriTerbakar.text = "🔥 $kaloriHariIni Kkal Keluar Hari Ini"
 
         // ========================================================
-        // 4. MENGUBAH WUJUD KARAKTER & BACKGROUND (UPDATE: DUKUNGAN SKIN & GENDER)
+        // 4. MENGUBAH WUJUD KARAKTER & BACKGROUND (DUKUNGAN SKIN)
         // ========================================================
         if (gender == "L") {
             binding.dashProfilePict.setImageResource(R.drawable.profile_boy)
 
-            // SET BACKGROUND LAKI-LAKI (Sesuai ID Background yang dipilih)
             val bgRes = when (currentBackgroundId) {
-                2 -> R.drawable.background_laki_perempuan_skin_elite // ID 2: Elite Background
-                3 -> R.drawable.background_lakilaki_skin_special     // ID 3: Special Background Laki-laki
-                else -> R.drawable.bg_dashboard_character            // ID 1: Basic Background Laki-laki
+                2 -> R.drawable.background_laki_perempuan_skin_elite
+                3 -> R.drawable.background_lakilaki_skin_special
+                else -> R.drawable.bg_dashboard_character
             }
             binding.bgIconCharacter.setImageResource(bgRes)
 
-            // NESTED WHEN: Cek Skin ID dulu, baru cek BMI
             val imageRes = when (currentSkinId) {
-                1 -> { // Skin BASIC Laki-laki
+                1 -> {
                     when (simulasiKondisiTubuh) {
                         "Kurus" -> R.drawable.character_boy_lebih_kurus
                         "Normal (Ideal)" -> R.drawable.character_ideal
@@ -413,7 +490,7 @@ class DashboardFragment : Fragment() {
                         else -> R.drawable.character_ideal
                     }
                 }
-                2 -> { // Skin ELITE Laki-laki (Ganti dengan aset Anda nanti)
+                2 -> {
                     when (simulasiKondisiTubuh) {
                         "Kurus" -> R.drawable.boy_skin_elite_kurus
                         "Normal (Ideal)" -> R.drawable.boy_skin_elite_ideal
@@ -422,7 +499,7 @@ class DashboardFragment : Fragment() {
                         else -> R.drawable.boy_skin_elite_ideal
                     }
                 }
-                3 -> { // Skin SPECIAL Laki-laki (Ganti dengan aset Anda nanti)
+                3 -> {
                     when (simulasiKondisiTubuh) {
                         "Kurus" -> R.drawable.boy_skin_special_kurus
                         "Normal (Ideal)" -> R.drawable.boy_skin_special_ideal
@@ -438,17 +515,15 @@ class DashboardFragment : Fragment() {
         } else {
             binding.dashProfilePict.setImageResource(R.drawable.profile_girl)
 
-            // SET BACKGROUND PEREMPUAN (Sesuai ID Background yang dipilih)
             val bgRes = when (currentBackgroundId) {
-                2 -> R.drawable.background_perempuan_skin_elite      // ID 2: Elite Background
-                3 -> R.drawable.background_perempuan_skin_special    // ID 3: Special Background Perempuan
-                else -> R.drawable.bg_dashboard_girl                 // ID 1: Basic Background Perempuan
+                2 -> R.drawable.background_perempuan_skin_elite
+                3 -> R.drawable.background_perempuan_skin_special
+                else -> R.drawable.bg_dashboard_girl
             }
             binding.bgIconCharacter.setImageResource(bgRes)
 
-            // NESTED WHEN: Cek Skin ID dulu, baru cek BMI
             val imageRes = when (currentSkinId) {
-                1 -> { // Skin BASIC Perempuan
+                1 -> {
                     when (simulasiKondisiTubuh) {
                         "Kurus" -> R.drawable.character_girl_lebih_kurus
                         "Normal (Ideal)" -> R.drawable.character_girl_ideal
@@ -457,7 +532,7 @@ class DashboardFragment : Fragment() {
                         else -> R.drawable.character_girl
                     }
                 }
-                2 -> { // Skin ELITE Perempuan (Ganti dengan aset Anda nanti)
+                2 -> {
                     when (simulasiKondisiTubuh) {
                         "Kurus" -> R.drawable.girl_skin_elite_kurus
                         "Normal (Ideal)" -> R.drawable.girl_skin_elite_ideal
@@ -466,7 +541,7 @@ class DashboardFragment : Fragment() {
                         else -> R.drawable.girl_skin_elite_ideal
                     }
                 }
-                3 -> { // Skin SPECIAL Perempuan (Ganti dengan aset Anda nanti)
+                3 -> {
                     when (simulasiKondisiTubuh) {
                         "Kurus" -> R.drawable.girl_skin_special_kurus
                         "Normal (Ideal)" -> R.drawable.girl_skin_special_ideal
@@ -483,6 +558,9 @@ class DashboardFragment : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
+        // Bersihkan memori SoundPool
+        soundPool?.release()
+        soundPool = null
         _binding = null
     }
 }

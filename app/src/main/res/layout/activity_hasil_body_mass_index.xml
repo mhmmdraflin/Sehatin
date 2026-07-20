@@ -337,11 +337,56 @@
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
+        <LinearLayout
+            android:id="@+id/container_logo_who"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/card_keterangan_bmi">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:fontFamily="@font/lexenddeca"
+                android:text="Berdasarkan standar perhitungan"
+                android:textColor="@color/abu_abu"
+                android:textSize="12sp" />
+
+            <ImageView
+                android:id="@+id/iv_logo_who"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/logo_who_asia2" />
+        </LinearLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_lihat_tabel_bmi"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/lexenddeca"
+            android:text="Lihat Tabel Klasifikasi BMI Asia"
+            android:textAllCaps="false"
+            android:textColor="@color/warnaUtama"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:cornerRadius="16dp"
+            app:strokeColor="@color/warnaUtama"
+            app:strokeWidth="2dp"
+            app:layout_constraintTop_toBottomOf="@+id/container_logo_who" />
+
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_kembali_dashboard"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="16dp"
             android:backgroundTint="@color/black"
             android:fontFamily="@font/lexenddeca"
             android:text="@string/hasil_bmi_kembali"
@@ -350,7 +395,7 @@
             android:textSize="16sp"
             android:textStyle="bold"
             app:cornerRadius="16dp"
-            app:layout_constraintTop_toBottomOf="@+id/card_keterangan_bmi" />
+            app:layout_constraintTop_toBottomOf="@+id/btn_lihat_tabel_bmi" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

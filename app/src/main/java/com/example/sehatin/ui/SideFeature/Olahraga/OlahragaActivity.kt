@@ -1,6 +1,8 @@
 package com.example.sehatin.ui.SideFeature.Olahraga
 
 import android.content.Intent
+import android.media.AudioAttributes // IMPORT AUDIO ATTRIBUTES
+import android.media.SoundPool       // IMPORT SOUNDPOOL
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -17,10 +19,31 @@ class OlahragaActivity : AppCompatActivity() {
     private lateinit var viewModel: OlahragaViewModel
     private lateinit var adapter: OlahragaAdapter
 
+    // VARIABEL SOUNDPOOL (Untuk Suara Zero-Delay)
+    private var soundPool: SoundPool? = null
+    private var clickSoundId: Int = 0
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_olahraga)
+
+        // =======================================================
+        // INISIALISASI SOUNDPOOL
+        // =======================================================
+        val audioAttributes = AudioAttributes.Builder()
+            .setUsage(AudioAttributes.USAGE_ASSISTANCE_SONIFICATION)
+            .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
+            .build()
+
+        soundPool = SoundPool.Builder()
+            .setMaxStreams(2)
+            .setAudioAttributes(audioAttributes)
+            .build()
+
+        // Load suara ke memori sejak awal Activity dibuka
+        clickSoundId = soundPool?.load(this, R.raw.tombol_klik_sehatin, 1) ?: 0
+        // =======================================================
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
@@ -29,6 +52,7 @@ class OlahragaActivity : AppCompatActivity() {
         }
 
         findViewById<MaterialCardView>(R.id.btn_back).setOnClickListener {
+            mainkanSuaraKlik() // MEMAINKAN SUARA KLIK
             finish()
         }
 
@@ -42,21 +66,30 @@ class OlahragaActivity : AppCompatActivity() {
         setupDaftarOlahraga()
     }
 
+    // ========================================================
+    // FUNGSI UNTUK MEMAINKAN SUARA KLIK (ZERO-DELAY)
+    // ========================================================
+    private fun mainkanSuaraKlik() {
+        soundPool?.play(clickSoundId, 1f, 1f, 0, 0, 1f)
+    }
+
     private fun setupDaftarOlahraga() {
         val rvOlahraga = findViewById<RecyclerView>(R.id.rv_olahraga)
 
         // MASUKKAN TAKARAN EXP MASING-MASING DI SINI (Angka ke-5)
         val daftarGerakan = listOf(
-            GerakanOlahraga(1, "Push Up", 30, 15, 10, R.drawable.ic_pushup, R.raw.push_up_illustration),
-            GerakanOlahraga(2, "Plank", 45, 20, 15, R.drawable.ic_pushup, R.raw.plank_illustration),
-            GerakanOlahraga(3, "Sit Up", 30, 12, 10, R.drawable.ic_pushup, R.raw.sit_up_illustration),
-            GerakanOlahraga(4, "Squat", 40, 25, 20, R.drawable.ic_pushup, R.raw.squat_illustration),
-            GerakanOlahraga(5, "Lunges", 30, 18, 15, R.drawable.ic_pushup, R.raw.lunges_illustration),
-            GerakanOlahraga(6, "Bicycle Crunch", 40, 22, 20, R.drawable.ic_pushup, R.raw.bicycle_crunch_illustration),
-            GerakanOlahraga(7, "Leg Raise", 35, 15, 15, R.drawable.ic_pushup, R.raw.leg_raise_illustration)
+            GerakanOlahraga(1, "Push Up", 15, 15, 10, R.drawable.ic_pushup, R.raw.push_up_illustration),
+            GerakanOlahraga(2, "Plank", 20, 20, 15, R.drawable.ic_pushup, R.raw.plank_illustration),
+            GerakanOlahraga(3, "Sit Up", 15, 12, 10, R.drawable.ic_pushup, R.raw.sit_up_illustration),
+            GerakanOlahraga(4, "Squat", 15, 25, 20, R.drawable.ic_pushup, R.raw.squat_illustration),
+            GerakanOlahraga(5, "Lunges", 15, 18, 15, R.drawable.ic_pushup, R.raw.lunges_illustration),
+            GerakanOlahraga(6, "Bicycle Crunch", 15, 22, 20, R.drawable.ic_pushup, R.raw.bicycle_crunch_illustration),
+            GerakanOlahraga(7, "Leg Raise", 15, 15, 15, R.drawable.ic_pushup, R.raw.leg_raise_illustration)
         )
 
         adapter = OlahragaAdapter(daftarGerakan) { gerakanTerpilih ->
+
+            mainkanSuaraKlik() // MEMAINKAN SUARA SAAT ITEM OLAHRAGA DIKLIK
 
             // Pindah ke layar Timer (SesiOlahragaActivity) dengan membawa bekal data
             val intent = Intent(this, SesiOlahragaActivity::class.java).apply {
@@ -75,11 +108,12 @@ class OlahragaActivity : AppCompatActivity() {
 
         rvOlahraga.layoutManager = LinearLayoutManager(this)
         rvOlahraga.adapter = adapter
+    }
 
-        // FITUR STATUS SELESAI DIMATIKAN SESUAI PERMINTAAN
-        // Tombol sekarang selalu menampilkan teks statis "Lakukan"
-        // viewModel.getCompletedGerakanIds().observe(this) { completedIds ->
-        //     adapter.setCompletedGerakan(completedIds)
-        // }
+    override fun onDestroy() {
+        super.onDestroy()
+        // Bersihkan memori SoundPool
+        soundPool?.release()
+        soundPool = null
     }
 }

@@ -59,7 +59,8 @@ class OlahragaAdapter(
             holder.tvStatus.text = "Selesai"
             holder.tvStatus.setBackgroundResource(R.drawable.bg_badge_status_selesai) // Pastikan file drawable ini ada
         } else {
-            holder.tvStatus.text = "Belum Selesai"
+            // UBAH: Dari "Belum Selesai" menjadi "Lakukan"
+            holder.tvStatus.text = "Lakukan"
             holder.tvStatus.setBackgroundResource(R.drawable.bg_badge_status)
         }
 

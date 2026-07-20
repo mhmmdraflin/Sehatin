@@ -128,7 +128,6 @@
     <string name="deskripsi_tantangan_makanan">Selesaikan Misi Edukasi Nutrisi untuk mendapatkan Poin &amp; EXP</string>
 
 
-
     <!--Fragment Lencana-->
     <string name="Jadwal_Lencana">Jadwal Lencana</string>
 
@@ -307,7 +306,6 @@
     <string name="Detail_Tantangan_Makanan_Misi2_poin">  +35 Poin</string>
 
 
-
     <!--activity Inventaris-->
     <string name="Inventaris_Sehatin">Inventaris Sehatin</string>
     <string name="Inventaris_Preview">Preview</string>
@@ -334,13 +332,80 @@
     <string name="Jeda_mulai_ulang">Mulai Ulang</string>
     <string name="Jeda_keluar">Keluar</string>
 
+    <!--deskripsi informasi makanan-->
+    <string name="desc_apel">Buah renyah dengan serat pektin tinggi. Sangat baik untuk pencernaan dan menjaga kadar gula darah agar tetap stabil.</string>
+    <string name="desc_brokoli">Sayuran hijau superfood yang kaya akan vitamin C, vitamin K, dan antioksidan untuk melawan radikal bebas di dalam tubuh.</string>
+    <string name="desc_chia_seed">Biji-bijian kecil yang padat nutrisi, kaya serat dan omega-3. Sangat cocok dicampur ke dalam minuman atau yoghurt.</string>
+    <string name="desc_dada_ayam">Dada ayam tanpa kulit adalah sumber protein tanpa lemak terbaik. Sangat cocok untuk pembentukan otot karena mengandung sekitar 31g protein per 100g porsi.</string>
+    <string name="desc_edamame">Kedelai muda yang direbus, sangat kaya akan protein nabati dan serat. Merupakan camilan sehat yang ampuh untuk menunda lapar.</string>
+    <string name="desc_ikan_kakap">Sumber protein laut rendah kalori yang mengandung mineral selenium tinggi untuk mendukung metabolisme dan sistem imun tubuh.</string>
+    <string name="desc_gandum">Karbohidrat kompleks dengan indeks glikemik rendah, pencernaannya yang lambat memberikan rasa kenyang dan energi yang lebih tahan lama.</string>
+    <string name="desc_hati_ayam">Kaya akan zat besi dan vitamin B12 yang sangat efektif untuk mencegah anemia dan menjaga pasokan energi tubuh.</string>
+    <string name="desc_ikan_salmon">Kaya akan Asam Lemak Omega-3 yang sangat baik untuk kesehatan jantung dan fungsi kognitif. Mengandung protein tinggi dan lemak sehat yang dibutuhkan tubuh.</string>
+    <string name="desc_jagung">Karbohidrat sehat yang kaya akan antioksidan lutein dan zeaxanthin, sangat baik untuk menjaga kesehatan mata.</string>
+    <string name="desc_kacang_almond">Camilan bernutrisi tinggi, mengandung lemak sehat, magnesium, dan vitamin E yang sangat baik untuk fungsi kesehatan jantung.</string>
+    <string name="desc_kacang_panjang">Sayuran hijau yang rendah kalori namun kaya akan serat dan Vitamin C. Sangat baik untuk menjaga kesehatan pencernaan dan mengontrol gula darah.</string>
+    <string name="desc_labu_siam">Sayuran yang kaya kandungan air dan rendah kalori. Memiliki kandungan kalium yang membantu menurunkan tekanan darah tinggi.</string>
+    <string name="desc_mangga">Buah tropis manis yang kaya akan vitamin C dan serat. Sangat baik untuk meningkatkan sistem kekebalan alami tubuh.</string>
+    <string name="desc_nasi_merah">Pengganti nasi putih dengan kandungan serat yang jauh lebih tinggi. Sangat efektif untuk membantu menjaga kadar gula darah tetap stabil.</string>
+    <string name="desc_oatmeal">Gandum utuh kaya serat yang menjaga perut kenyang lebih lama. Ditambah dengan antioksidan dari buah berry, menjadikannya menu sarapan yang kaya nutrisi.</string>
+    <string name="desc_pisang">Sumber karbohidrat cepat serap dan kalium yang tinggi. Sangat efektif untuk mengembalikan energi dengan cepat dan mencegah kram otot.</string>
+    <string name="desc_quinoa">Salah satu dari sedikit biji-bijian bebas gluten yang mengandung sembilan asam amino esensial, menjadikannya sumber protein nabati yang sangat sempurna.</string>
+    <string name="desc_roti_gandum">Terbuat dari biji gandum utuh yang mempertahankan nutrisi penting seperti serat, vitamin B, dan zat besi untuk pencernaan yang sehat.</string>
+    <string name="desc_susu_kedelai">Alternatif susu bebas laktosa yang tinggi protein nabati, rendah lemak jenuh, dan aman untuk pencernaan.</string>
+    <string name="desc_telur_rebus">Satu butir telur rebus mengandung 6g protein berkualitas tinggi dan asam amino esensial. Sangat praktis sebagai sumber energi instan setelah beraktivitas.</string>
+    <string name="desc_ubi_jalar">Sumber karbohidrat kompleks dan beta-karoten yang sangat baik untuk cadangan energi dan menjaga kesehatan kulit.</string>
+    <string name="desc_vco">Minyak kelapa murni (Virgin Coconut Oil) yang kaya akan asam lemak rantai sedang, cepat diubah menjadi energi dan baik untuk metabolisme tubuh.</string>
+    <string name="desc_wortel">Sayuran akar dengan kandungan vitamin A dan beta-karoten yang sangat tinggi, sangat diandalkan untuk menjaga kesehatan mata.</string>
+    <string name="desc_semangka">Buah dengan 92% kandungan air, sangat efektif untuk rehidrasi tubuh setelah lelah berolahraga dan membantu meredakan nyeri otot.</string>
+    <string name="desc_yoghurt">Produk susu fermentasi tinggi kalsium dan sumber probiotik yang sangat bagus untuk menjaga kesehatan mikrobioma usus.</string>
+    <string name="desc_zucchini">Sayuran sangat rendah kalori yang sering digunakan sebagai pengganti mi atau pasta bagi mereka yang menjalani diet rendah karbohidrat.</string>
+
+
+    <string name="url_apel">https://filebroker-cdn.lazada.co.id/kf/Sbc3a4643d5d1476ea30ab9f328da620c0.jpg</string>
+    <string name="url_brokoli">https://s3-publishing-cmn-svc-prd.s3.ap-southeast-1.amazonaws.com/article/QuXlk1NIaPYJRZZcaSERQ/original/096272100_1589411038-Jangan-Rebus-Brokoli-Ini-Alasannya-shutterstock_268833668.jpg</string>
+    <string name="url_chia_seed">https://i.pinimg.com/736x/7c/5d/18/7c5d18a8086fb13cbd8f233151700681.jpg</string>
+
+    <string name="url_dada_ayam">https://www.astronauts.id/blog/wp-content/uploads/2022/11/Kumpulan-Resep-Dada-Ayam-Untuk-Diet-yang-Tidak-Membosankan-1024x683.jpg</string>
+
+    <string name="url_edamame">https://i.pinimg.com/736x/f4/98/91/f498915357814de528b4fa49efd9712f.jpg</string>
+    <string name="url_ikan_kakap">https://i.pinimg.com/1200x/14/82/10/148210a79d7ce9b6b1c1e6bc6f4ca6da.jpg</string>
+    <string name="url_gandum">https://i.pinimg.com/1200x/b1/35/e4/b135e46cb1dfd27e03c8e9765a18bcfe.jpg</string>
+    <string name="url_hati_ayam">https://i.pinimg.com/1200x/88/1a/d6/881ad601bd091edcb10e3bf734e31f85.jpg</string>
+
+    <string name="url_ikan_salmon">https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSUEWwiKsOI8UsHCrHYLMtR66XIHtnT1jOXQw&amp;s</string>
+
+    <string name="url_jagung">https://i.pinimg.com/1200x/2e/2e/b1/2e2eb16fbfc690c91b2be901fd3abb4d.jpg</string>
+    <string name="url_kacang_almond">https://i.pinimg.com/736x/f2/40/60/f24060ed9d36a33b30320650abda5d77.jpg</string>
+
+    <string name="url_kacang_panjang">https://awsimages.detik.net.id/community/media/visual/2023/01/22/resep-tumis-kacang-panjang-dan-ayam_43.jpeg?w=600&amp;q=90</string>
+
+    <string name="url_labu_siam">https://i.pinimg.com/1200x/68/4b/24/684b24660868ecf230df1211e17a7958.jpg</string>
+    <string name="url_mangga">https://i.pinimg.com/736x/34/20/69/3420694a737d93624064f1915de1549e.jpg</string>
+    <string name="url_nasi_merah">https://i.pinimg.com/1200x/31/e3/5d/31e35d7fe7d882833926b070c84ccdda.jpg</string>
+
+    <string name="url_oatmeal">https://naturallyella.com/wp-content/uploads/2015/04/Summer-Berry-Overnight-Oats-2.jpg</string>
+    <string name="url_pisang">https://i0.wp.com/raisa.aeonstore.id/wp-content/uploads/2023/04/854849.jpg?fit=800%2C800&amp;ssl=1</string>
+
+    <string name="url_quinoa">https://i.pinimg.com/1200x/ed/57/be/ed57beb78569aac634c6978040062348.jpg</string>
+    <string name="url_roti_gandum">https://i.pinimg.com/736x/77/6a/1a/776a1a0cc732ef3648b5d9d4589b8fd2.jpg</string>
+    <string name="url_susu_kedelai">https://i.pinimg.com/1200x/16/ff/2b/16ff2baec88d5d8bc432e5426ae4408c.jpg</string>
+
+    <string name="url_telur_rebus">https://awsimages.detik.net.id/community/media/visual/2016/12/01/6e06d65c-6964-4867-86bb-727314c37b45.jpg?w=1200</string>
+
+    <string name="url_ubi_jalar">https://i.pinimg.com/736x/39/e5/27/39e527d8e1830814975bb7336feb969e.jpg</string>
+    <string name="url_vco">https://i.pinimg.com/736x/f2/45/28/f245282e6b708e78693a7f3be5e4e603.jpg</string>
+    <string name="url_wortel">https://i.pinimg.com/1200x/cd/94/b9/cd94b9c6c8b762dc9f1e902df5c5a11a.jpg</string>
+    <string name="url_semangka">https://i.pinimg.com/1200x/1d/e4/c6/1de4c6ffe970884ff174fc3d20f75163.jpg</string>
+    <string name="url_yoghurt">https://i.pinimg.com/1200x/e1/a8/93/e1a8938742d45b268d9cea69d55afea6.jpg</string>
+    <string name="url_zucchini">https://i.pinimg.com/1200x/62/97/85/629785a10e58ebaf7496c119ab8d5643.jpg</string>
 
     <!--deskripsi konten-->
     <string name="background_dashboard_content">bg dashboard character</string>
     <string name="character_illustration">character illustration</string>
     <string name="Notification">Notification</string>
     <string name="btn_bmi">btn bmi</string>
-    <string name="hasil_bmi_kembali">Kembali ke Dashboardn</string>
+    <string name="hasil_bmi_kembali">Kembali ke Dashboard</string>
     <string name="logo_kembali">logo kembali</string>
     <string name="logo_lihat_detail">logo lihat detail</string>
     <string name="hasil_bmi_judultext">Hasil BMI</string>

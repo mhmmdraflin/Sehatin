@@ -37,10 +37,6 @@ class UserDataViewModel(private val repository: UserDataRepository) : ViewModel(
             _saveResult.value = true
         }
     }
-
-    // =======================================================
-    // RUMUS BMI & PENENTUAN KONDISI TUBUH (SESUAI GAMBAR TABEL)
-    // =======================================================
     private fun hitungBMI(tinggiStr: String, beratStr: String, gender: String): String {
         return try {
             val tinggiCm = tinggiStr.toFloat()

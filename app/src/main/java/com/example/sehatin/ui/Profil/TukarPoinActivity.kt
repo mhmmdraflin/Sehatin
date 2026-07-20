@@ -1,8 +1,13 @@
 package com.example.sehatin.ui.Profil
 
+import android.content.Context
+import android.content.Intent
 import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
+import android.media.AudioAttributes
+import android.media.SoundPool
 import android.os.Bundle
-import android.widget.ImageView // TAMBAHAN IMPORT
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
@@ -10,7 +15,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.example.sehatin.Data.Model.UserPreference
 import com.example.sehatin.R
-import com.example.sehatin.Utils.CharacterImageUtils // IMPORT OTAK TERPADU
+import com.example.sehatin.Utils.CharacterImageUtils
 import com.example.sehatin.ui.Tantangan.TantanganPreferences
 import com.example.sehatin.ui.Tantangan.TantanganRepository
 import com.example.sehatin.ui.Tantangan.TantanganViewModel
@@ -24,6 +29,9 @@ class TukarPoinActivity : AppCompatActivity() {
     private lateinit var viewModelTantangan: TantanganViewModel
     private lateinit var viewModelProfil: ProfilViewModel
 
+    private var soundPool: SoundPool? = null
+    private var clickSoundId: Int = 0
+
     private var currentPoinUser = 0
     private lateinit var userKey: String
 
@@ -31,110 +39,212 @@ class TukarPoinActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_tukar_poin)
 
+        // ==========================================
+        // INISIALISASI SOUNDPOOL
+        // ==========================================
+        val audioAttributes = AudioAttributes.Builder()
+            .setUsage(AudioAttributes.USAGE_ASSISTANCE_SONIFICATION)
+            .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
+            .build()
+        soundPool = SoundPool.Builder().setMaxStreams(2).setAudioAttributes(audioAttributes).build()
+        clickSoundId = soundPool?.load(this, R.raw.tombol_klik_sehatin, 1) ?: 0
+
         val tvUserPoin = findViewById<TextView>(R.id.tv_user_poin)
         val btnBack = findViewById<MaterialCardView>(R.id.btn_back)
 
-        // Penamaan variabel diubah menjadi Elite dan Special
-        val btnBeliLatarElite = findViewById<MaterialButton>(R.id.btn_beli_1)
-        val btnBeliLatarSpecial = findViewById<MaterialButton>(R.id.btn_beli_2)
+        // Hubungkan Tombol Beli dari XML
+        val btnBeliLatarElite = findViewById<MaterialButton>(R.id.btn_beli_bg_1)
+        val btnBeliLatarSpecial = findViewById<MaterialButton>(R.id.btn_beli_bg_2)
+        val btnBeliCharEpic = findViewById<MaterialButton>(R.id.btn_beli_char_1)
+        val btnBeliCharRare = findViewById<MaterialButton>(R.id.btn_beli_char_2)
 
-        btnBack.setOnClickListener { finish() }
+        btnBack.setOnClickListener {
+            mainkanSuaraKlik()
+            finish()
+        }
 
+        // ==========================================
         // 1. AMBIL IDENTITAS & GENDER USER
+        // ==========================================
         val userPref = UserPreference(this)
         userKey = userPref.getName() ?: "guest_user"
         val userGender = userPref.getUserBody().gender
 
         // ==========================================
-        // SET GAMBAR ETALASE TOKO SESUAI GENDER (ELITE & SPECIAL)
+        // 2. SET GAMBAR ETALASE TOKO (DINAMIS SESUAI GENDER)
         // ==========================================
-        // Langsung memanggil ID dari ImageView yang sudah Anda tambahkan di XML
-        val ivEtalaseElite = findViewById<ImageView>(R.id.iv_etalase_elite)
-        val ivEtalaseSpecial = findViewById<ImageView>(R.id.iv_etalase_special)
+        val ivEtalaseBgElite = findViewById<ImageView>(R.id.iv_etalase_elite)
+        val ivEtalaseBgSpecial = findViewById<ImageView>(R.id.iv_etalase_special)
+        val ivEtalaseCharEpic = findViewById<ImageView>(R.id.iv_etalase_char_epic)
+        val ivEtalaseCharRare = findViewById<ImageView>(R.id.iv_etalase_char_rare)
 
-        // Memanggil Otak Terpadu (Background ID 2 = Elite, ID 3 = Special)
-        ivEtalaseElite?.setImageResource(CharacterImageUtils.getBackgroundImageRes(userGender, 2))
-        ivEtalaseSpecial?.setImageResource(CharacterImageUtils.getBackgroundImageRes(userGender, 3))
+        ivEtalaseBgElite?.setImageResource(CharacterImageUtils.getBackgroundImageRes(userGender, 2))
+        ivEtalaseBgSpecial?.setImageResource(CharacterImageUtils.getBackgroundImageRes(userGender, 3))
+
+        ivEtalaseCharEpic?.setImageResource(CharacterImageUtils.getCharacterImageRes(userGender, "Normal (Ideal)", 2))
+        ivEtalaseCharRare?.setImageResource(CharacterImageUtils.getCharacterImageRes(userGender, "Normal (Ideal)", 3))
+
         // ==========================================
-
-        // 2. INISIALISASI BANK POIN (Tantangan) & INVENTARIS (Profil)
+        // 3. INISIALISASI VIEWMODEL & PREFERENCES
+        // ==========================================
         val prefTantangan = TantanganPreferences.getInstance(applicationContext.dataStoreTantangan)
         viewModelTantangan = ViewModelProvider(this, TantanganViewModelFactory(TantanganRepository(prefTantangan)))[TantanganViewModel::class.java]
 
         val prefProfil = ProfilPreferences.getInstance(applicationContext.dataStoreProfil)
         viewModelProfil = ViewModelProvider(this, ProfilViewModelFactory(ProfilRepository(prefProfil)))[ProfilViewModel::class.java]
 
-        // 3. PANTAU POIN & STATUS KEPEMILIKAN ITEM SECARA REAL-TIME
+        val shopPrefs = getSharedPreferences("ShopPrefs_$userKey", Context.MODE_PRIVATE)
+        val ownsSkinElite = shopPrefs.getBoolean("hasSkinElite", false)
+        val ownsSkinSpecial = shopPrefs.getBoolean("hasSkinSpecial", false)
+
+        // ==========================================
+        // 4. PANTAU POIN & KEPEMILIKAN
+        // ==========================================
         viewModelTantangan.getTotalPoin(userKey).observe(this) { currentPoin ->
             currentPoinUser = currentPoin
-            tvUserPoin.text = "$currentPoinUser Poin"
+            tvUserPoin.text = "$currentPoinUser"
         }
 
         viewModelProfil.getProfilData().observe(this) { data ->
-            // Menggunakan properti database yang sama, namun konteksnya kini Elite & Special
-            if (data.hasBgGym) {
-                setTombolDimiliki(btnBeliLatarElite)
-            }
-            if (data.hasBgTaman) {
-                setTombolDimiliki(btnBeliLatarSpecial)
-            }
+            if (data.hasBgGym) setTombolDimiliki(btnBeliLatarElite)
+            if (data.hasBgTaman) setTombolDimiliki(btnBeliLatarSpecial)
         }
 
-        // 4. LOGIKA KLIK TOMBOL BELI DENGAN POP-UP KONFIRMASI
+        if (ownsSkinElite) setTombolDimiliki(btnBeliCharEpic)
+        if (ownsSkinSpecial) setTombolDimiliki(btnBeliCharRare)
+
+        // ==========================================
+        // 5. LOGIKA KLIK BELI (TUKAR POIN)
+        // ==========================================
+
+        // --- LATAR BELAKANG ---
         btnBeliLatarElite.setOnClickListener {
-            tampilkanPopUpKonfirmasi("Latar Elite", 500) {
-                viewModelTantangan.tambahPoin(userKey, -500)
-                viewModelProfil.buyBgGym() // Backend tetap pakai fungsi aslinya agar aman
-                Toast.makeText(this, "Berhasil menukar Latar Elite!", Toast.LENGTH_SHORT).show()
+            mainkanSuaraKlik()
+            tampilkanPopUpKonfirmasi("Latar Gym Retro", 120) {
+                viewModelTantangan.tambahPoin(userKey, -120)
+                viewModelProfil.buyBgGym()
+                setTombolDimiliki(btnBeliLatarElite)
+                tampilkanPopUpSukses("Latar Gym Retro")
             }
         }
 
         btnBeliLatarSpecial.setOnClickListener {
-            tampilkanPopUpKonfirmasi("Latar Special", 300) {
-                viewModelTantangan.tambahPoin(userKey, -300)
-                viewModelProfil.buyBgTaman() // Backend tetap pakai fungsi aslinya agar aman
-                Toast.makeText(this, "Berhasil menukar Latar Special!", Toast.LENGTH_SHORT).show()
+            mainkanSuaraKlik()
+            tampilkanPopUpKonfirmasi("Latar Taman", 50) {
+                viewModelTantangan.tambahPoin(userKey, -50)
+                viewModelProfil.buyBgTaman()
+                setTombolDimiliki(btnBeliLatarSpecial)
+                tampilkanPopUpSukses("Latar Taman")
+            }
+        }
+
+        // --- KARAKTER ---
+        btnBeliCharEpic.setOnClickListener {
+            mainkanSuaraKlik()
+            tampilkanPopUpKonfirmasi("Setelan Elite", 150) {
+                viewModelTantangan.tambahPoin(userKey, -150)
+                shopPrefs.edit().putBoolean("hasSkinElite", true).apply()
+                setTombolDimiliki(btnBeliCharEpic)
+                tampilkanPopUpSukses("Setelan Elite")
+            }
+        }
+
+        btnBeliCharRare.setOnClickListener {
+            mainkanSuaraKlik()
+            tampilkanPopUpKonfirmasi("Baju Olahraga", 80) {
+                viewModelTantangan.tambahPoin(userKey, -80)
+                shopPrefs.edit().putBoolean("hasSkinSpecial", true).apply()
+                setTombolDimiliki(btnBeliCharRare)
+                tampilkanPopUpSukses("Baju Olahraga")
             }
         }
     }
 
-    // Fungsi untuk mengubah tampilan tombol jika item sudah dibeli
+    // ========================================================
+    // FUNGSI PENDUKUNG UI & AUDIO
+    // ========================================================
+
     private fun setTombolDimiliki(btn: MaterialButton) {
         btn.text = "Dimiliki"
-        btn.isEnabled = false // Tombol dimatikan
-        btn.setBackgroundColor(Color.parseColor("#9E9E9E")) // Warna abu-abu
+        btn.isEnabled = false
+        btn.setBackgroundColor(Color.parseColor("#9E9E9E"))
         btn.setStrokeColorResource(android.R.color.transparent)
     }
 
-    // ==========================================
-    // FUNGSI POP-UP KONFIRMASI PEMBELIAN
-    // ==========================================
+    // ========================================================
+    // POP-UP KUSTOM (XML)
+    // ========================================================
     private fun tampilkanPopUpKonfirmasi(namaItem: String, harga: Int, onConfirm: () -> Unit) {
-        // Cek dulu poinnya, kalau kurang jangan munculkan pop-up konfirmasi
         if (currentPoinUser < harga) {
             Toast.makeText(this, "Maaf, Poin Anda tidak cukup \uD83D\uDE22", Toast.LENGTH_SHORT).show()
             return
         }
 
-        // Buat Dialog Pop-Up
-        val dialogBuilder = AlertDialog.Builder(this)
-        dialogBuilder.setTitle("Konfirmasi Penukaran")
-        dialogBuilder.setMessage("Tukar $harga Poin dengan $namaItem?\n\nSisa Poin Anda nanti: ${currentPoinUser - harga}")
+        val dialogView = layoutInflater.inflate(R.layout.dialog_konfirmasi_tukar_poin, null)
+        val dialog = AlertDialog.Builder(this)
+            .setView(dialogView)
+            .setCancelable(true)
+            .create()
 
-        dialogBuilder.setPositiveButton("Tukar") { dialog, _ ->
-            onConfirm() // Jalankan fungsi potong poin & simpan item
+        // Membuat background dialog menjadi transparan agar sudut melengkung CardView terlihat
+        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+        val tvTanya = dialogView.findViewById<TextView>(R.id.tv_dialog_tanya)
+        val tvSisa = dialogView.findViewById<TextView>(R.id.tv_dialog_sisa)
+        val btnBatal = dialogView.findViewById<TextView>(R.id.btn_dialog_batal)
+        val btnTukar = dialogView.findViewById<TextView>(R.id.btn_dialog_tukar)
+
+        // Set teks secara dinamis sesuai barang yang diklik
+        tvTanya.text = "Tukar $harga Poin dengan $namaItem?"
+        tvSisa.text = "Sisa Poin Anda nanti: ${currentPoinUser - harga}"
+
+        btnBatal.setOnClickListener {
+            mainkanSuaraKlik()
             dialog.dismiss()
         }
 
-        dialogBuilder.setNegativeButton("Batal") { dialog, _ ->
+        btnTukar.setOnClickListener {
+            mainkanSuaraKlik()
+            onConfirm()
             dialog.dismiss()
         }
 
-        val alertDialog = dialogBuilder.create()
-        alertDialog.show()
+        dialog.show()
+    }
 
-        // Mewarnai tombol Pop-Up agar lebih rapi (Opsional)
-        alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.parseColor("#4CAF50")) // Hijau
-        alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.parseColor("#F44336")) // Merah
+    private fun tampilkanPopUpSukses(namaItem: String) {
+        val dialogView = layoutInflater.inflate(R.layout.dialog_sukses_tukar_poin, null)
+        val dialog = AlertDialog.Builder(this)
+            .setView(dialogView)
+            .setCancelable(true)
+            .create()
+
+        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+        val tvSelamat = dialogView.findViewById<TextView>(R.id.tv_dialog_selamat)
+        val btnKeren = dialogView.findViewById<TextView>(R.id.btn_dialog_keren)
+
+        // Set teks sukses secara dinamis
+        tvSelamat.text = "Selamat! Kamu berhasil menukarkan poin dengan $namaItem."
+
+        btnKeren.setOnClickListener {
+            mainkanSuaraKlik()
+            dialog.dismiss()
+        }
+
+        dialog.show()
+    }
+
+    private fun mainkanSuaraKlik() {
+        val sharedPrefs = getSharedPreferences("AudioSettings", Context.MODE_PRIVATE)
+        val volumeSfxInt = sharedPrefs.getInt("VOLUME_SFX", 100)
+        val volumeSfxFloat = volumeSfxInt / 100f
+        soundPool?.play(clickSoundId, volumeSfxFloat, volumeSfxFloat, 0, 0, 1f)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        soundPool?.release()
+        soundPool = null
     }
 }

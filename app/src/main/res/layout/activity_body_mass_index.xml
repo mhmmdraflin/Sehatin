@@ -339,6 +339,7 @@
                     android:src="@drawable/ic_kanan" />
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
+
         <TextView
             android:id="@+id/lbl_gender"
             android:layout_width="wrap_content"
@@ -408,6 +409,81 @@
             </com.google.android.material.card.MaterialCardView>
         </LinearLayout>
 
+        <TextView
+            android:id="@+id/lbl_standar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:fontFamily="@font/lexenddeca"
+            android:text="Pilih Standar Klasifikasi"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/container_gender" />
+
+        <LinearLayout
+            android:id="@+id/container_standar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:baselineAligned="false"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@+id/lbl_standar">
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/card_standar_asia"
+                android:layout_width="0dp"
+                android:layout_height="64dp"
+                android:layout_marginEnd="8dp"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?attr/selectableItemBackground"
+                app:cardBackgroundColor="@color/putih4"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="2dp"
+                app:strokeColor="@color/black"
+                app:strokeWidth="2dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/lexenddeca"
+                    android:text="Asia (WPRO)"
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/card_standar_global"
+                android:layout_width="0dp"
+                android:layout_height="64dp"
+                android:layout_marginStart="8dp"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?attr/selectableItemBackground"
+                app:cardBackgroundColor="@color/putih4"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="2dp"
+                app:strokeColor="@color/black"
+                app:strokeWidth="2dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/lexenddeca"
+                    android:text="Western (WHO)"
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+            </com.google.android.material.card.MaterialCardView>
+        </LinearLayout>
+
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_hitung_bmi"
             android:layout_width="match_parent"
@@ -423,7 +499,7 @@
             app:cornerRadius="16dp"
             app:strokeColor="@color/black"
             app:strokeWidth="2dp"
-            app:layout_constraintTop_toBottomOf="@+id/container_gender" />
+            app:layout_constraintTop_toBottomOf="@+id/container_standar" />
 
         <ImageView
             android:id="@+id/img_logo_bawah"

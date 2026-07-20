@@ -1,6 +1,8 @@
 package com.example.sehatin.ui.Tantangan.Olahraga
 
 import android.content.Intent
+import android.media.AudioAttributes // IMPORT AUDIO ATTRIBUTES
+import android.media.SoundPool       // IMPORT SOUNDPOOL
 import android.os.Bundle
 import android.widget.ImageView
 import android.widget.TextView
@@ -14,10 +16,32 @@ import com.google.android.material.button.MaterialButton
 import com.google.android.material.card.MaterialCardView
 
 class PreviewTantanganActivity : AppCompatActivity() {
+
+    // VARIABEL SOUNDPOOL (Untuk Suara Zero-Delay)
+    private var soundPool: SoundPool? = null
+    private var clickSoundId: Int = 0
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_preview_tantangan)
+
+        // =======================================================
+        // INISIALISASI SOUNDPOOL
+        // =======================================================
+        val audioAttributes = AudioAttributes.Builder()
+            .setUsage(AudioAttributes.USAGE_ASSISTANCE_SONIFICATION)
+            .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
+            .build()
+
+        soundPool = SoundPool.Builder()
+            .setMaxStreams(2) // Maksimal putar 2 suara bersamaan
+            .setAudioAttributes(audioAttributes)
+            .build()
+
+        // Load suara ke memori sejak awal Activity dibuka
+        clickSoundId = soundPool?.load(this, R.raw.tombol_klik_sehatin, 1) ?: 0
+        // =======================================================
 
         // Mengatur padding agar tidak tertutup notch/status bar HP
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.header_container)) { v, insets ->
@@ -45,7 +69,10 @@ class PreviewTantanganActivity : AppCompatActivity() {
         val ivPreviewBg = findViewById<ImageView>(R.id.iv_preview_bg)
 
         // Aksi Tombol Kembali
-        btnBack.setOnClickListener { finish() }
+        btnBack.setOnClickListener {
+            mainkanSuaraKlik() // MEMAINKAN SUARA KLIK
+            finish()
+        }
 
         // ==========================================
         // 3. TAMPILKAN DATA KE LAYAR (Otomatis Dinamis)
@@ -68,6 +95,8 @@ class PreviewTantanganActivity : AppCompatActivity() {
         // 4. LEMPAR DATA KE AKTIVITAS BERIKUTNYA SAAT DIKLIK
         // ==========================================
         btnLakukan.setOnClickListener {
+            mainkanSuaraKlik() // MEMAINKAN SUARA KLIK
+
             // Catatan: Pastikan lokasi 'DetailAktivitasActivity' ini sesuai dengan package Anda.
             // Jika merah, klik Alt+Enter untuk meng-import class-nya.
             val intentLanjut = Intent(this, com.example.sehatin.ui.Tantangan.Olahraga.DetailAktivitasActivity::class.java).apply {
@@ -80,5 +109,19 @@ class PreviewTantanganActivity : AppCompatActivity() {
             startActivity(intentLanjut)
             finish() // Tutup halaman preview
         }
+    }
+
+    // ========================================================
+    // FUNGSI UNTUK MEMAINKAN SUARA KLIK (ZERO-DELAY)
+    // ========================================================
+    private fun mainkanSuaraKlik() {
+        soundPool?.play(clickSoundId, 1f, 1f, 0, 0, 1f)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        // Bersihkan memori SoundPool
+        soundPool?.release()
+        soundPool = null
     }
 }

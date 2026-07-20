@@ -16,6 +16,7 @@
         android:paddingTop="32dp"
         android:paddingBottom="120dp">
 
+        <!-- HEADER -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -58,6 +59,7 @@
             </LinearLayout>
         </LinearLayout>
 
+        <!-- LENCANA 1: LANGKAH PERTAMA -->
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/card_achiev_welcome"
             android:layout_width="match_parent"
@@ -131,7 +133,7 @@
                             android:max="1"
                             android:progress="0"
                             app:indicatorColor="#FFD700"
-                            app:trackColor="#80000000"
+                            app:trackColor="@color/black"
                             app:trackCornerRadius="4dp"
                             app:trackThickness="8dp" />
 
@@ -150,6 +152,7 @@
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
+        <!-- LENCANA 2: KESADARAN DIRI (BMI) -->
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/card_achiev_bmi"
             android:layout_width="match_parent"
@@ -222,7 +225,7 @@
                             android:max="1"
                             android:progress="0"
                             app:indicatorColor="#FFD700"
-                            app:trackColor="#80000000"
+                            app:trackColor="@color/black"
                             app:trackCornerRadius="4dp"
                             app:trackThickness="8dp" />
 
@@ -241,6 +244,7 @@
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
+        <!-- LENCANA 3: SI PALING PAHAM NUTRISI -->
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/card_achiev_makanan"
             android:layout_width="match_parent"
@@ -313,7 +317,7 @@
                             android:max="10"
                             android:progress="0"
                             app:indicatorColor="#FFD700"
-                            app:trackColor="#80000000"
+                            app:trackColor="@color/black"
                             app:trackCornerRadius="4dp"
                             app:trackThickness="8dp" />
 
@@ -332,6 +336,7 @@
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
+        <!-- LENCANA 4: PEJUANG PUSH UP -->
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/card_achiev_pushup"
             android:layout_width="match_parent"
@@ -396,6 +401,7 @@
                         android:gravity="center_vertical"
                         android:orientation="horizontal">
 
+                        <!-- WARNA SOLID KUNING PUCAT AGAR TIDAK HILANG -->
                         <com.google.android.material.progressindicator.LinearProgressIndicator
                             android:id="@+id/progress_pushup"
                             android:layout_width="0dp"
@@ -404,7 +410,7 @@
                             android:max="1"
                             android:progress="0"
                             app:indicatorColor="#FFD700"
-                            app:trackColor="#80000000"
+                            app:trackColor="@color/black"
                             app:trackCornerRadius="4dp"
                             app:trackThickness="8dp" />
 
@@ -423,6 +429,7 @@
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
+        <!-- LENCANA 5: MASTER PLANK -->
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/card_achiev_plank"
             android:layout_width="match_parent"
@@ -495,7 +502,7 @@
                             android:max="5"
                             android:progress="0"
                             app:indicatorColor="#FFD700"
-                            app:trackColor="#80000000"
+                            app:trackColor="@color/black"
                             app:trackCornerRadius="4dp"
                             app:trackThickness="8dp" />
 
@@ -514,6 +521,7 @@
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
+        <!-- LENCANA 6: DISIPLIN WAKTU -->
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/card_achiev_pengingat"
             android:layout_width="match_parent"
@@ -586,7 +594,7 @@
                             android:max="3"
                             android:progress="0"
                             app:indicatorColor="#FFD700"
-                            app:trackColor="#80000000"
+                            app:trackColor="@color/black"
                             app:trackCornerRadius="4dp"
                             app:trackThickness="8dp" />
 
@@ -605,6 +613,7 @@
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
+        <!-- LENCANA 7: SULTAN POIN -->
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/card_achiev_poin"
             android:layout_width="match_parent"
@@ -677,7 +686,7 @@
                             android:max="1000"
                             android:progress="0"
                             app:indicatorColor="#FFFFFF"
-                            app:trackColor="#80000000"
+                            app:trackColor="@color/black"
                             app:trackCornerRadius="4dp"
                             app:trackThickness="8dp" />
 
@@ -696,6 +705,7 @@
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
+        <!-- LENCANA 8: LEVEL UP -->
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/card_achiev_exp"
             android:layout_width="match_parent"
@@ -768,7 +778,7 @@
                             android:max="500"
                             android:progress="0"
                             app:indicatorColor="#FFD700"
-                            app:trackColor="#80000000"
+                            app:trackColor="@color/black"
                             app:trackCornerRadius="4dp"
                             app:trackThickness="8dp" />
 

@@ -1,6 +1,8 @@
 package com.example.sehatin.ui.SideFeature.Olahraga
 
 import android.content.Intent
+import android.media.AudioAttributes // IMPORT AUDIO ATTRIBUTES
+import android.media.SoundPool       // IMPORT SOUNDPOOL
 import android.os.Bundle
 import android.view.animation.OvershootInterpolator
 import android.widget.ImageView
@@ -50,10 +52,31 @@ class HasilOlahragaActivity : AppCompatActivity() {
     private lateinit var viewModelOlahraga: OlahragaViewModel
     private lateinit var viewModelTantangan: TantanganViewModel
 
+    // VARIABEL SOUNDPOOL (Untuk Suara Zero-Delay)
+    private var soundPool: SoundPool? = null
+    private var clickSoundId: Int = 0
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_hasil_olahraga)
+
+        // =======================================================
+        // INISIALISASI SOUNDPOOL
+        // =======================================================
+        val audioAttributes = AudioAttributes.Builder()
+            .setUsage(AudioAttributes.USAGE_ASSISTANCE_SONIFICATION)
+            .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
+            .build()
+
+        soundPool = SoundPool.Builder()
+            .setMaxStreams(2)
+            .setAudioAttributes(audioAttributes)
+            .build()
+
+        // Load suara ke memori sejak awal Activity dibuka
+        clickSoundId = soundPool?.load(this, R.raw.tombol_klik_sehatin, 1) ?: 0
+        // =======================================================
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
@@ -92,7 +115,6 @@ class HasilOlahragaActivity : AppCompatActivity() {
 
         // =======================================================
         // 4. SIMPAN KALORI & EXP (WAJIB JALAN, TANPA SYARAT)
-        // Bagian ini sudah dikeluarkan dari blok if(idGerakan)
         // =======================================================
         viewModelOlahraga.tambahKaloriDanExp(kaloriTerbakar, expDidapat)
         viewModelTantangan.tambahExp(userKey, expDidapat)
@@ -150,11 +172,19 @@ class HasilOlahragaActivity : AppCompatActivity() {
         jalankanAnimasiKemenangan()
 
         findViewById<MaterialButton>(R.id.btn_kembali_dashboard).setOnClickListener {
+            mainkanSuaraKlik() // MEMAINKAN SUARA KLIK
             val intent = Intent(this, com.example.sehatin.Main.MainActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
             startActivity(intent)
             finish()
         }
+    }
+
+    // ========================================================
+    // FUNGSI UNTUK MEMAINKAN SUARA KLIK (ZERO-DELAY)
+    // ========================================================
+    private fun mainkanSuaraKlik() {
+        soundPool?.play(clickSoundId, 1f, 1f, 0, 0, 1f)
     }
 
     private fun jalankanAnimasiKemenangan() {
@@ -201,5 +231,12 @@ class HasilOlahragaActivity : AppCompatActivity() {
                             }.start()
                     }.start()
             }.start()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        // Bersihkan memori SoundPool
+        soundPool?.release()
+        soundPool = null
     }
 }

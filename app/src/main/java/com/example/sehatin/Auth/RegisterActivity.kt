@@ -27,6 +27,9 @@ class RegisterActivity : AppCompatActivity() {
         binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        // MENGGUNAKAN BINDING AGAR LEBIH RAPI (Tanpa findViewById)
+        binding.tvLoginLink.setOnClickListener { finish() }
+
         userPref = UserPreference(this)
         binding.kolomKonfirmasi.targetPasswordView = binding.kolomPassword
 

@@ -50,13 +50,14 @@
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/btn_back_menu_makanan"
+            app:layout_constraintStart_toStartOf="@+id/btn_back_menu_makanan"
             app:layout_constraintTop_toTopOf="parent">
 
             <TextView
                 android:id="@+id/tv_title_header_makanan"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
                 android:fontFamily="@font/lexenddeca"
                 android:text="Kuis Edukasi Nutrisi"
                 android:textColor="#4CAF50"
@@ -66,6 +67,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
                 android:fontFamily="@font/lexenddeca"
                 android:text="Jawab kuisnya, kumpulkan poin dan EXP!"
                 android:textColor="#757575"
@@ -179,6 +181,7 @@
                     </LinearLayout>
 
                     <ImageView
+                        android:id="@+id/iv_status_misi_1"
                         android:layout_width="24dp"
                         android:layout_height="24dp"
                         android:src="@android:drawable/ic_media_play"
@@ -246,7 +249,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/lexenddeca"
-                            android:text="Keajaiban Sayuran Hijau"
+                            android:text="Keajaiban Air Putih"
                             android:textColor="#757575"
                             android:textSize="12sp" />
 
@@ -266,7 +269,7 @@
                                 android:fontFamily="@font/lexenddeca"
                                 android:paddingHorizontal="10dp"
                                 android:paddingVertical="4dp"
-                                android:text="10 Soal | 30 Poin | 20 EXP"
+                                android:text="5 Soal | 15 Poin | 10 EXP"
                                 android:textColor="#000000"
                                 android:textSize="10sp"
                                 android:textStyle="bold" />
@@ -274,9 +277,10 @@
                     </LinearLayout>
 
                     <ImageView
+                        android:id="@+id/iv_status_misi_2"
                         android:layout_width="24dp"
                         android:layout_height="24dp"
-                        android:src="@android:drawable/ic_media_play"
+                        android:src="@android:drawable/ic_lock_lock"
                         app:tint="#000000" />
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
@@ -341,7 +345,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/lexenddeca"
-                            android:text="Gizi Seimbang &amp; Vitamin"
+                            android:text="Karbohidrat &amp; Lemak"
                             android:textColor="#757575"
                             android:textSize="12sp" />
 
@@ -361,7 +365,7 @@
                                 android:fontFamily="@font/lexenddeca"
                                 android:paddingHorizontal="10dp"
                                 android:paddingVertical="4dp"
-                                android:text="15 Soal | 50 Poin | 35 EXP"
+                                android:text="5 Soal | 25 Poin | 20 EXP"
                                 android:textColor="#000000"
                                 android:textSize="10sp"
                                 android:textStyle="bold" />
@@ -369,9 +373,10 @@
                     </LinearLayout>
 
                     <ImageView
+                        android:id="@+id/iv_status_misi_3"
                         android:layout_width="24dp"
                         android:layout_height="24dp"
-                        android:src="@android:drawable/ic_media_play"
+                        android:src="@android:drawable/ic_lock_lock"
                         app:tint="#000000" />
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
@@ -427,7 +432,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/lexenddeca"
-                            android:text="Tingkat Master"
+                            android:text="Tingkat Lanjutan"
                             android:textColor="#000000"
                             android:textSize="16sp"
                             android:textStyle="bold" />
@@ -436,7 +441,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/lexenddeca"
-                            android:text="Kalori, Diet, &amp; Metabolisme"
+                            android:text="Protein &amp; Otot"
                             android:textColor="#757575"
                             android:textSize="12sp" />
 
@@ -456,7 +461,7 @@
                                 android:fontFamily="@font/lexenddeca"
                                 android:paddingHorizontal="10dp"
                                 android:paddingVertical="4dp"
-                                android:text="20 Soal | 80 Poin | 50 EXP"
+                                android:text="5 Soal | 25 Poin | 20 EXP"
                                 android:textColor="#000000"
                                 android:textSize="10sp"
                                 android:textStyle="bold" />
@@ -464,9 +469,202 @@
                     </LinearLayout>
 
                     <ImageView
+                        android:id="@+id/iv_status_misi_4"
                         android:layout_width="24dp"
                         android:layout_height="24dp"
-                        android:src="@android:drawable/ic_media_play"
+                        android:src="@android:drawable/ic_lock_lock"
+                        app:tint="#000000" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/btn_misi_5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?attr/selectableItemBackground"
+                app:cardBackgroundColor="#FFFFFF"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="6dp"
+                app:strokeColor="#000000"
+                app:strokeWidth="3dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:padding="16dp">
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        app:cardBackgroundColor="#F3E5F5"
+                        app:cardCornerRadius="16dp"
+                        app:strokeColor="#9C27B0"
+                        app:strokeWidth="2dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="5"
+                            android:textSize="28sp"
+                            android:textStyle="bold"
+                            android:textColor="#9C27B0"
+                            android:fontFamily="@font/lexenddeca"/>
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/lexenddeca"
+                            android:text="Tingkat Master"
+                            android:textColor="#000000"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/lexenddeca"
+                            android:text="Metabolisme &amp; Kalori"
+                            android:textColor="#757575"
+                            android:textSize="12sp" />
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            app:cardBackgroundColor="#FFD700"
+                            app:cardCornerRadius="8dp"
+                            app:cardElevation="0dp"
+                            app:strokeColor="#000000"
+                            app:strokeWidth="1dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/lexenddeca"
+                                android:paddingHorizontal="10dp"
+                                android:paddingVertical="4dp"
+                                android:text="5 Soal | 40 Poin | 30 EXP"
+                                android:textColor="#000000"
+                                android:textSize="10sp"
+                                android:textStyle="bold" />
+                        </com.google.android.material.card.MaterialCardView>
+                    </LinearLayout>
+
+                    <ImageView
+                        android:id="@+id/iv_status_misi_5"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@android:drawable/ic_lock_lock"
+                        app:tint="#000000" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/btn_misi_6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?attr/selectableItemBackground"
+                app:cardBackgroundColor="#FFFFFF"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="6dp"
+                app:strokeColor="#000000"
+                app:strokeWidth="3dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:padding="16dp">
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        app:cardBackgroundColor="#FFEBEE"
+                        app:cardCornerRadius="16dp"
+                        app:strokeColor="#F44336"
+                        app:strokeWidth="2dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="6"
+                            android:textSize="28sp"
+                            android:textStyle="bold"
+                            android:textColor="#F44336"
+                            android:fontFamily="@font/lexenddeca"/>
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/lexenddeca"
+                            android:text="Tingkat Master"
+                            android:textColor="#000000"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/lexenddeca"
+                            android:text="Mitos vs Fakta Gizi"
+                            android:textColor="#757575"
+                            android:textSize="12sp" />
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            app:cardBackgroundColor="#FFD700"
+                            app:cardCornerRadius="8dp"
+                            app:cardElevation="0dp"
+                            app:strokeColor="#000000"
+                            app:strokeWidth="1dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/lexenddeca"
+                                android:paddingHorizontal="10dp"
+                                android:paddingVertical="4dp"
+                                android:text="5 Soal | 50 Poin | 40 EXP"
+                                android:textColor="#000000"
+                                android:textSize="10sp"
+                                android:textStyle="bold" />
+                        </com.google.android.material.card.MaterialCardView>
+                    </LinearLayout>
+
+                    <ImageView
+                        android:id="@+id/iv_status_misi_6"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@android:drawable/ic_lock_lock"
                         app:tint="#000000" />
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>

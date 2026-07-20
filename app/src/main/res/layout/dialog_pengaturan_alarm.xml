@@ -95,35 +95,13 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:layout_marginVertical="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="24dp"
             android:background="#E0E0E0" />
-
-        <TextView
-            android:id="@+id/tv_label_snooze"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/lexenddeca"
-            android:text="Waktu Tunda (Snooze): 5 Menit"
-            android:textColor="@color/black"
-            android:textSize="14sp"
-            android:textStyle="bold" />
-
-        <com.google.android.material.slider.Slider
-            android:id="@+id/slider_snooze"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:stepSize="1.0"
-            android:valueFrom="1.0"
-            android:valueTo="15.0"
-            android:value="5.0"
-            app:thumbColor="@color/warnaUtama"
-            app:trackColorActive="@color/warnaUtama" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
             android:orientation="horizontal">
 
             <com.google.android.material.button.MaterialButton

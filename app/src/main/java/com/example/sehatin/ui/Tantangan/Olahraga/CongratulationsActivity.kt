@@ -1,8 +1,14 @@
 package com.example.sehatin.ui.Tantangan.Olahraga
 
+import android.animation.ValueAnimator // IMPORT BARU UNTUK ANIMASI ANGKA
+import android.content.Context
 import android.content.Intent
 import android.graphics.drawable.AnimationDrawable
+import android.media.AudioAttributes
+import android.media.SoundPool
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
@@ -11,6 +17,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import com.example.sehatin.Data.Model.UserPreference
 import com.example.sehatin.R
+import com.example.sehatin.Utils.BackgroundMusicManager
 import com.example.sehatin.ui.Tantangan.TantanganPreferences
 import com.example.sehatin.ui.Tantangan.TantanganRepository
 import com.example.sehatin.ui.Tantangan.TantanganViewModel
@@ -40,9 +47,38 @@ class CongratulationsActivity : AppCompatActivity() {
     private lateinit var viewModel: TantanganViewModel
     private var isChestOpened = false
 
+    // VARIABEL SOUNDPOOL (Untuk Efek Suara Berlapis)
+    private var soundPool: SoundPool? = null
+    private var soundOrchestralWin: Int = 0
+    private var soundExpPoint: Int = 0
+    private var clickSoundId: Int = 0
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_congratulations)
+
+        // =======================================================
+        // 1. MATIKAN MUSIK LATAR UTAMA UNTUK HALAMAN INI
+        // =======================================================
+        BackgroundMusicManager.stopMusic()
+
+        // =======================================================
+        // 2. INISIALISASI SOUNDPOOL
+        // =======================================================
+        val audioAttributes = AudioAttributes.Builder()
+            .setUsage(AudioAttributes.USAGE_ASSISTANCE_SONIFICATION)
+            .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
+            .build()
+
+        soundPool = SoundPool.Builder()
+            .setMaxStreams(3) // Izinkan 3 suara tumpang tindih
+            .setAudioAttributes(audioAttributes)
+            .build()
+
+        soundOrchestralWin = soundPool?.load(this, R.raw.orchestral_win, 1) ?: 0
+        soundExpPoint = soundPool?.load(this, R.raw.sound_effect_exp_point, 1) ?: 0
+        clickSoundId = soundPool?.load(this, R.raw.tombol_klik_sehatin, 1) ?: 0
+        // =======================================================
 
         val ivChest = findViewById<ImageView>(R.id.iv_chest_reward)
         val tvInstruksi = findViewById<TextView>(R.id.tv_tap_instruction)
@@ -53,25 +89,29 @@ class CongratulationsActivity : AppCompatActivity() {
 
         val expDiterima = intent.getIntExtra("HASIL_EXP", 0)
         val poinDiterima = intent.getIntExtra("HASIL_POIN", 0)
-
-        // TANGKAP KALORI DARI TANTANGAN (Jika tidak ada, default 50 Kkal)
         val kaloriTerbakar = intent.getIntExtra("HASIL_KALORI", 50)
-
-        // PENTING: Tangkap Nama Misi dari Intent sebelumnya (dikirim dari DetailAktivitasActivity)
         val namaMisiOlahraga = intent.getStringExtra("HASIL_NAMA_MISI") ?: ""
 
-        tvExp.text = "+$expDiterima EXP"
-        tvPoin.text = "+$poinDiterima Poin"
+        // SIMPAN STATUS SELESAI KE MEMORI AGAR GEMBOK TERBUKA
+        // SIMPAN STATUS SELESAI KE MEMORI AGAR GEMBOK TERBUKA KHUSUS AKUN INI
+        if (namaMisiOlahraga.isNotEmpty()) {
+            val userPref = UserPreference(this)
+            val userKey = userPref.getName() ?: "guest_user"
+
+            val progressPrefs = getSharedPreferences("OlahragaProgressPrefs_$userKey", Context.MODE_PRIVATE)
+            progressPrefs.edit().putBoolean(namaMisiOlahraga, true).apply()
+        }
+
+        // Set teks awal menjadi 0, karena akan dianimasikan ke angka target
+        tvExp.text = "+0 EXP"
+        tvPoin.text = "+0 Poin"
 
         // ==========================================
-        // 1. AMBIL IDENTITAS USER
+        // AMBIL IDENTITAS USER & SIMPAN REWARD
         // ==========================================
         val userPref = UserPreference(this)
         val userKey = userPref.getName() ?: "guest_user"
 
-        // ==========================================
-        // 2. SIMPAN KE BANK PUSAT TANTANGAN (UTAMA)
-        // ==========================================
         val prefTantangan = TantanganPreferences.getInstance(applicationContext.dataStoreTantangan)
         val factory = TantanganViewModelFactory(TantanganRepository(prefTantangan))
         viewModel = ViewModelProvider(this, factory)[TantanganViewModel::class.java]
@@ -79,19 +119,12 @@ class CongratulationsActivity : AppCompatActivity() {
         viewModel.tambahExp(userKey, expDiterima)
         viewModel.tambahPoin(userKey, poinDiterima)
 
-        // ========================================================
-        // 3. FITUR BARU: SIMPAN KALORI KE MEMORI OLAHRAGA (UNTUK DASHBOARD)
-        // ========================================================
         val prefOlahraga = OlahragaPreferences.getInstance(applicationContext.dataStore)
         val factoryOlahraga = OlahragaViewModelFactory(OlahragaRepository(prefOlahraga))
         val olahragaViewModel = ViewModelProvider(this, factoryOlahraga)[OlahragaViewModel::class.java]
 
-        // Simpan Kalori agar langsung memotong BMR dan menyusutkan karakter di Dashboard
-        olahragaViewModel.tambahKaloriDanExp(kaloriTerbakar, 0) // EXP diset 0 karena sudah ditambahkan di atas
+        olahragaViewModel.tambahKaloriDanExp(kaloriTerbakar, 0)
 
-        // ========================================================
-        // 4. SENSOR PENCAPAIAN: Push Up, Plank, Poin, & EXP
-        // ========================================================
         val prefPencapaian = PencapaianPreferences.getInstance(applicationContext.dataStorePencapaian)
         val factoryPencapaian = PencapaianViewModelFactory(PencapaianRepository(prefPencapaian))
         val viewModelPencapaian = ViewModelProvider(this, factoryPencapaian)[PencapaianViewModel::class.java]
@@ -99,26 +132,28 @@ class CongratulationsActivity : AppCompatActivity() {
         lifecycleScope.launch {
             val stateSekarang = prefPencapaian.getPencapaianProgress().first()
 
-            // Jika yang diselesaikan Push Up, beri progres 1
             if (namaMisiOlahraga.contains("Push Up", ignoreCase = true)) {
                 viewModelPencapaian.updateProgress(prefPencapaian.PUSHUP_KEY, 1)
-            }
-            // Jika yang diselesaikan Plank, tambah +1 ke progres saat ini
-            else if (namaMisiOlahraga.contains("Plank", ignoreCase = true)) {
+            } else if (namaMisiOlahraga.contains("Plank", ignoreCase = true)) {
                 viewModelPencapaian.updateProgress(prefPencapaian.PLANK_KEY, stateSekarang.plank + 1)
             }
 
-            // Tambahkan Akumulasi Poin & EXP
             viewModelPencapaian.updateProgress(prefPencapaian.POIN_KEY, stateSekarang.poin + poinDiterima)
             viewModelPencapaian.updateProgress(prefPencapaian.EXP_KEY, stateSekarang.exp + expDiterima)
         }
 
         btnKlaim.isEnabled = false
 
+        // ========================================================
+        // LOGIKA ANIMASI & SUARA PETI HADIAH
+        // ========================================================
         ivChest.setOnClickListener {
             if (!isChestOpened) {
                 isChestOpened = true
                 tvInstruksi.visibility = View.GONE
+
+                // 1. MAINKAN SUARA PETI DIBUKA (ORCHESTRAL WIN)
+                mainkanSuara(soundOrchestralWin)
 
                 val chestAnimation = ivChest.drawable as? AnimationDrawable
                 if (chestAnimation != null) {
@@ -126,18 +161,78 @@ class CongratulationsActivity : AppCompatActivity() {
                     chestAnimation.start()
                 }
 
+                // 2. MUNCULKAN KARTU POIN DAN EXP
                 cardReward.animate().alpha(1f).setDuration(500).start()
+
+                // 3. MULAI ANIMASI ANGKA & SUARA POIN SECARA BERSAMAAN SETELAH JEDA
+                Handler(Looper.getMainLooper()).postDelayed({
+                    mainkanSuara(soundExpPoint)
+
+                    // Memanggil fungsi animasi untuk menghitung dari 0 ke angka target
+                    mulaiAnimasiAngka(tvExp, expDiterima, "EXP")
+                    mulaiAnimasiAngka(tvPoin, poinDiterima, "Poin")
+
+                }, 400) // Mundur 400ms agar pas saat kartu muncul ke layar
+
                 btnKlaim.animate().alpha(1f).setDuration(500).withEndAction {
                     btnKlaim.isEnabled = true
                 }.start()
             }
         }
 
+        // ========================================================
+        // KLAIM BUTTON & REDIRECT KE FRAGMENT TANTANGAN
+        // ========================================================
         btnKlaim.setOnClickListener {
+            mainkanSuara(clickSoundId)
+
+            // HIDUPKAN KEMBALI MUSIK UTAMA SEBELUM PINDAH HALAMAN
+            BackgroundMusicManager.initialize(application, R.raw.steps_in_sunlight)
+
             val intent = Intent(this, com.example.sehatin.Main.MainActivity::class.java)
+
+            // --- PENAMBAHAN KODE ---
+            // Mengirim sinyal ke MainActivity agar membuka tab Tantangan
+            intent.putExtra("TAMPILKAN_FRAGMENT", "Tantangan")
+            // -----------------------
+
             intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
             startActivity(intent)
             finish()
         }
+    }
+
+    // ========================================================
+    // FUNGSI ANIMASI COUNTING ANGKA
+    // ========================================================
+    private fun mulaiAnimasiAngka(textView: TextView, targetValue: Int, suffix: String) {
+        val animator = ValueAnimator.ofInt(0, targetValue)
+        animator.duration = 1500 // Durasi efek counting (1.5 Detik)
+
+        animator.addUpdateListener { animation ->
+            val animatedValue = animation.animatedValue as Int
+            textView.text = "+$animatedValue $suffix"
+        }
+
+        animator.start()
+    }
+
+    // ========================================================
+    // FUNGSI PEMANGGIL SUARA DINAMIS
+    // ========================================================
+    private fun mainkanSuara(soundId: Int) {
+        val sharedPrefs = getSharedPreferences("AudioSettings", Context.MODE_PRIVATE)
+        val volumeSfxInt = sharedPrefs.getInt("VOLUME_SFX", 100)
+        val volumeSfxFloat = volumeSfxInt / 100f
+
+        if (soundId != 0) {
+            soundPool?.play(soundId, volumeSfxFloat, volumeSfxFloat, 0, 0, 1f)
+        }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        soundPool?.release()
+        soundPool = null
     }
 }
